@@ -1,0 +1,56 @@
+# Shopping Managment Projesi
+Kendi iþimi markette kolaylaþtýrmak için yazdýðým proje
+## Projenin Amacý
+Markette ürünlerinin fiyatýný hesaplarken iþimi kolaylaþtýrmak.
+Kullanýcý ürün barkodunu okutur.
+<br>
+Ürünün veritabanýndaki bilgileri backend den gelir.
+<br>
+Alýþveriþ sonunda ürün listesi backend e gönderilir ve sipariþ kaydedilir.
+## Bu Committe Yapýlan iþlemler
+- Api Projesi oluþturuldu(ShoppingManagment).
+- Katmanlý mimari için gerekli projeler oluþturuldu(Business,Data,Entity).
+- Dto nesneleri(Entity/Dto/ProductDto.cs ve MarketDto.cs) yazýldý
+- Data Katmanýnda düzenli kod yazýmý için gerekli klasör yapýsý Oluþturuldu(Abstracts,Efcore,Efcore/Config,EfCore/Context,EfCore/Migrations).
+- Data Katmanýnda Entity Framework Core(EfCore) için gerekli kütüphaneler yüklendi(Microsoft.EntityFrameworkCore,Microsoft.EntityFrameworkCore.Design,Microsoft.EntityFrameworkCore.SqlServer,Microsoft.EntityFrameworkCore.Tools).
+- ApplicationDbContext(Data/EfCore/Context) sýnýfý yazýldý.
+- MarketDtoConfig ve ProductDtoConfig (Data/EfCore/Config) sýnýfý yazýldý.
+- Api Projesindeki appsettings.json dosyasýna Veritabaný baðlantý metni(Connection string) yazýldý.
+- Data Katmanýndaki program.cs implemantasyonlarý için DataExtensions(Data/Utils/Extensions/) sýnýfý oluþturuldu.
+- Veritabaný baðlantý metni ile ApplicationDbContext arasýndaki baðlantý kodu (DataExtensions daki ConfigureSqlContextForDataLayer metodu) yazýldý.
+- Program.cs ile DataExtensions(Data/Utils) sýnýfý arasýndaki baðlantý kodu(builder.services. ...) yazýldý
+- Migrationlarýn Ana Projeye deðil data katmanýnda oluþmasý için gerekli kod parçacýðý eklendi(DataExtensions daki ConfigureSqlContextForDataLayer metodu)
+- Ýlk Migration oluþturuldu ve localdeki veri tabaný sunucusuna uygulandý.
+- IProductRepository interface i (Data/Abstracts/Product) yazýldý ve fonksiyonlarda kullanýlan nesneler(IProductRepositoryCreateOneProductAsync,IProductRepositoryGetAllAsync,IProductRepositoryGetOneProductByBarcodeNumberAndMarketIdAsync,IProductRepositoryGetOneProductByIdAsync,IProductRepositoryUpdateOneProductAsync),sýnýfýn bulunduðu klasöre oluþturuldu
+- ProductRepository sýnýfý(Data/EfCore) yazýldý ve fonksiyonlarýnda kullanýlan nesneler yazýldý(interface aþamasýnda sýnýflarýn içi boþtu,dolduruldu)
+- Entity katmanýnda IProductRepository klasörü oluþturuldu ve IProductRepository ile alakalý nesneler(IProductRepositoryCreateOneProductAsync,IProductRepositoryGetAllAsync,IProductRepositoryGetOneProductByBarcodeNumberAndMarketIdAsync,IProductRepositoryGetOneProductByIdAsync,IProductRepositoryUpdateOneProductAsync) klasöre taþýndý.
+- MarketRepository sýnýfý yazýldý ve fonksiyonlarda kullanýlan nesneler(IMarketRepositoryCreateOneMarketAsync,IMarketRepositoryGetAllAsync,IMarketRepositoryGetOneMarketByIdAsync,IMarketRepositoryUpdateOneMarketAsync) ayný klasörde oluþturuldu,yazýldý
+- IMarketRepository interface i MarketRepository sýnýfýna göre yazýldý.
+- Entity katmanýnda IMarketRepository klasörü oluþturuldu ve IMarketRepository ile alakalý nesneler(IMarketRepositoryCreateOneMarketAsync,IMarketRepositoryGetAllAsync,IMarketRepositoryGetOneMarketByIdAsync,IMarketRepositoryUpdateOneMarketAsync) klasöre taþýndý.
+- Versiyon kontrol sistemi için README_TR ve README dosyalarý oluþturuldu.
+- Versiyon kontrol sistemi(Github) baðlantýsý yapýldý
+- Versiyon kontrol sistemi için gitignore dosyasý oluþturuldu
+## Proje günlüðü
+### Gün 1 (26.12.2024)
+- Api Projesi oluþturuldu(ShoppingManagment).
+- Katmanlý mimari için gerekli projeler oluþturuldu(Business,Data,Entity).
+- Dto nesneleri(Entity/Dto/ProductDto.cs ve MarketDto.cs) yazýldý
+- Data Katmanýnda düzenli kod yazýmý için gerekli klasör yapýsý Oluþturuldu(Abstracts,Efcore,Efcore/Config,EfCore/Context,EfCore/Migrations).
+- Data Katmanýnda Entity Framework Core(EfCore) için gerekli kütüphaneler yüklendi(Microsoft.EntityFrameworkCore,Microsoft.EntityFrameworkCore.Design,Microsoft.EntityFrameworkCore.SqlServer,Microsoft.EntityFrameworkCore.Tools).
+- ApplicationDbContext(Data/EfCore/Context) sýnýfý yazýldý.
+- MarketDtoConfig ve ProductDtoConfig (Data/EfCore/Config) sýnýfý yazýldý.
+- Api Projesindeki appsettings.json dosyasýna Veritabaný baðlantý metni(Connection string) yazýldý.
+- Data Katmanýndaki program.cs implemantasyonlarý için DataExtensions(Data/Utils/Extensions/) sýnýfý oluþturuldu.
+- Veritabaný baðlantý metni ile ApplicationDbContext arasýndaki baðlantý kodu (DataExtensions daki ConfigureSqlContextForDataLayer metodu) yazýldý.
+- Program.cs ile DataExtensions(Data/Utils) sýnýfý arasýndaki baðlantý kodu(builder.services. ...) yazýldý
+- Migrationlarýn Ana Projeye deðil data katmanýnda oluþmasý için gerekli kod parçacýðý eklendi(DataExtensions daki ConfigureSqlContextForDataLayer metodu)
+- Ýlk Migration oluþturuldu ve localdeki veri tabaný sunucusuna uygulandý.
+- IProductRepository interface i (Data/Abstracts/Product) yazýldý ve fonksiyonlarda kullanýlan nesneler(IProductRepositoryCreateOneProductAsync,IProductRepositoryGetAllAsync,IProductRepositoryGetOneProductByBarcodeNumberAndMarketIdAsync,IProductRepositoryGetOneProductByIdAsync,IProductRepositoryUpdateOneProductAsync),sýnýfýn bulunduðu klasöre oluþturuldu
+- ProductRepository sýnýfý(Data/EfCore) yazýldý ve fonksiyonlarýnda kullanýlan nesneler yazýldý(interface aþamasýnda sýnýflarýn içi boþtu,dolduruldu)
+- Entity katmanýnda IProductRepository klasörü oluþturuldu ve IProductRepository ile alakalý nesneler(IProductRepositoryCreateOneProductAsync,IProductRepositoryGetAllAsync,IProductRepositoryGetOneProductByBarcodeNumberAndMarketIdAsync,IProductRepositoryGetOneProductByIdAsync,IProductRepositoryUpdateOneProductAsync) klasöre taþýndý.
+- MarketRepository sýnýfý yazýldý ve fonksiyonlarda kullanýlan nesneler(IMarketRepositoryCreateOneMarketAsync,IMarketRepositoryGetAllAsync,IMarketRepositoryGetOneMarketByIdAsync,IMarketRepositoryUpdateOneMarketAsync) ayný klasörde oluþturuldu,yazýldý
+- IMarketRepository interface i MarketRepository sýnýfýna göre yazýldý.
+- Entity katmanýnda IMarketRepository klasörü oluþturuldu ve IMarketRepository ile alakalý nesneler(IMarketRepositoryCreateOneMarketAsync,IMarketRepositoryGetAllAsync,IMarketRepositoryGetOneMarketByIdAsync,IMarketRepositoryUpdateOneMarketAsync) klasöre taþýndý.
+- Versiyon kontrol sistemi için README_TR ve README dosyalarý oluþturuldu.
+- Versiyon kontrol sistemi(Github) baðlantýsý yapýldý
+- Versiyon kontrol sistemi için gitignore dosyasý oluþturuldu.
