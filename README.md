@@ -1,1 +1,1 @@
-[trReadmeHere](https://github.com/)
+[trReadmeHere](https://github.com/fatihemregit/ShoppingManagmentApi/blob/master/README_TR.md)
