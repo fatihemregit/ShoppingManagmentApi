@@ -8,8 +8,8 @@ Kullanýcý ürün barkodunu okutur.
 <br>
 Alýþveriþ sonunda ürün listesi backend e gönderilir ve sipariþ kaydedilir.
 ## Bu Committe Yapýlan iþlemler
-- Business Katmanýnda,düzenli kod yazýmý için gerekli klasör yapýsýnýn oluþturulmasý
-- Business Katmanýnda,Autmapper ve Extensions sýnýfýnýn oluþturulmasý
+- Business Katmanýnda,AutoMapper kütüphanesinin yüklenmesi ve implementasyon için gerekli kodlarýn yazýlmasý.
+- Program.cs ile ServiceExtensions sýnýfý arasýndaki baðlantý kodunun yazýlmasý.
 ## Proje günlüðü
 ### Gün 1 (26.12.2024)
 - Api Projesi oluþturuldu(ShoppingManagment).
@@ -38,4 +38,5 @@ Alýþveriþ sonunda ürün listesi backend e gönderilir ve sipariþ kaydedilir.
 ### Gün 2 (27.12.2024)
 - Business Katmanýnda,düzenli kod yazýmý için gerekli klasör yapýsý Oluþturuldu(Abstracts,Abstracts/Market,Abstracts/Product,Concretes,Concretes/Market,Concretes/Product,Utils,Utils/AutoMapper,Utils/Extensions).
 - MappingProfileForBusinessLayer(Business/Utils/AutoMapper) ve ServiceExtensions(Business/Utils/Extensions) sýnýflarý oluþturuldu.
-- 
+- Business Katmanýnda,AutoMapper kütüphanesi yüklendi ve implementasyon için gerekli kodlar(ServiceExtensions daki setAutoMapperForBusinessLayer) yazýldý.
+- Program.cs ile ServiceExtensions(Business/Utils) sýnýfý arasýndaki baðlantý kodu(builder.services. ...) yazýldý.
