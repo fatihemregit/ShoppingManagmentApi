@@ -8,7 +8,8 @@ Kullanýcý ürün barkodunu okutur.
 <br>
 Alýþveriþ sonunda ürün listesi backend e gönderilir ve sipariþ kaydedilir.
 ## Bu Committe Yapýlan iþlemler
-- Readme dosyasý düzenlemesi
+- Business Katmanýnda,düzenli kod yazýmý için gerekli klasör yapýsýnýn oluþturulmasý
+- Business Katmanýnda,Autmapper ve Extensions sýnýfýnýn oluþturulmasý
 ## Proje günlüðü
 ### Gün 1 (26.12.2024)
 - Api Projesi oluþturuldu(ShoppingManagment).
@@ -34,3 +35,7 @@ Alýþveriþ sonunda ürün listesi backend e gönderilir ve sipariþ kaydedilir.
 - Readme dosyalarýnýn içeriði yazýldý.
 - Versiyon kontrol sistemi(Github) baðlantýsý yapýldý.
 - Versiyon kontrol sistemi için gitignore dosyasý oluþturuldu.
+### Gün 2 (27.12.2024)
+- Business Katmanýnda,düzenli kod yazýmý için gerekli klasör yapýsý Oluþturuldu(Abstracts,Abstracts/Market,Abstracts/Product,Concretes,Concretes/Market,Concretes/Product,Utils,Utils/AutoMapper,Utils/Extensions).
+- MappingProfileForBusinessLayer(Business/Utils/AutoMapper) ve ServiceExtensions(Business/Utils/Extensions) sýnýflarý oluþturuldu.
+- 
