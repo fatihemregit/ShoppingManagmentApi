@@ -8,13 +8,15 @@
 
   <ItemGroup>
     <Folder Include="Abstracts\Market\" />
-    <Folder Include="Abstracts\Product\" />
     <Folder Include="Concretes\Market\" />
-    <Folder Include="Concretes\Product\" />
   </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="AutoMapper" Version="13.0.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Data\Data.csproj" />
   </ItemGroup>
 
 </Project>

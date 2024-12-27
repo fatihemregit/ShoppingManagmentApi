@@ -8,8 +8,9 @@ Kullanýcý ürün barkodunu okutur.
 <br>
 Alýþveriþ sonunda ürün listesi backend e gönderilir ve sipariþ kaydedilir.
 ## Bu Committe Yapýlan iþlemler
-- Business Katmanýnda,AutoMapper kütüphanesinin yüklenmesi ve implementasyon için gerekli kodlarýn yazýlmasý.
-- Program.cs ile ServiceExtensions sýnýfý arasýndaki baðlantý kodunun yazýlmasý.
+- Custom Exceptions klasörünün oluþturulmasý ve Custom Exceptions sýnýflarýnýn yazýlmasý
+- IProductService interface inin oluþturulmasý
+- ProductService sýnýfýnýn oluþturulmasý,sýnýfa bazý fonksiyonlarýn yazýlmasý,Bu metotlara özgü nesneler yazýlmasý,gerekli mapleme kodlarýnýn MappingProfileForBusinessLayer sýnýfýna yazýlmasý
 ## Proje günlüðü
 ### Gün 1 (26.12.2024)
 - Api Projesi oluþturuldu(ShoppingManagment).
@@ -40,3 +41,6 @@ Alýþveriþ sonunda ürün listesi backend e gönderilir ve sipariþ kaydedilir.
 - MappingProfileForBusinessLayer(Business/Utils/AutoMapper) ve ServiceExtensions(Business/Utils/Extensions) sýnýflarý oluþturuldu.
 - Business Katmanýnda,AutoMapper kütüphanesi yüklendi ve implementasyon için gerekli kodlar(ServiceExtensions daki setAutoMapperForBusinessLayer) yazýldý.
 - Program.cs ile ServiceExtensions(Business/Utils) sýnýfý arasýndaki baðlantý kodu(builder.services. ...) yazýldý.
+- Custom Exceptions klasörü oluþturuldu (Entity/Exceptions) ve Custom Exceptions sýnýflarý(BadRequestException,ConflictException,OkException) yazýldý
+- IProductService(Business/Abstracts/Product) interface i oluþturuldu.
+- ProductService sýnýfý(Business/Concretes/Product) oluþturuldu,sýnýfa bazý fonksiyonlar(getProductWithBarcodeNumberAndMarketId,createProduct,CheckIsAlreadyProductInDb) yazýldý,Bu metotlara özgü nesneler(IProductServiceCreateProduct,IProductServiceGetProductWithBarcodeNumberAndMarketId) yazýldý,gerekli mapleme kodlarý MappingProfileForBusinessLayer(Business/Utils/AutoMapper) sýnýfýna yazýldý
