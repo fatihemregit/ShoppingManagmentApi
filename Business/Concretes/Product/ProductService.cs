@@ -29,6 +29,7 @@ namespace Business.Concretes.Product
 
 		public async Task<Exception> getProductWithBarcodeNumberAndMarketId(string barcodeNumber, int marketId)
 		{
+			//will add parameter null check
 			//öncelikle veritabanında parametrede verilen bilgilere göre bir ürün olup olmadığını kontrol edelim (check the product whether be or not in database)
 			//eğer parametrede verilen bilgilere göre bir ürün yoksa result  değişkeni null gelir
 			IProductRepositoryGetOneProductByBarcodeNumberAndMarketIdAsync? result = await _productRepository.getOneProductByBarcodeNumberAndMarketIdAsync(barcodeNumber, marketId);
@@ -41,8 +42,16 @@ namespace Business.Concretes.Product
 			return new OkException<IProductServiceGetProductWithBarcodeNumberAndMarketId>("ürün bulundu", _mapper.Map<IProductServiceGetProductWithBarcodeNumberAndMarketId>(result));
 		}
 
+		private async Task<bool> CheckIsAlreadyProductInDb(string barcodeNumber, int marketId)
+		{
+			//will add parameter null check
+			IProductRepositoryGetOneProductByBarcodeNumberAndMarketIdAsync? checkIsAlreadyProductInDb = await _productRepository.getOneProductByBarcodeNumberAndMarketIdAsync(barcodeNumber, marketId);
+			return checkIsAlreadyProductInDb is not null;
+		}
+
 		public async Task<Exception> createProduct(IProductServiceCreateProduct product)
 		{
+			//will add parameter null check
 			//ürün hali hazırda veritabanında var mı onu kontrol edelim,eğer varsa confilict dönelim,Yoksa ürünü veritabanına ekleyelim
 			if (await CheckIsAlreadyProductInDb(product.BarcodeNumber, product.MarketId))
 			{
@@ -60,11 +69,19 @@ namespace Business.Concretes.Product
 			return new OkException<IProductServiceCreateProduct>("kayıt başarılı", _mapper.Map<IProductServiceCreateProduct>(result));
 		}
 
-		private async Task<bool> CheckIsAlreadyProductInDb(string barcodeNumber, int marketId)
+		public async Task<Exception> updateProduct(IProductServiceUpdateProduct product)
 		{
-			IProductRepositoryGetOneProductByBarcodeNumberAndMarketIdAsync? checkIsAlreadyProductInDb = await _productRepository.getOneProductByBarcodeNumberAndMarketIdAsync(barcodeNumber, marketId);
-			return checkIsAlreadyProductInDb is not null;
+			//will add parameter null check
+			IProductRepositoryUpdateOneProductAsync? result = await _productRepository.updateOneProductAsync(_mapper.Map<IProductRepositoryUpdateOneProductAsync>(product));
+			if (result is null)
+			{
+				//update başarısız BadRequestException Dönelim
+				return new BadRequestException("güncelleme başarısız oldu");
+			}
+			//update başarılı OkExceptionDönelim
+			return new OkException<IProductServiceUpdateProduct>("güncelleme başarılı",_mapper.Map<IProductServiceUpdateProduct>(result));
 		}
+
 
 
 	}

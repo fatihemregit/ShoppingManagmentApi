@@ -19,6 +19,11 @@ namespace Business.Utils.AutoMapper
 			// IProductServiceCreateProduct to IProductRepositoryCreateOneProductAsync
 			CreateMap<IProductServiceCreateProduct, IProductRepositoryCreateOneProductAsync>();
 			CreateMap<IProductRepositoryCreateOneProductAsync, IProductServiceCreateProduct>();
+			//IProductServiceUpdateProduct to IProductRepositoryUpdateOneProductAsync
+			CreateMap<IProductServiceUpdateProduct, IProductRepositoryUpdateOneProductAsync>();
+			CreateMap<IProductRepositoryUpdateOneProductAsync, IProductServiceUpdateProduct>();
+
+
 		}
 	}
 }

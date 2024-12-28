@@ -8,9 +8,7 @@ Kullanýcý ürün barkodunu okutur.
 <br>
 Alýþveriþ sonunda ürün listesi backend e gönderilir ve sipariþ kaydedilir.
 ## Bu Committe Yapýlan iþlemler
-- Custom Exceptions klasörünün oluþturulmasý ve Custom Exceptions sýnýflarýnýn yazýlmasý
-- IProductService interface inin oluþturulmasý
-- ProductService sýnýfýnýn oluþturulmasý,sýnýfa bazý fonksiyonlarýn yazýlmasý,Bu metotlara özgü nesneler yazýlmasý,gerekli mapleme kodlarýnýn MappingProfileForBusinessLayer sýnýfýna yazýlmasý
+- ProductService sýnýfýna yeni bir fonksiyon yazýlmasý
 ## Proje günlüðü
 ### Gün 1 (26.12.2024)
 - Api Projesi oluþturuldu(ShoppingManagment).
@@ -44,3 +42,8 @@ Alýþveriþ sonunda ürün listesi backend e gönderilir ve sipariþ kaydedilir.
 - Custom Exceptions klasörü oluþturuldu (Entity/Exceptions) ve Custom Exceptions sýnýflarý(BadRequestException,ConflictException,OkException) yazýldý
 - IProductService(Business/Abstracts/Product) interface i oluþturuldu.
 - ProductService sýnýfý(Business/Concretes/Product) oluþturuldu,sýnýfa bazý fonksiyonlar(getProductWithBarcodeNumberAndMarketId,createProduct,CheckIsAlreadyProductInDb) yazýldý,Bu metotlara özgü nesneler(IProductServiceCreateProduct,IProductServiceGetProductWithBarcodeNumberAndMarketId) yazýldý,gerekli mapleme kodlarý MappingProfileForBusinessLayer(Business/Utils/AutoMapper) sýnýfýna yazýldý
+### Gün 3 (28.12.2024)
+- ProductService sýnýfýna yeni bir fonksiyon(updateProduct) yazýlmasý
+
+### Yapýlabilecek þeyler
+business katmanýnda fonksiyonlar Exception Dönmesin,Hata Varsa Exception fýrlatsýn(https://learn.microsoft.com/en-us/aspnet/core/web-api/handle-errors?view=aspnetcore-9.0) Hata yoksa fonksiyon nesnesini dönsün
