@@ -25,7 +25,7 @@ namespace Business.Concretes.Product
 			_mapper = mapper;
 		}
 
-
+		//Read
 
 		public async Task<Exception> getProductWithBarcodeNumberAndMarketId(string barcodeNumber, int marketId)
 		{
@@ -48,7 +48,7 @@ namespace Business.Concretes.Product
 			IProductRepositoryGetOneProductByBarcodeNumberAndMarketIdAsync? checkIsAlreadyProductInDb = await _productRepository.getOneProductByBarcodeNumberAndMarketIdAsync(barcodeNumber, marketId);
 			return checkIsAlreadyProductInDb is not null;
 		}
-
+		//Create
 		public async Task<Exception> createProduct(IProductServiceCreateProduct product)
 		{
 			//will add parameter null check
@@ -68,7 +68,7 @@ namespace Business.Concretes.Product
 			//kayıt başarılı OkException Dönelim
 			return new OkException<IProductServiceCreateProduct>("kayıt başarılı", _mapper.Map<IProductServiceCreateProduct>(result));
 		}
-
+		//Update
 		public async Task<Exception> updateProduct(IProductServiceUpdateProduct product)
 		{
 			//will add parameter null check
@@ -78,11 +78,24 @@ namespace Business.Concretes.Product
 				//update başarısız BadRequestException Dönelim
 				return new BadRequestException("güncelleme başarısız oldu");
 			}
-			//update başarılı OkExceptionDönelim
+			//update başarılı OkException Dönelim
 			return new OkException<IProductServiceUpdateProduct>("güncelleme başarılı",_mapper.Map<IProductServiceUpdateProduct>(result));
 		}
+		//Delete
+		public async Task<Exception> deleteProduct(string id)
+		{
+			bool result = await _productRepository.deleteOneProductbyIdAsync(id);
+			if (result)
+			{
+				//silme başarılı OkException Dönelim
+				return new OkException<IProductServiceDeleteProduct>("silme başarılı",new IProductServiceDeleteProduct(result));
 
-
+			}
+			//silme başarısız BadRequestException Dönelim
+			return new BadRequestException("silme başarısız");
+		}
 
 	}
+
+
 }

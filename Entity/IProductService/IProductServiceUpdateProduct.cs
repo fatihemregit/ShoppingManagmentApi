@@ -1,4 +1,4 @@
-﻿namespace Business
+﻿namespace Entity.IProductService
 {
 	public class IProductServiceUpdateProduct
 	{
