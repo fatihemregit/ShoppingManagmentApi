@@ -8,7 +8,7 @@ Kullanýcý ürün barkodunu okutur.
 <br>
 Alýþveriþ sonunda ürün listesi backend e gönderilir ve sipariþ kaydedilir.
 ## Bu Committe Yapýlan iþlemler
-- IProductService interface inde kullanýlan fonksiyon sýnýflarýnýn request,response a göre yeniden yazýlmasý.
+- IProductService interface inde kullanýlan fonksiyonlarýn isimlerine Async kelimesinin eklenmesi.
 ## Proje günlüðü
 ### Gün 1 (26.12.2024)
 - Api Projesi oluþturuldu(ShoppingManagment).
@@ -51,6 +51,7 @@ Alýþveriþ sonunda ürün listesi backend e gönderilir ve sipariþ kaydedilir.
 - ProductRepository sýnýfýndaki createOneProductAsync metodunda deðiþiklik yapýldý (id propunun bulunma yönteminin deðiþtirilmesi)
 - Readme Dosyasý düzenlendi
 - IProductService interface inde kullanýlan fonksiyon sýnýflarý request,response a göre yeniden yazýldý.
+- IProductService interface inde kullanýlan fonksiyonlarýn isimlerine Async kelimesi eklendi.
 ### Yapýlabilecek þeyler
 - business katmanýnda fonksiyonlar Exception Dönmesin,Hata Varsa Exception fýrlatsýn(https://learn.microsoft.com/en-us/aspnet/core/web-api/handle-errors?view=aspnetcore-9.0) Hata yoksa fonksiyon nesnesini dönsün
 - IProductRepositoryCreateOneProductAsyncResponse sýnýfýndaki not

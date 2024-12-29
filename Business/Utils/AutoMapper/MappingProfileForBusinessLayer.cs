@@ -14,20 +14,20 @@ namespace Business.Utils.AutoMapper
 		public MappingProfileForBusinessLayer()
 		{
 			//IProductServiceGetProductWithBarcodeNumberAndMarketIdResponse to IProductRepositoryGetOneProductByBarcodeNumberAndMarketIdAsyncResponse
-			CreateMap<IProductServiceGetProductWithBarcodeNumberAndMarketIdResponse, IProductRepositoryGetOneProductByBarcodeNumberAndMarketIdAsyncResponse>();
-			CreateMap<IProductRepositoryGetOneProductByBarcodeNumberAndMarketIdAsyncResponse, IProductServiceGetProductWithBarcodeNumberAndMarketIdResponse>();
+			CreateMap<IProductServiceGetProductWithBarcodeNumberAndMarketIdAsyncResponse, IProductRepositoryGetOneProductByBarcodeNumberAndMarketIdAsyncResponse>();
+			CreateMap<IProductRepositoryGetOneProductByBarcodeNumberAndMarketIdAsyncResponse, IProductServiceGetProductWithBarcodeNumberAndMarketIdAsyncResponse>();
 			// IProductServiceCreateProductRequest to IProductRepositoryCreateOneProductAsyncRequest
 			CreateMap<IProductServiceCreateProductRequest, IProductRepositoryCreateOneProductAsyncRequest>();
 			CreateMap<IProductRepositoryCreateOneProductAsyncRequest, IProductServiceCreateProductRequest>();
 			// IProductServiceCreateProductResponse to IProductRepositoryCreateOneProductAsyncResponse 
-			CreateMap<IProductServiceCreateProductResponse, IProductRepositoryCreateOneProductAsyncResponse>();
-			CreateMap<IProductRepositoryCreateOneProductAsyncResponse, IProductServiceCreateProductResponse>();
+			CreateMap<IProductServiceCreateProductAsyncResponse, IProductRepositoryCreateOneProductAsyncResponse>();
+			CreateMap<IProductRepositoryCreateOneProductAsyncResponse, IProductServiceCreateProductAsyncResponse>();
 			//IProductServiceUpdateProductRequest to IProductRepositoryUpdateOneProductAsyncRequest
-			CreateMap<IProductServiceUpdateProductRequest, IProductRepositoryUpdateOneProductAsyncRequest>();
-			CreateMap<IProductRepositoryUpdateOneProductAsyncRequest, IProductServiceUpdateProductRequest>();
+			CreateMap<IProductServiceUpdateProductAsyncRequest, IProductRepositoryUpdateOneProductAsyncRequest>();
+			CreateMap<IProductRepositoryUpdateOneProductAsyncRequest, IProductServiceUpdateProductAsyncRequest>();
 			//IProductServiceUpdateProductResponse to IProductRepositoryUpdateOneProductAsyncResponse
-			CreateMap<IProductServiceUpdateProductResponse, IProductRepositoryUpdateOneProductAsyncResponse>();
-			CreateMap<IProductRepositoryUpdateOneProductAsyncResponse, IProductServiceUpdateProductResponse>();
+			CreateMap<IProductServiceUpdateProductAsyncResponse, IProductRepositoryUpdateOneProductAsyncResponse>();
+			CreateMap<IProductRepositoryUpdateOneProductAsyncResponse, IProductServiceUpdateProductAsyncResponse>();
 
 
 		}

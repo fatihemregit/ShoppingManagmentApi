@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Entity.IProductService
 {
-	public class IProductServiceUpdateProductResponse
+	public class IProductServiceUpdateProductAsyncResponse
 	{
 		public string BarcodeNumber { get; set; }
 		public string Id { get; set; }
