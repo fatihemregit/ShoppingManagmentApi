@@ -1,6 +1,6 @@
 ﻿namespace Entity.IProductService
 {
-	public class IProductServiceCreateProductRequest
+	public class IProductServiceCreateProductAsyncRequest
 	{
 		public string BarcodeNumber { get; set; }
 

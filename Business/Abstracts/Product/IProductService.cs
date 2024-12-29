@@ -10,13 +10,13 @@ namespace Business.Abstracts.Product
 	public interface IProductService
 	{
 		//Create
-		Task<Exception> createProductAsync(IProductServiceCreateProductRequest product);
+		Task<IProductServiceCreateProductAsyncResponse> createProductAsync(IProductServiceCreateProductAsyncRequest product);
 		//Read
-		Task<Exception> getProductWithBarcodeNumberAndMarketIdAsync(string barcodeNumber, int marketId);
+		Task<IProductServiceGetProductWithBarcodeNumberAndMarketIdAsyncResponse> getProductWithBarcodeNumberAndMarketIdAsync(string barcodeNumber, int marketId);
 		//Update
-		Task<Exception> updateProductAsync(IProductServiceUpdateProductAsyncRequest product);
+		Task<IProductServiceUpdateProductAsyncResponse> updateProductAsync(IProductServiceUpdateProductAsyncRequest product);
 		//Delete
-		Task<Exception> deleteProductAsync(string id);
+		Task<bool> deleteProductAsync(string id);
 
 	}
 }

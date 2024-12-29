@@ -1,5 +1,6 @@
 using Business.Utils.Extensions;
 using Data.Utils.Extensions;
+using ShoppingManagment.Utils.Middleware;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -25,7 +26,7 @@ if (app.Environment.IsDevelopment())
 	app.UseSwagger();
 	app.UseSwaggerUI();
 }
-
+app.UseMiddleware<ExceptionHandlingMiddleware>();
 app.UseHttpsRedirection();
 
 app.UseAuthorization();

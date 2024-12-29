@@ -9,15 +9,15 @@ namespace Data.Abstracts.Market
     public interface IMarketRepository
     {
 		//Create
-		Task<IMarketRepositoryCreateOneMarketAsyncResponse?> createOneMarketAsync(IMarketRepositoryCreateOneMarketAsyncRequest market);
+		Task<IMarketRepositoryCreateOneMarketAsyncResponse> createOneMarketAsync(IMarketRepositoryCreateOneMarketAsyncRequest market);
 
 		//Read
 		Task<List<IMarketRepositoryGetAllAsyncResponse>> getAllAsync();
 
-		Task<IMarketRepositoryGetOneMarketByIdAsyncResponse?> getOneMarketByIdAsync(int id);
+		Task<IMarketRepositoryGetOneMarketByIdAsyncResponse> getOneMarketByIdAsync(int id);
 
 		//Update
-		Task<IMarketRepositoryUpdateOneMarketAsyncResponse?> updateOneMarketAsync(IMarketRepositoryUpdateOneMarketAsyncRequest market);
+		Task<IMarketRepositoryUpdateOneMarketAsyncResponse> updateOneMarketAsync(IMarketRepositoryUpdateOneMarketAsyncRequest market);
 
 		//Delete
 		Task<bool> deleteOneMarketByIdAsync(int id);

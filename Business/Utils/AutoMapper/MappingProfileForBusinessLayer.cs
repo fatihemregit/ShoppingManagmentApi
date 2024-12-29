@@ -17,8 +17,8 @@ namespace Business.Utils.AutoMapper
 			CreateMap<IProductServiceGetProductWithBarcodeNumberAndMarketIdAsyncResponse, IProductRepositoryGetOneProductByBarcodeNumberAndMarketIdAsyncResponse>();
 			CreateMap<IProductRepositoryGetOneProductByBarcodeNumberAndMarketIdAsyncResponse, IProductServiceGetProductWithBarcodeNumberAndMarketIdAsyncResponse>();
 			// IProductServiceCreateProductRequest to IProductRepositoryCreateOneProductAsyncRequest
-			CreateMap<IProductServiceCreateProductRequest, IProductRepositoryCreateOneProductAsyncRequest>();
-			CreateMap<IProductRepositoryCreateOneProductAsyncRequest, IProductServiceCreateProductRequest>();
+			CreateMap<IProductServiceCreateProductAsyncRequest, IProductRepositoryCreateOneProductAsyncRequest>();
+			CreateMap<IProductRepositoryCreateOneProductAsyncRequest, IProductServiceCreateProductAsyncRequest>();
 			// IProductServiceCreateProductResponse to IProductRepositoryCreateOneProductAsyncResponse 
 			CreateMap<IProductServiceCreateProductAsyncResponse, IProductRepositoryCreateOneProductAsyncResponse>();
 			CreateMap<IProductRepositoryCreateOneProductAsyncResponse, IProductServiceCreateProductAsyncResponse>();

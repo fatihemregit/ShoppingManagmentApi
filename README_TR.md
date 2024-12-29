@@ -8,8 +8,7 @@ Kullanýcý ürün barkodunu okutur.
 <br>
 Alýþveriþ sonunda ürün listesi backend e gönderilir ve sipariþ kaydedilir.
 ## Bu Committe Yapýlan iþlemler
-- ProductService sýnýfýna göre IProductService interface nin yazýlmasý.
-- ProductService sýnýfýna,IProductService interface inin uygulanmasý
+- Custom Error Handling sisteminin kurulmasý,ve kodlara implemantasyonunun yapýlmasý
 ## Proje günlüðü
 ### Gün 1 (26.12.2024)
 - Api Projesi oluþturuldu(ShoppingManagment).
@@ -56,6 +55,6 @@ Alýþveriþ sonunda ürün listesi backend e gönderilir ve sipariþ kaydedilir.
 - IProductService interface inde kullanýlan bazý fonksiyonlarýn isimlerine(updateProduct,deleteProduct) Async kelimesi eklendi
 - ProductService sýnýfýna göre IProductService interface i yazýldý
 - ProductService sýnýfýna,IProductService interface i uygulandý.
+- Custom Error Handling sistemi kuruldu,ve kodlara implemantasyonu yapýldý
 ### Yapýlabilecek þeyler
 - business katmanýnda fonksiyonlar Exception Dönmesin,Hata Varsa Exception fýrlatsýn(https://learn.microsoft.com/en-us/aspnet/core/web-api/handle-errors?view=aspnetcore-9.0) Hata yoksa fonksiyon nesnesini dönsün
-- IProductRepositoryCreateOneProductAsyncResponse sýnýfýndaki not
