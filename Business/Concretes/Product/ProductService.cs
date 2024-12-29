@@ -69,7 +69,7 @@ namespace Business.Concretes.Product
 			return new OkException<IProductServiceCreateProductAsyncResponse>("kayıt başarılı", _mapper.Map<IProductServiceCreateProductAsyncResponse>(result));
 		}
 		//Update
-		public async Task<Exception> updateProduct(IProductServiceUpdateProductAsyncRequest product)
+		public async Task<Exception> updateProductAsync(IProductServiceUpdateProductAsyncRequest product)
 		{
 			//will add parameter null check
 			IProductRepositoryUpdateOneProductAsyncResponse? result = await _productRepository.updateOneProductAsync(_mapper.Map<IProductRepositoryUpdateOneProductAsyncRequest>(product));
@@ -82,7 +82,7 @@ namespace Business.Concretes.Product
 			return new OkException<IProductServiceUpdateProductAsyncResponse>("güncelleme başarılı",_mapper.Map<IProductServiceUpdateProductAsyncResponse>(result));
 		}
 		//Delete
-		public async Task<Exception> deleteProduct(string id)
+		public async Task<Exception> deleteProductAsync(string id)
 		{
 			//will add parameter null check
 			bool result = await _productRepository.deleteOneProductbyIdAsync(id);
