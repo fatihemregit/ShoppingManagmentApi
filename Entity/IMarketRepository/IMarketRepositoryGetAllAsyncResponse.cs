@@ -1,6 +1,6 @@
 ﻿namespace Entity.IMarketRepository
 {
-	public class IMarketRepositoryUpdateOneMarketAsync
+	public class IMarketRepositoryGetAllAsyncResponse
 	{
 		public int Id { get; set; }
 

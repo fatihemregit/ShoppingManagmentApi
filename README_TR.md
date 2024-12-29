@@ -8,7 +8,7 @@ Kullanýcý ürün barkodunu okutur.
 <br>
 Alýþveriþ sonunda ürün listesi backend e gönderilir ve sipariþ kaydedilir.
 ## Bu Committe Yapýlan iþlemler
-- IProductRepository interface inde kullanýlan fonksiyon sýnýflarýnýn request,response a göre yeniden yazýlmasý
+- IMarketRepository interface inde kullanýlan fonksiyon sýnýflarýnýn request,response a göre yeniden yazýlmasý
 
 ## Proje günlüðü
 ### Gün 1 (26.12.2024)
@@ -48,6 +48,7 @@ Alýþveriþ sonunda ürün listesi backend e gönderilir ve sipariþ kaydedilir.
 ### Gün 4 (29.12.2024)
 - ProductService sýnýfýna yeni bir fonksiyon(deleteProduct) yazýlmasý
 - IProductRepository interface inde kullanýlan fonksiyon sýnýflarýnýn request,response a göre yeniden yazýlmasý
+- IMarketRepository interface inde kullanýlan fonksiyon sýnýflarýnýn request,response a göre yeniden yazýlmasý
 ### Yapýlabilecek þeyler
 - business katmanýnda fonksiyonlar Exception Dönmesin,Hata Varsa Exception fýrlatsýn(https://learn.microsoft.com/en-us/aspnet/core/web-api/handle-errors?view=aspnetcore-9.0) Hata yoksa fonksiyon nesnesini dönsün
 - IProductRepositoryCreateOneProductAsyncResponse sýnýfýndaki not

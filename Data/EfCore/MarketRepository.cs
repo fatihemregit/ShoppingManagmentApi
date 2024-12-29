@@ -24,34 +24,35 @@ namespace Data.EfCore
 			_mapper = mapper;
 		}
 
-		public async Task<IMarketRepositoryCreateOneMarketAsync?> createOneMarketAsync(IMarketRepositoryCreateOneMarketAsync market)
+		public async Task<IMarketRepositoryCreateOneMarketAsyncResponse?> createOneMarketAsync(IMarketRepositoryCreateOneMarketAsyncRequest market)
 		{
-			await _context.Markets.AddAsync(_mapper.Map<MarketDto>(market));
+			MarketDto marketDto = _mapper.Map<MarketDto>(market);
+			await _context.Markets.AddAsync(marketDto);
 			int result = await _context.SaveChangesAsync();
 			if (result <= 0)
 			{
 				return null;
 			}
-			return market;
+			return _mapper.Map<IMarketRepositoryCreateOneMarketAsyncResponse>(marketDto);
 		}
 
-		public async Task<List<IMarketRepositoryGetAllAsync>> getAllAsync()
+		public async Task<List<IMarketRepositoryGetAllAsyncResponse>> getAllAsync()
 		{
 			List<MarketDto> marketsinDb = await _context.Markets.ToListAsync();
-			return _mapper.Map<List<IMarketRepositoryGetAllAsync>>(marketsinDb);
+			return _mapper.Map<List<IMarketRepositoryGetAllAsyncResponse>>(marketsinDb);
 		}
 
-		public async Task<IMarketRepositoryGetOneMarketByIdAsync?> getOneMarketByIdAsync(int id)
+		public async Task<IMarketRepositoryGetOneMarketByIdAsyncResponse?> getOneMarketByIdAsync(int id)
 		{
 			MarketDto? foundMarketById = await _context.Markets.Where(m => m.Id == id).SingleOrDefaultAsync();
 			if (foundMarketById is null)
 			{
 				return null;
 			}
-			return _mapper.Map<IMarketRepositoryGetOneMarketByIdAsync>(foundMarketById);
+			return _mapper.Map<IMarketRepositoryGetOneMarketByIdAsyncResponse>(foundMarketById);
 		}
 
-		public async Task<IMarketRepositoryUpdateOneMarketAsync?> updateOneMarketAsync(IMarketRepositoryUpdateOneMarketAsync market)
+		public async Task<IMarketRepositoryUpdateOneMarketAsyncResponse?> updateOneMarketAsync(IMarketRepositoryUpdateOneMarketAsyncRequest market)
 		{
 			MarketDto? foundMarketDtowithId = await _context.Markets.Where(m => m.Id == market.Id).SingleOrDefaultAsync();
 			if (foundMarketDtowithId is null)
@@ -64,7 +65,7 @@ namespace Data.EfCore
 			{
 				return null;
 			}
-			return market;
+			return _mapper.Map<IMarketRepositoryUpdateOneMarketAsyncResponse>(foundMarketDtowithId);
 		}
 
 		public async Task<bool> deleteOneMarketByIdAsync(int id)

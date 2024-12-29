@@ -39,15 +39,23 @@ namespace Data.Utils.AutoMapper
 			CreateMap<IProductRepositoryUpdateOneProductAsyncResponse, ProductDto>();
 
 
-			//MarketDto to IMarketRepositoryCreateOneMarketAsync
-			CreateMap<MarketDto, IMarketRepositoryCreateOneMarketAsync>();
-			CreateMap<IMarketRepositoryCreateOneMarketAsync, MarketDto>();
-			//MarketDto to IMarketRepositoryGetAllAsync
-			CreateMap<MarketDto, IMarketRepositoryGetAllAsync>();
-			CreateMap<IMarketRepositoryGetAllAsync, MarketDto>();
-			//MarketDto to IMarketRepositoryGetOneMarketByIdAsync
-			CreateMap<MarketDto, IMarketRepositoryGetOneMarketByIdAsync>();
-			CreateMap<IMarketRepositoryGetOneMarketByIdAsync, MarketDto>();
+			//MarketDto to IMarketRepositoryCreateOneMarketAsyncRequest
+			CreateMap<MarketDto, IMarketRepositoryCreateOneMarketAsyncRequest>();
+			CreateMap<IMarketRepositoryCreateOneMarketAsyncRequest, MarketDto>();
+			//MarketDto to IMarketRepositoryCreateOneMarketAsyncResponse
+			CreateMap<MarketDto, IMarketRepositoryCreateOneMarketAsyncResponse>();
+			CreateMap<IMarketRepositoryCreateOneMarketAsyncResponse, MarketDto>();
+
+			//MarketDto to IMarketRepositoryGetAllAsyncResponse
+			CreateMap<MarketDto, IMarketRepositoryGetAllAsyncResponse>();
+			CreateMap<IMarketRepositoryGetAllAsyncResponse, MarketDto>();
+			//MarketDto to IMarketRepositoryGetOneMarketByIdAsyncResponse
+			CreateMap<MarketDto, IMarketRepositoryGetOneMarketByIdAsyncResponse>();
+			CreateMap<IMarketRepositoryGetOneMarketByIdAsyncResponse, MarketDto>();
+			//MarketDto to IMarketRepositoryUpdateOneMarketAsyncResponse
+			CreateMap<MarketDto, IMarketRepositoryUpdateOneMarketAsyncResponse>();
+			CreateMap<IMarketRepositoryUpdateOneMarketAsyncResponse, MarketDto>();
+
 
 		}
 	}
