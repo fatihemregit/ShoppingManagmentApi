@@ -8,8 +8,8 @@ Kullanýcý ürün barkodunu okutur.
 <br>
 Alýþveriþ sonunda ürün listesi backend e gönderilir ve sipariþ kaydedilir.
 ## Bu Committe Yapýlan iþlemler
-- IMarketRepository interface inde kullanýlan fonksiyon sýnýflarýnýn request,response a göre yeniden yazýlmasý
-
+- ProductRepository sýnýfýndaki createOneProductAsync metodunda deðiþiklik yapýlmasý
+- Readme Düzenlemesi
 ## Proje günlüðü
 ### Gün 1 (26.12.2024)
 - Api Projesi oluþturuldu(ShoppingManagment).
@@ -44,11 +44,13 @@ Alýþveriþ sonunda ürün listesi backend e gönderilir ve sipariþ kaydedilir.
 - IProductService(Business/Abstracts/Product) interface i oluþturuldu.
 - ProductService sýnýfý(Business/Concretes/Product) oluþturuldu,sýnýfa bazý fonksiyonlar(getProductWithBarcodeNumberAndMarketId,createProduct,CheckIsAlreadyProductInDb) yazýldý,Bu metotlara özgü nesneler(IProductServiceCreateProduct,IProductServiceGetProductWithBarcodeNumberAndMarketId) yazýldý,gerekli mapleme kodlarý MappingProfileForBusinessLayer(Business/Utils/AutoMapper) sýnýfýna yazýldý
 ### Gün 3 (28.12.2024)
-- ProductService sýnýfýna yeni bir fonksiyon(updateProduct) yazýlmasý
+- ProductService sýnýfýna yeni bir fonksiyon(updateProduct) yazýldý
 ### Gün 4 (29.12.2024)
-- ProductService sýnýfýna yeni bir fonksiyon(deleteProduct) yazýlmasý
-- IProductRepository interface inde kullanýlan fonksiyon sýnýflarýnýn request,response a göre yeniden yazýlmasý
-- IMarketRepository interface inde kullanýlan fonksiyon sýnýflarýnýn request,response a göre yeniden yazýlmasý
+- ProductService sýnýfýna yeni bir fonksiyon(deleteProduct) yazýldý
+- IProductRepository interface inde kullanýlan fonksiyon sýnýflarý request,response a göre yeniden yazýldý
+- IMarketRepository interface inde kullanýlan fonksiyon sýnýflarý request,response a göre yeniden yazýldý
+- ProductRepository sýnýfýndaki createOneProductAsync metodunda deðiþiklik yapýldý (id propunun bulunma yönteminin deðiþtirilmesi)
+- Readme Dosyasý düzenlendi
 ### Yapýlabilecek þeyler
 - business katmanýnda fonksiyonlar Exception Dönmesin,Hata Varsa Exception fýrlatsýn(https://learn.microsoft.com/en-us/aspnet/core/web-api/handle-errors?view=aspnetcore-9.0) Hata yoksa fonksiyon nesnesini dönsün
 - IProductRepositoryCreateOneProductAsyncResponse sýnýfýndaki not

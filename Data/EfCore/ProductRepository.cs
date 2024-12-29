@@ -24,16 +24,12 @@ namespace Data.EfCore
 			_mapper = mapper;
 		}
 
-		private async Task<string> foundProductIdForCreatedProduct(string BarcodeNumber, int MarketId)
-		{
-			ProductDto? foundProductwithbarcodeNumberAndId = await _context.Products.Where(p => p.BarcodeNumber == BarcodeNumber && p.MarketId == MarketId).SingleOrDefaultAsync();
-			string productId = (foundProductwithbarcodeNumberAndId is null) ? "" : foundProductwithbarcodeNumberAndId.Id;
-			return productId;
-		}
+
 
 		public async Task<IProductRepositoryCreateOneProductAsyncResponse?> createOneProductAsync(IProductRepositoryCreateOneProductAsyncRequest product)
 		{
-			await _context.Products.AddAsync(_mapper.Map<ProductDto>(product));
+			ProductDto productDto = _mapper.Map<ProductDto>(product);
+			await _context.Products.AddAsync(productDto);
 			int result =  await _context.SaveChangesAsync();
 			if (result <= 0)
 			{ 
@@ -41,11 +37,7 @@ namespace Data.EfCore
 				return null;
 			}
 			//sucess
-			//find a added product for id property
-			string productId = await foundProductIdForCreatedProduct(product.BarcodeNumber,product.MarketId);
-			IProductRepositoryCreateOneProductAsyncResponse createOneProductAsyncResponse = new IProductRepositoryCreateOneProductAsyncResponse() { Id = productId};
-			createOneProductAsyncResponse = _mapper.Map<IProductRepositoryCreateOneProductAsyncResponse>(product);
-			return createOneProductAsyncResponse;
+			return _mapper.Map<IProductRepositoryCreateOneProductAsyncResponse>(productDto);
 		}
 
 		public async Task<List<IProductRepositoryGetAllAsyncResponse>> getAllAsync()
