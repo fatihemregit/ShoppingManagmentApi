@@ -8,7 +8,8 @@ Kullanýcý ürün barkodunu okutur.
 <br>
 Alýþveriþ sonunda ürün listesi backend e gönderilir ve sipariþ kaydedilir.
 ## Bu Committe Yapýlan iþlemler
-- ProductService sýnýfýna yeni bir fonksiyon yazýlmasý
+- IProductRepository interface inde kullanýlan fonksiyon sýnýflarýnýn request,response a göre yeniden yazýlmasý
+
 ## Proje günlüðü
 ### Gün 1 (26.12.2024)
 - Api Projesi oluþturuldu(ShoppingManagment).
@@ -46,5 +47,7 @@ Alýþveriþ sonunda ürün listesi backend e gönderilir ve sipariþ kaydedilir.
 - ProductService sýnýfýna yeni bir fonksiyon(updateProduct) yazýlmasý
 ### Gün 4 (29.12.2024)
 - ProductService sýnýfýna yeni bir fonksiyon(deleteProduct) yazýlmasý
+- IProductRepository interface inde kullanýlan fonksiyon sýnýflarýnýn request,response a göre yeniden yazýlmasý
 ### Yapýlabilecek þeyler
-business katmanýnda fonksiyonlar Exception Dönmesin,Hata Varsa Exception fýrlatsýn(https://learn.microsoft.com/en-us/aspnet/core/web-api/handle-errors?view=aspnetcore-9.0) Hata yoksa fonksiyon nesnesini dönsün
+- business katmanýnda fonksiyonlar Exception Dönmesin,Hata Varsa Exception fýrlatsýn(https://learn.microsoft.com/en-us/aspnet/core/web-api/handle-errors?view=aspnetcore-9.0) Hata yoksa fonksiyon nesnesini dönsün
+- IProductRepositoryCreateOneProductAsyncResponse sýnýfýndaki not

@@ -1,6 +1,6 @@
 ﻿namespace Entity.IProductRepository
 {
-	public class IProductRepositoryGetOneProductByIdAsync
+	public class IProductRepositoryGetOneProductByBarcodeNumberAndMarketIdAsyncResponse
 	{
 		public string BarcodeNumber { get; set; }
 

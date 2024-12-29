@@ -2,7 +2,7 @@
 
 namespace Entity.IProductRepository
 {
-	public class IProductRepositoryGetAllAsync
+	public class IProductRepositoryGetAllAsyncResponse
 	{
 		public string BarcodeNumber { get; set; }
 

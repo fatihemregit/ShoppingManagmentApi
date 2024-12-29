@@ -11,14 +11,14 @@ namespace Data.Abstracts.Product
     {
 
         //Create
-        Task<IProductRepositoryCreateOneProductAsync?> createOneProductAsync(IProductRepositoryCreateOneProductAsync product);
+        Task<IProductRepositoryCreateOneProductAsyncResponse?> createOneProductAsync(IProductRepositoryCreateOneProductAsyncRequest product);
         //Read
-        Task<List<IProductRepositoryGetAllAsync>> getAllAsync();
-        Task<IProductRepositoryGetOneProductByIdAsync?> getOneProductByIdAsync(string id);
-        Task<IProductRepositoryGetOneProductByBarcodeNumberAndMarketIdAsync?> getOneProductByBarcodeNumberAndMarketIdAsync(string barcodeNumber, int marketId);
+        Task<List<IProductRepositoryGetAllAsyncResponse>> getAllAsync();
+        Task<IProductRepositoryGetOneProductByIdAsyncResponse?> getOneProductByIdAsync(string id);
+        Task<IProductRepositoryGetOneProductByBarcodeNumberAndMarketIdAsyncResponse?> getOneProductByBarcodeNumberAndMarketIdAsync(string barcodeNumber, int marketId);
 
         //Update
-        Task<IProductRepositoryUpdateOneProductAsync?> updateOneProductAsync(IProductRepositoryUpdateOneProductAsync product);
+        Task<IProductRepositoryUpdateOneProductAsyncResponse?> updateOneProductAsync(IProductRepositoryUpdateOneProductAsyncRequest product);
         //Delete
         Task<bool> deleteOneProductbyIdAsync(string id);
 

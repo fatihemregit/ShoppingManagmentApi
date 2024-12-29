@@ -32,7 +32,7 @@ namespace Business.Concretes.Product
 			//will add parameter null check
 			//öncelikle veritabanında parametrede verilen bilgilere göre bir ürün olup olmadığını kontrol edelim (check the product whether be or not in database)
 			//eğer parametrede verilen bilgilere göre bir ürün yoksa result  değişkeni null gelir
-			IProductRepositoryGetOneProductByBarcodeNumberAndMarketIdAsync? result = await _productRepository.getOneProductByBarcodeNumberAndMarketIdAsync(barcodeNumber, marketId);
+			IProductRepositoryGetOneProductByBarcodeNumberAndMarketIdAsyncResponse? result = await _productRepository.getOneProductByBarcodeNumberAndMarketIdAsync(barcodeNumber, marketId);
 			if (result is null)
 			{
 				//parametrede verilen bilgilere göre bir ürün yok NotFound dönelim
@@ -45,7 +45,7 @@ namespace Business.Concretes.Product
 		private async Task<bool> CheckIsAlreadyProductInDb(string barcodeNumber, int marketId)
 		{
 			//will add parameter null check
-			IProductRepositoryGetOneProductByBarcodeNumberAndMarketIdAsync? checkIsAlreadyProductInDb = await _productRepository.getOneProductByBarcodeNumberAndMarketIdAsync(barcodeNumber, marketId);
+			IProductRepositoryGetOneProductByBarcodeNumberAndMarketIdAsyncResponse? checkIsAlreadyProductInDb = await _productRepository.getOneProductByBarcodeNumberAndMarketIdAsync(barcodeNumber, marketId);
 			return checkIsAlreadyProductInDb is not null;
 		}
 		//Create
@@ -59,7 +59,7 @@ namespace Business.Concretes.Product
 				return new ConflictException("barcode numarası  ve market id olan ürün zaten var");
 			}
 			//veritabanında yok o yüzden ürünü kaydedelim
-			IProductRepositoryCreateOneProductAsync? result = await _productRepository.createOneProductAsync(_mapper.Map<IProductRepositoryCreateOneProductAsync>(product));
+			IProductRepositoryCreateOneProductAsyncRequest? result = await _productRepository.createOneProductAsync(_mapper.Map<IProductRepositoryCreateOneProductAsyncRequest>(product));
 			if (result is null)
 			{
 				//kayıt başarısız BadRequestException Dönelim
@@ -72,7 +72,7 @@ namespace Business.Concretes.Product
 		public async Task<Exception> updateProduct(IProductServiceUpdateProduct product)
 		{
 			//will add parameter null check
-			IProductRepositoryUpdateOneProductAsync? result = await _productRepository.updateOneProductAsync(_mapper.Map<IProductRepositoryUpdateOneProductAsync>(product));
+			IProductRepositoryUpdateOneProductAsyncRequest? result = await _productRepository.updateOneProductAsync(_mapper.Map<IProductRepositoryUpdateOneProductAsyncRequest>(product));
 			if (result is null)
 			{
 				//update başarısız BadRequestException Dönelim

@@ -16,21 +16,28 @@ namespace Data.Utils.AutoMapper
 		public MappingProfileForDataLayer()
 		{
 
-			//ProductDto to IProductRepositoryCreateOneProduct
-			CreateMap<ProductDto, IProductRepositoryCreateOneProductAsync>();
-			CreateMap<IProductRepositoryCreateOneProductAsync, ProductDto>();
+			//ProductDto to IProductRepositoryCreateOneProductAsyncRequest
+			CreateMap<ProductDto, IProductRepositoryCreateOneProductAsyncRequest>();
+			CreateMap<IProductRepositoryCreateOneProductAsyncRequest, ProductDto>();
+			// IProductRepositoryCreateOneProductAsyncResponse to IProductRepositoryCreateOneProductAsyncRequest
+			CreateMap<IProductRepositoryCreateOneProductAsyncResponse, IProductRepositoryCreateOneProductAsyncRequest>();
+			CreateMap<IProductRepositoryCreateOneProductAsyncRequest, IProductRepositoryCreateOneProductAsyncResponse>();
 
-			//ProductDto to IProductRepositoryGetAll
-			CreateMap<ProductDto, IProductRepositoryGetAllAsync>();
-			CreateMap<IProductRepositoryGetAllAsync, ProductDto>();
+			//ProductDto to IProductRepositoryGetAllAsyncResponse
+			CreateMap<ProductDto, IProductRepositoryGetAllAsyncResponse>();
+			CreateMap<IProductRepositoryGetAllAsyncResponse, ProductDto>();
 
-			//ProductDto to IProductRepositoryGetOneProductById
-			CreateMap<ProductDto, IProductRepositoryGetOneProductByIdAsync>();
-			CreateMap<IProductRepositoryGetOneProductByIdAsync, ProductDto>();
+			//ProductDto to IProductRepositoryGetOneProductByIdAsyncResponse
+			CreateMap<ProductDto, IProductRepositoryGetOneProductByIdAsyncResponse>();
+			CreateMap<IProductRepositoryGetOneProductByIdAsyncResponse, ProductDto>();
 
-			//ProductDto to IProductRepositoryGetOneProductByBarcodeNumberAndMarketId
-			CreateMap<ProductDto, IProductRepositoryGetOneProductByBarcodeNumberAndMarketIdAsync>();
-			CreateMap<IProductRepositoryGetOneProductByBarcodeNumberAndMarketIdAsync, ProductDto>();
+			//ProductDto to IProductRepositoryGetOneProductByBarcodeNumberAndMarketIdAsyncResponse
+			CreateMap<ProductDto, IProductRepositoryGetOneProductByBarcodeNumberAndMarketIdAsyncResponse>();
+			CreateMap<IProductRepositoryGetOneProductByBarcodeNumberAndMarketIdAsyncResponse, ProductDto>();
+			//ProductDto to IProductRepositoryUpdateOneProductAsyncResponse
+			CreateMap<ProductDto, IProductRepositoryUpdateOneProductAsyncResponse>();
+			CreateMap<IProductRepositoryUpdateOneProductAsyncResponse, ProductDto>();
+
 
 			//MarketDto to IMarketRepositoryCreateOneMarketAsync
 			CreateMap<MarketDto, IMarketRepositoryCreateOneMarketAsync>();

@@ -1,7 +1,7 @@
 ﻿
 namespace Entity.IProductRepository
 {
-	public class IProductRepositoryCreateOneProductAsync
+	public class IProductRepositoryCreateOneProductAsyncRequest
 	{
 		public string BarcodeNumber { get; set; }
 		public string ProductName { get; set; }

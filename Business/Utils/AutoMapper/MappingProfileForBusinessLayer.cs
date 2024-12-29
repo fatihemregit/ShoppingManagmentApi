@@ -14,14 +14,14 @@ namespace Business.Utils.AutoMapper
 		public MappingProfileForBusinessLayer()
 		{
 			//IProductServiceGetProductWithBarcodeNumberAndMarketId to IProductRepositoryGetOneProductByBarcodeNumberAndMarketIdAsync
-			CreateMap<IProductServiceGetProductWithBarcodeNumberAndMarketId, IProductRepositoryGetOneProductByBarcodeNumberAndMarketIdAsync>();
-			CreateMap<IProductRepositoryGetOneProductByBarcodeNumberAndMarketIdAsync, IProductServiceGetProductWithBarcodeNumberAndMarketId>();
+			CreateMap<IProductServiceGetProductWithBarcodeNumberAndMarketId, IProductRepositoryGetOneProductByBarcodeNumberAndMarketIdAsyncResponse>();
+			CreateMap<IProductRepositoryGetOneProductByBarcodeNumberAndMarketIdAsyncResponse, IProductServiceGetProductWithBarcodeNumberAndMarketId>();
 			// IProductServiceCreateProduct to IProductRepositoryCreateOneProductAsync
-			CreateMap<IProductServiceCreateProduct, IProductRepositoryCreateOneProductAsync>();
-			CreateMap<IProductRepositoryCreateOneProductAsync, IProductServiceCreateProduct>();
+			CreateMap<IProductServiceCreateProduct, IProductRepositoryCreateOneProductAsyncRequest>();
+			CreateMap<IProductRepositoryCreateOneProductAsyncRequest, IProductServiceCreateProduct>();
 			//IProductServiceUpdateProduct to IProductRepositoryUpdateOneProductAsync
-			CreateMap<IProductServiceUpdateProduct, IProductRepositoryUpdateOneProductAsync>();
-			CreateMap<IProductRepositoryUpdateOneProductAsync, IProductServiceUpdateProduct>();
+			CreateMap<IProductServiceUpdateProduct, IProductRepositoryUpdateOneProductAsyncRequest>();
+			CreateMap<IProductRepositoryUpdateOneProductAsyncRequest, IProductServiceUpdateProduct>();
 
 
 		}
