@@ -1,6 +1,6 @@
 ﻿namespace Entity.IProductService
 {
-	public class IProductServiceGetProductWithBarcodeNumberAndMarketId
+	public class IProductServiceGetProductWithBarcodeNumberAndMarketIdResponse
 	{
 		public string BarcodeNumber { get; set; }
 		public string Id { get; set; }

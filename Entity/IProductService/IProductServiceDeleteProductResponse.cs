@@ -1,10 +1,10 @@
 ﻿namespace Entity.IProductService
 {
-	public class IProductServiceDeleteProduct
+	public class IProductServiceDeleteProductResponse
 	{
         public bool Result { get; set; }
 
-		public IProductServiceDeleteProduct(bool result)
+		public IProductServiceDeleteProductResponse(bool result)
 		{
 			Result = result;
 		}

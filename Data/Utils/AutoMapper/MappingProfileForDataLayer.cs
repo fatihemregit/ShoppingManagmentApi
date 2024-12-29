@@ -19,9 +19,9 @@ namespace Data.Utils.AutoMapper
 			//ProductDto to IProductRepositoryCreateOneProductAsyncRequest
 			CreateMap<ProductDto, IProductRepositoryCreateOneProductAsyncRequest>();
 			CreateMap<IProductRepositoryCreateOneProductAsyncRequest, ProductDto>();
-			// IProductRepositoryCreateOneProductAsyncResponse to IProductRepositoryCreateOneProductAsyncRequest
-			CreateMap<IProductRepositoryCreateOneProductAsyncResponse, IProductRepositoryCreateOneProductAsyncRequest>();
-			CreateMap<IProductRepositoryCreateOneProductAsyncRequest, IProductRepositoryCreateOneProductAsyncResponse>();
+			// ProductDto to IProductRepositoryCreateOneProductAsyncResponse 
+			CreateMap<IProductRepositoryCreateOneProductAsyncResponse, ProductDto>();
+			CreateMap<ProductDto, IProductRepositoryCreateOneProductAsyncResponse>();
 
 			//ProductDto to IProductRepositoryGetAllAsyncResponse
 			CreateMap<ProductDto, IProductRepositoryGetAllAsyncResponse>();
