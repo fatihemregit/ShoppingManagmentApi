@@ -9,6 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Business.Abstracts.Product;
 using AutoMapper;
+using Microsoft.IdentityModel.Tokens;
 
 namespace Business.Concretes.Product
 {
@@ -25,18 +26,31 @@ namespace Business.Concretes.Product
 			_mapper = mapper;
 		}
 
+		//null sistemini geliştirebiliriz
+		//string verilerde isnullorempty fonksiyonu
+		//int değerlerde nullable tip kullanımı
+
 
 		//Create start
 		private async Task<bool> CheckIsAlreadyProductInDb(string barcodeNumber, int marketId)
 		{
-			//will add parameter null check
+			//parameter null check
+			if ((barcodeNumber is null) || (marketId == 0))
+			{
+				throw new BadRequestException("barcode number veya market id  parametresi null olamaz");
+			}
 			IProductRepositoryGetOneProductByBarcodeNumberAndMarketIdAsyncResponse? checkIsAlreadyProductInDb = await _productRepository.getOneProductByBarcodeNumberAndMarketIdAsync(barcodeNumber, marketId);
 			return checkIsAlreadyProductInDb is not null;
 		}
 
 		public async Task<IProductServiceCreateProductAsyncResponse> createProductAsync(IProductServiceCreateProductAsyncRequest product)
 		{
-			//will add parameter null check
+			//parameter null check
+			if (product is null)
+			{
+				throw new BadRequestException("product parametresi null olamaz");
+			}
+
 			//ürün hali hazırda veritabanında var mı onu kontrol edelim,eğer varsa confilict throw atalım,Yoksa ürünü veritabanına ekleyelim
 			if (await CheckIsAlreadyProductInDb(product.BarcodeNumber, product.MarketId))
 			{
@@ -55,7 +69,12 @@ namespace Business.Concretes.Product
 
 		public async Task<IProductServiceGetProductWithBarcodeNumberAndMarketIdAsyncResponse> getProductWithBarcodeNumberAndMarketIdAsync(string barcodeNumber, int marketId)
 		{
-			//will add parameter null check
+			//parameter null check
+			if ((barcodeNumber is null) || (marketId == 0))
+			{
+				throw new BadRequestException("barcode number veya market id  parametresi null olamaz");
+			}
+
 			//öncelikle veritabanında parametrede verilen bilgilere göre bir ürün olup olmadığını kontrol edelim (check the product whether be or not in database)
 			//eğer verilen bilgilere göre ürün yoksa data katmanı throw atar
 			IProductRepositoryGetOneProductByBarcodeNumberAndMarketIdAsyncResponse result = await _productRepository.getOneProductByBarcodeNumberAndMarketIdAsync(barcodeNumber, marketId);
@@ -68,7 +87,12 @@ namespace Business.Concretes.Product
 		//Update Start
 		public async Task<IProductServiceUpdateProductAsyncResponse> updateProductAsync(IProductServiceUpdateProductAsyncRequest product)
 		{
-			//will add parameter null check
+			//parameter null check
+			if (product is null)
+			{
+				throw new BadRequestException("product parametresi null olamaz");
+			}
+
 			IProductRepositoryUpdateOneProductAsyncResponse result = await _productRepository.updateOneProductAsync(_mapper.Map<IProductRepositoryUpdateOneProductAsyncRequest>(product));
 			//update başarılı güncellenen ürünü dönelim
 			return _mapper.Map<IProductServiceUpdateProductAsyncResponse>(result);
@@ -79,7 +103,11 @@ namespace Business.Concretes.Product
 		//Delete Start
 		public async Task<bool> deleteProductAsync(string id)
 		{
-			//will add parameter null check
+			// parameter null check
+			if (id is null)
+			{
+				throw new BadRequestException("id parametresi null olamaz");
+			}
 			bool result = await _productRepository.deleteOneProductbyIdAsync(id);
 			//silme başarılı ise true gelir,silme başarısız ise data katmanında throw atar.
 			return result;

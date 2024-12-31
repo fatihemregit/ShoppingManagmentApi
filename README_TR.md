@@ -8,7 +8,7 @@ Kullanýcý ürün barkodunu okutur.
 <br>
 Alýþveriþ sonunda ürün listesi backend e gönderilir ve sipariþ kaydedilir.
 ## Bu Committe Yapýlan iþlemler
-- Custom Error Handling sisteminin kurulmasý,ve kodlara implemantasyonunun yapýlmasý
+- ProductService sýnýfýna parameter null check sistemi yazýlmasý
 ## Proje günlüðü
 ### Gün 1 (26.12.2024)
 - Api Projesi oluþturuldu(ShoppingManagment).
@@ -56,5 +56,6 @@ Alýþveriþ sonunda ürün listesi backend e gönderilir ve sipariþ kaydedilir.
 - ProductService sýnýfýna göre IProductService interface i yazýldý
 - ProductService sýnýfýna,IProductService interface i uygulandý.
 - Custom Error Handling sistemi kuruldu,ve kodlara implemantasyonu yapýldý
+### Gün 5 (31.12.2024)
+- ProductService sýnýfýna parameter null check sistemi yazýldý
 ### Yapýlabilecek þeyler
-- business katmanýnda fonksiyonlar Exception Dönmesin,Hata Varsa Exception fýrlatsýn(https://learn.microsoft.com/en-us/aspnet/core/web-api/handle-errors?view=aspnetcore-9.0) Hata yoksa fonksiyon nesnesini dönsün

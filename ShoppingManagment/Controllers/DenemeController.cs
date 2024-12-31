@@ -8,11 +8,18 @@ namespace ShoppingManagment.Controllers
 	[ApiController]
 	public class DenemeController : ControllerBase
 	{
-		[HttpGet()]
-		public IActionResult Test()
+		[HttpGet("custom")]
+		public IActionResult customBadRequestTest()
 		{
-			throw new BadRequestException("hata");
-			//return Ok("sucess");
+			throw new NotFoundException("hata");
 		}
+
+
+		[HttpGet("normal")]
+		public IActionResult normalbadrequesttest()
+		{
+			return NotFound();
+		}
+
 	}
 }
