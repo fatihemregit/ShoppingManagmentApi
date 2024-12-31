@@ -1,4 +1,6 @@
 ﻿using AutoMapper;
+using Business.Concretes.Market;
+using Entity.IMarketRepository;
 using Entity.IProductRepository;
 using Entity.IProductService;
 using System;
@@ -28,7 +30,12 @@ namespace Business.Utils.AutoMapper
 			//IProductServiceUpdateProductResponse to IProductRepositoryUpdateOneProductAsyncResponse
 			CreateMap<IProductServiceUpdateProductAsyncResponse, IProductRepositoryUpdateOneProductAsyncResponse>();
 			CreateMap<IProductRepositoryUpdateOneProductAsyncResponse, IProductServiceUpdateProductAsyncResponse>();
-
+			//IMarketServiceCreateMarketAsyncRequest to IMarketRepositoryCreateOneMarketAsyncRequest
+			CreateMap<IMarketServiceCreateMarketAsyncRequest, IMarketRepositoryCreateOneMarketAsyncRequest>();
+			CreateMap<IMarketRepositoryCreateOneMarketAsyncRequest, IMarketServiceCreateMarketAsyncRequest>();
+			//IMarketServiceCreateMarketAsyncResponse to IMarketRepositoryCreateOneMarketAsyncResponse
+			CreateMap<IMarketServiceCreateMarketAsyncResponse, IMarketRepositoryCreateOneMarketAsyncResponse>();
+			CreateMap<IMarketRepositoryCreateOneMarketAsyncResponse, IMarketServiceCreateMarketAsyncResponse>();
 
 		}
 	}

@@ -53,6 +53,18 @@ namespace Data.EfCore
 			return _mapper.Map<IMarketRepositoryGetOneMarketByIdAsyncResponse>(foundMarketById);
 		}
 
+		public async Task<IMarketRepositoryGetOneMarketByNameAsyncResponse> getOneMarketByNameAsync(string MarketName)
+		{ 
+			MarketDto? foundMarketByName = await _context.Markets.Where(m => m.MarketName == MarketName).SingleOrDefaultAsync();
+			if (foundMarketByName is null)
+			{
+				throw new NotFoundException($"{MarketName} adlı  market bulunamadı");
+			}
+			return _mapper.Map<IMarketRepositoryGetOneMarketByNameAsyncResponse>(foundMarketByName);
+
+		}
+
+
 		public async Task<IMarketRepositoryUpdateOneMarketAsyncResponse> updateOneMarketAsync(IMarketRepositoryUpdateOneMarketAsyncRequest market)
 		{
 			MarketDto? foundMarketDtowithId = await _context.Markets.Where(m => m.Id == market.Id).SingleOrDefaultAsync();

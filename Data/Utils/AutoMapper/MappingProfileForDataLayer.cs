@@ -52,6 +52,11 @@ namespace Data.Utils.AutoMapper
 			//MarketDto to IMarketRepositoryGetOneMarketByIdAsyncResponse
 			CreateMap<MarketDto, IMarketRepositoryGetOneMarketByIdAsyncResponse>();
 			CreateMap<IMarketRepositoryGetOneMarketByIdAsyncResponse, MarketDto>();
+
+			// MarketDto to IMarketRepositoryGetOneMarketByNameAsyncResponse
+			CreateMap<MarketDto, IMarketRepositoryGetOneMarketByNameAsyncResponse>();
+			CreateMap<IMarketRepositoryGetOneMarketByNameAsyncResponse, MarketDto>();
+
 			//MarketDto to IMarketRepositoryUpdateOneMarketAsyncResponse
 			CreateMap<MarketDto, IMarketRepositoryUpdateOneMarketAsyncResponse>();
 			CreateMap<IMarketRepositoryUpdateOneMarketAsyncResponse, MarketDto>();

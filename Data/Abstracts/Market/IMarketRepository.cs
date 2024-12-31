@@ -14,6 +14,8 @@ namespace Data.Abstracts.Market
 		//Read
 		Task<List<IMarketRepositoryGetAllAsyncResponse>> getAllAsync();
 
+		Task<IMarketRepositoryGetOneMarketByNameAsyncResponse> getOneMarketByNameAsync(string MarketName);
+
 		Task<IMarketRepositoryGetOneMarketByIdAsyncResponse> getOneMarketByIdAsync(int id);
 
 		//Update
