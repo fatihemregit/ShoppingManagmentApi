@@ -13,7 +13,7 @@ using System.Threading.Tasks;
 
 namespace Data.EfCore
 {
-	public class MarketRepository:IMarketRepository
+	public class MarketRepository : IMarketRepository
 	{
 
 		private readonly ApplicationDbContext _context;
@@ -25,14 +25,14 @@ namespace Data.EfCore
 			_mapper = mapper;
 		}
 
-		public async Task<IMarketRepositoryCreateOneMarketAsyncResponse> createOneMarketAsync(IMarketRepositoryCreateOneMarketAsyncRequest market)
+		public async Task<IMarketRepositoryCreateOneMarketAsyncResponse?> createOneMarketAsync(IMarketRepositoryCreateOneMarketAsyncRequest market)
 		{
 			MarketDto marketDto = _mapper.Map<MarketDto>(market);
 			await _context.Markets.AddAsync(marketDto);
 			int result = await _context.SaveChangesAsync();
 			if (result <= 0)
 			{
-				throw new BadRequestException("market ekleme başarısız");
+				return null;
 			}
 			return _mapper.Map<IMarketRepositoryCreateOneMarketAsyncResponse>(marketDto);
 		}
@@ -43,34 +43,34 @@ namespace Data.EfCore
 			return _mapper.Map<List<IMarketRepositoryGetAllAsyncResponse>>(marketsinDb);
 		}
 
-		public async Task<IMarketRepositoryGetOneMarketByIdAsyncResponse> getOneMarketByIdAsync(int id)
+		public async Task<IMarketRepositoryGetOneMarketByIdAsyncResponse?> getOneMarketByIdAsync(int id)
 		{
 			MarketDto? foundMarketById = await _context.Markets.Where(m => m.Id == id).SingleOrDefaultAsync();
 			if (foundMarketById is null)
 			{
-				throw new NotFoundException($"{id} id li market bulunamadı");
+				return null;
 			}
 			return _mapper.Map<IMarketRepositoryGetOneMarketByIdAsyncResponse>(foundMarketById);
 		}
 
-		public async Task<IMarketRepositoryGetOneMarketByNameAsyncResponse> getOneMarketByNameAsync(string MarketName)
-		{ 
+		public async Task<IMarketRepositoryGetOneMarketByNameAsyncResponse?> getOneMarketByNameAsync(string MarketName)
+		{
 			MarketDto? foundMarketByName = await _context.Markets.Where(m => m.MarketName == MarketName).SingleOrDefaultAsync();
 			if (foundMarketByName is null)
 			{
-				throw new NotFoundException($"{MarketName} adlı  market bulunamadı");
+				return null;
 			}
 			return _mapper.Map<IMarketRepositoryGetOneMarketByNameAsyncResponse>(foundMarketByName);
 
 		}
 
 
-		public async Task<IMarketRepositoryUpdateOneMarketAsyncResponse> updateOneMarketAsync(IMarketRepositoryUpdateOneMarketAsyncRequest market)
+		public async Task<IMarketRepositoryUpdateOneMarketAsyncResponse?> updateOneMarketAsync(IMarketRepositoryUpdateOneMarketAsyncRequest market)
 		{
 			MarketDto? foundMarketDtowithId = await _context.Markets.Where(m => m.Id == market.Id).SingleOrDefaultAsync();
 			if (foundMarketDtowithId is null)
 			{
-				throw new NotFoundException($"{market.Id} id li market bulunamadı");
+				return null;
 			}
 			foundMarketDtowithId.MarketName = market.MarketName;
 			int result = await _context.SaveChangesAsync();
@@ -87,13 +87,13 @@ namespace Data.EfCore
 			MarketDto? foundMarketDtoWithId = await _context.Markets.Where(m => m.Id == id).SingleOrDefaultAsync();
 			if (foundMarketDtoWithId is null)
 			{
-				throw new NotFoundException($"{id} id li market bulunamadı");
+				return false;
 			}
 			_context.Markets.Remove(foundMarketDtoWithId);
 			int result = await _context.SaveChangesAsync();
 			if (result <= 0)
 			{
-				throw new BadRequestException("market silme işlemi başarısız");
+				return false;
 			}
 			return true;
 		}

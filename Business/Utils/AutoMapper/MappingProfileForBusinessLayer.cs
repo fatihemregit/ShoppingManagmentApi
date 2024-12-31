@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using Business.Concretes.Market;
 using Entity.IMarketRepository;
+using Entity.IMarketService;
 using Entity.IProductRepository;
 using Entity.IProductService;
 using System;
@@ -30,12 +31,27 @@ namespace Business.Utils.AutoMapper
 			//IProductServiceUpdateProductResponse to IProductRepositoryUpdateOneProductAsyncResponse
 			CreateMap<IProductServiceUpdateProductAsyncResponse, IProductRepositoryUpdateOneProductAsyncResponse>();
 			CreateMap<IProductRepositoryUpdateOneProductAsyncResponse, IProductServiceUpdateProductAsyncResponse>();
+			
+			
 			//IMarketServiceCreateMarketAsyncRequest to IMarketRepositoryCreateOneMarketAsyncRequest
 			CreateMap<IMarketServiceCreateMarketAsyncRequest, IMarketRepositoryCreateOneMarketAsyncRequest>();
 			CreateMap<IMarketRepositoryCreateOneMarketAsyncRequest, IMarketServiceCreateMarketAsyncRequest>();
 			//IMarketServiceCreateMarketAsyncResponse to IMarketRepositoryCreateOneMarketAsyncResponse
 			CreateMap<IMarketServiceCreateMarketAsyncResponse, IMarketRepositoryCreateOneMarketAsyncResponse>();
 			CreateMap<IMarketRepositoryCreateOneMarketAsyncResponse, IMarketServiceCreateMarketAsyncResponse>();
+			//IMarketServiceGetAllMarketsAsyncResponse to IMarketRepositoryGetAllAsyncResponse
+			CreateMap<IMarketServiceGetAllMarketsAsyncResponse, IMarketRepositoryGetAllAsyncResponse>();
+			CreateMap<IMarketRepositoryGetAllAsyncResponse, IMarketServiceGetAllMarketsAsyncResponse>();
+			//IMarketServiceGetMarketByIdAsyncResponse to IMarketRepositoryGetOneMarketByIdAsyncResponse
+			CreateMap<IMarketServiceGetMarketByIdAsyncResponse, IMarketRepositoryGetOneMarketByIdAsyncResponse>();
+			CreateMap<IMarketRepositoryGetOneMarketByIdAsyncResponse, IMarketServiceGetMarketByIdAsyncResponse>();
+			//IMarketServiceUpdateMarketAsyncRequest to IMarketRepositoryUpdateOneMarketAsyncRequest
+			CreateMap<IMarketServiceUpdateMarketAsyncRequest, IMarketRepositoryUpdateOneMarketAsyncRequest>();
+			CreateMap<IMarketRepositoryUpdateOneMarketAsyncRequest, IMarketServiceUpdateMarketAsyncRequest>();
+			//IMarketServiceUpdateMarketAsyncResponse to IMarketRepositoryUpdateOneMarketAsyncResponse
+			CreateMap<IMarketServiceUpdateMarketAsyncResponse, IMarketRepositoryUpdateOneMarketAsyncResponse>();
+			CreateMap<IMarketRepositoryUpdateOneMarketAsyncResponse, IMarketServiceUpdateMarketAsyncResponse>();
+
 
 		}
 	}

@@ -8,7 +8,10 @@ Kullanýcý ürün barkodunu okutur.
 <br>
 Alýþveriþ sonunda ürün listesi backend e gönderilir ve sipariþ kaydedilir.
 ## Bu Committe Yapýlan iþlemler
-- ProductRepository sýnýfýndaki hata fýrlatma sisteminin ProductService sýnýfýna taþýnmasý.
+- MarketRepository sýnýfýndaki hata fýrlatma sisteminin MarketService sýnýfýna taþýnmasý.
+- MarketService sýnýfýndaki geri kalan fonksiyonlarýn yazýlmasý
+- IMarketService interface nin MarketService sýnýfýna göre yazýlmasý
+- MarketService sýnýfýna,ImarketService interface nin uygulanmasý.
 
 ## Proje günlüðü
 ### Gün 1 (26.12.2024)
@@ -62,6 +65,11 @@ Alýþveriþ sonunda ürün listesi backend e gönderilir ve sipariþ kaydedilir.
 - MarketService sýnýfýna yeni bir fonksiyon (createMarketAsync) yazýldý.
 - IMarketRepository sýnýfýna yeni bir fonksiyon(getOneMarketByNameAsync) yazýldý.
 - ProductRepository sýnýfýndaki hata fýrlatma sistemi ProductService sýnýfýna taþýndý.
+- MarketRepository sýnýfýndaki hata fýrlatma sistemi MarketService sýnýfýna taþýndý.
+- MarketService sýnýfýndaki geri kalan fonksiyonlar(getAllMarketsAsync,getMarketByIdAsync,updateMarketAsync,deleteMarketAsync) yazýldý.
+- IMarketService interface i MarketService sýnýfýna göre yazýldý
+- MarketService sýnýfýna,ImarketService interface i uygulandý.
 ### Yapýlabilecek þeyler
 - ProductService sýnýfýndaki not
 - Data katmanýnda notfoundexception kulanýlmasý bir týk mantýksýz
+- Fark ettiysen servis fonksiyonlarýnýn sýnýflarý ile repository fonksiyonlarýnýn sýnýflarý arasýnda bir benzerlik var.Acaba bunlar birbirinden kalýtýlabilir mi
