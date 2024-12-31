@@ -58,7 +58,11 @@ namespace Business.Concretes.Product
 				throw new ConflictException($" barcode numarası {product.BarcodeNumber} ve market id {product.MarketId} olan ürün zaten var");
 			}
 			//veritabanında yok o yüzden ürünü kaydedelim
-			IProductRepositoryCreateOneProductAsyncResponse result = await _productRepository.createOneProductAsync(_mapper.Map<IProductRepositoryCreateOneProductAsyncRequest>(product));
+			IProductRepositoryCreateOneProductAsyncResponse? result = await _productRepository.createOneProductAsync(_mapper.Map<IProductRepositoryCreateOneProductAsyncRequest>(product));
+			if (result is null)
+			{
+				throw new BadRequestException("Yeni Ürün Ekleme İşlemi Başarısız");
+			}
 			//kaydedilen ürünü dönelim
 			return _mapper.Map<IProductServiceCreateProductAsyncResponse>(result);
 		}
@@ -76,9 +80,12 @@ namespace Business.Concretes.Product
 			}
 
 			//öncelikle veritabanında parametrede verilen bilgilere göre bir ürün olup olmadığını kontrol edelim (check the product whether be or not in database)
-			//eğer verilen bilgilere göre ürün yoksa data katmanı throw atar
-			IProductRepositoryGetOneProductByBarcodeNumberAndMarketIdAsyncResponse result = await _productRepository.getOneProductByBarcodeNumberAndMarketIdAsync(barcodeNumber, marketId);
-
+			//eğer verilen bilgilere göre ürün yoksa null gelir
+			IProductRepositoryGetOneProductByBarcodeNumberAndMarketIdAsyncResponse? result = await _productRepository.getOneProductByBarcodeNumberAndMarketIdAsync(barcodeNumber, marketId);
+			if (result is null)
+			{
+				throw new NotFoundException($"barcode number i {barcodeNumber} olan,market id si {marketId} olan ürün bulunamadı");
+			}
 			//parametrede verilen bilgilere göre bir ürün var,ürünü dönelim
 			return _mapper.Map<IProductServiceGetProductWithBarcodeNumberAndMarketIdAsyncResponse>(result);
 		}
@@ -93,7 +100,13 @@ namespace Business.Concretes.Product
 				throw new BadRequestException("product parametresi null olamaz");
 			}
 
-			IProductRepositoryUpdateOneProductAsyncResponse result = await _productRepository.updateOneProductAsync(_mapper.Map<IProductRepositoryUpdateOneProductAsyncRequest>(product));
+			IProductRepositoryUpdateOneProductAsyncResponse? result = await _productRepository.updateOneProductAsync(_mapper.Map<IProductRepositoryUpdateOneProductAsyncRequest>(product));
+			//update başarısız badrequest dönelim
+			if (result is null)
+			{
+				throw new BadRequestException("ürün güncelleme başarısız");
+			}
+
 			//update başarılı güncellenen ürünü dönelim
 			return _mapper.Map<IProductServiceUpdateProductAsyncResponse>(result);
 		}
@@ -108,8 +121,13 @@ namespace Business.Concretes.Product
 			{
 				throw new BadRequestException("id parametresi null olamaz");
 			}
+			//silme başarılı ise true gelir,silme başarısız ise false gelir
 			bool result = await _productRepository.deleteOneProductbyIdAsync(id);
-			//silme başarılı ise true gelir,silme başarısız ise data katmanında throw atar.
+			if (!result)
+			{
+				throw new BadRequestException("silme işlemi başarısız");
+			}
+
 			return result;
 		}
 		//Delete End

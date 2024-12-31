@@ -8,8 +8,8 @@ Kullanýcý ürün barkodunu okutur.
 <br>
 Alýþveriþ sonunda ürün listesi backend e gönderilir ve sipariþ kaydedilir.
 ## Bu Committe Yapýlan iþlemler
-- MarketService sýnýfýna yeni bir fonksiyon yazýlmasý.
-- IMarketRepository sýnýfýna yeni bir fonksiyon yazýlmasý.
+- ProductRepository sýnýfýndaki hata fýrlatma sisteminin ProductService sýnýfýna taþýnmasý.
+
 ## Proje günlüðü
 ### Gün 1 (26.12.2024)
 - Api Projesi oluþturuldu(ShoppingManagment).
@@ -61,6 +61,7 @@ Alýþveriþ sonunda ürün listesi backend e gönderilir ve sipariþ kaydedilir.
 - ProductService sýnýfýna parameter null check sistemi yazýldý
 - MarketService sýnýfýna yeni bir fonksiyon (createMarketAsync) yazýldý.
 - IMarketRepository sýnýfýna yeni bir fonksiyon(getOneMarketByNameAsync) yazýldý.
+- ProductRepository sýnýfýndaki hata fýrlatma sistemi ProductService sýnýfýna taþýndý.
 ### Yapýlabilecek þeyler
 - ProductService sýnýfýndaki not
 - Data katmanýnda notfoundexception kulanýlmasý bir týk mantýksýz

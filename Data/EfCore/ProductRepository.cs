@@ -14,7 +14,7 @@ using System.Threading.Tasks;
 
 namespace Data.EfCore
 {
-	public class ProductRepository:IProductRepository
+	public class ProductRepository : IProductRepository
 	{
 		private readonly ApplicationDbContext _context;
 		private readonly IMapper _mapper;
@@ -27,15 +27,15 @@ namespace Data.EfCore
 
 
 
-		public async Task<IProductRepositoryCreateOneProductAsyncResponse> createOneProductAsync(IProductRepositoryCreateOneProductAsyncRequest product)
+		public async Task<IProductRepositoryCreateOneProductAsyncResponse?> createOneProductAsync(IProductRepositoryCreateOneProductAsyncRequest product)
 		{
 			ProductDto productDto = _mapper.Map<ProductDto>(product);
 			await _context.Products.AddAsync(productDto);
-			int result =  await _context.SaveChangesAsync();
+			int result = await _context.SaveChangesAsync();
 			if (result <= 0)
 			{
 				//unsuccess
-				throw new BadRequestException("Yeni Ürün Ekleme İşlemi Başarısız");
+				return null;
 			}
 			//sucess
 			return _mapper.Map<IProductRepositoryCreateOneProductAsyncResponse>(productDto);
@@ -47,33 +47,33 @@ namespace Data.EfCore
 			return _mapper.Map<List<IProductRepositoryGetAllAsyncResponse>>(productsindb);
 		}
 
-		public async Task<IProductRepositoryGetOneProductByIdAsyncResponse> getOneProductByIdAsync(string id)
+		public async Task<IProductRepositoryGetOneProductByIdAsyncResponse?> getOneProductByIdAsync(string id)
 		{
 			ProductDto? productinDbWithId = await _context.Products.Where(p => p.Id == id).SingleOrDefaultAsync();
 			if (productinDbWithId is null)
 			{
-				throw new NotFoundException($"{id} id li ürün bulunamadı");
+				return null;
 			}
 			return _mapper.Map<IProductRepositoryGetOneProductByIdAsyncResponse>(productinDbWithId);
 
 		}
 
-		public async Task<IProductRepositoryGetOneProductByBarcodeNumberAndMarketIdAsyncResponse> getOneProductByBarcodeNumberAndMarketIdAsync(string barcodeNumber,int marketId)
+		public async Task<IProductRepositoryGetOneProductByBarcodeNumberAndMarketIdAsyncResponse?> getOneProductByBarcodeNumberAndMarketIdAsync(string barcodeNumber, int marketId)
 		{
 			ProductDto? productinDbWithBarcodeNumberandMarketId = await _context.Products.Where(p => p.BarcodeNumber == barcodeNumber && p.MarketId == marketId).SingleOrDefaultAsync();
 			if (productinDbWithBarcodeNumberandMarketId is null)
 			{
-				throw new NotFoundException($"barcode number i {barcodeNumber} olan,market id si {marketId} olan ürün bulunamadı");
+				return null;
 			}
 			return _mapper.Map<IProductRepositoryGetOneProductByBarcodeNumberAndMarketIdAsyncResponse>(productinDbWithBarcodeNumberandMarketId);
 		}
 
-		public async Task<IProductRepositoryUpdateOneProductAsyncResponse> updateOneProductAsync(IProductRepositoryUpdateOneProductAsyncRequest product)
+		public async Task<IProductRepositoryUpdateOneProductAsyncResponse?> updateOneProductAsync(IProductRepositoryUpdateOneProductAsyncRequest product)
 		{
 			ProductDto? foundProductwithIdAndMarketId = await _context.Products.Where(p => p.Id == product.Id).SingleOrDefaultAsync();
 			if (foundProductwithIdAndMarketId is null)
 			{
-				throw new NotFoundException($"{product.Id} id li ürün bulunamadı");
+				return null;
 			}
 
 			foundProductwithIdAndMarketId.ProductName = product.ProductName;
@@ -81,7 +81,7 @@ namespace Data.EfCore
 			int result = await _context.SaveChangesAsync();
 			if (result <= 0)
 			{
-				throw new BadRequestException("ürün güncelleme başarısız");
+				return null;
 			}
 			return _mapper.Map<IProductRepositoryUpdateOneProductAsyncResponse>(foundProductwithIdAndMarketId);
 
@@ -93,12 +93,13 @@ namespace Data.EfCore
 			ProductDto? foundProdcutwithId = await _context.Products.Where(p => p.Id == id).SingleOrDefaultAsync();
 			if (foundProdcutwithId is null)
 			{
-				throw new NotFoundException($"{id} id li ürün bulunamadı");
+				return false;
 			}
 			_context.Products.Remove(foundProdcutwithId);
 			int result = await _context.SaveChangesAsync();
-			if (result <= 0) {
-				throw new BadRequestException($"silme işlemi başarısız");
+			if (result <= 0)
+			{
+				return false;
 			}
 			return true;
 		}
