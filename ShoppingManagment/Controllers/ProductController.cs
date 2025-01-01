@@ -20,6 +20,8 @@ namespace ShoppingManagment.Controllers
 			_mapper = mapper;
 		}
 
+
+		//Create
 		[HttpPost()]
 		public async Task<IActionResult> createProductAsync([FromBody] ProductControllerCreateProductAsyncRequest product)
 		{
@@ -27,6 +29,16 @@ namespace ShoppingManagment.Controllers
 			ProductControllerCreateProductAsyncResponse productControllerResponse = _mapper.Map<ProductControllerCreateProductAsyncResponse>(productServiceResponse);
 			return Ok(productControllerResponse);
 		}
+		//Read
+		[HttpGet("{barcodeNumber}/{marketId:int}")]
+		public async Task<IActionResult> getProductWithBarcodeNumberAndMarketIdAsync([FromRoute(Name = "barcodeNumber")] string barcodeNumber,[FromRoute(Name = "marketId")] int marketId)
+		{
+			IProductServiceGetProductWithBarcodeNumberAndMarketIdAsyncResponse productServiceResponse = await _productService.getProductWithBarcodeNumberAndMarketIdAsync(barcodeNumber, marketId);
+			ProductControllerGetProductWithBarcodeNumberAndMarketIdAsyncResponse productControllerResponse = _mapper.Map<ProductControllerGetProductWithBarcodeNumberAndMarketIdAsyncResponse>(productServiceResponse);
+			return Ok(productControllerResponse);
+		}
+
+
 
 
 

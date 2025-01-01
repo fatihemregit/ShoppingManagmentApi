@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 using Business.Abstracts.Product;
 using AutoMapper;
 using Microsoft.IdentityModel.Tokens;
+using Business.Utils.Functions;
 
 namespace Business.Concretes.Product
 {
@@ -35,7 +36,7 @@ namespace Business.Concretes.Product
 		private async Task<bool> CheckIsAlreadyProductInDb(string barcodeNumber, int marketId)
 		{
 			//parameter null check
-			if ((barcodeNumber is null) || (marketId == 0))
+			if (HelpFullFunctions.nullCheckObjectProps(new {barcodeNumber = barcodeNumber,marketId = marketId}))
 			{
 				throw new BadRequestException("barcode number veya market id  parametresi null olamaz");
 			}
@@ -47,7 +48,7 @@ namespace Business.Concretes.Product
 		{
 			//parameter null check
 			//obje değerleri tek tek kontrol edilebilir(bunun için bir fonksiyon yazabiliriz)
-			if (product is null)
+			if (HelpFullFunctions.nullCheckObjectProps(product))
 			{
 				throw new BadRequestException("product parametresi null olamaz");
 			}
@@ -75,7 +76,7 @@ namespace Business.Concretes.Product
 		public async Task<IProductServiceGetProductWithBarcodeNumberAndMarketIdAsyncResponse> getProductWithBarcodeNumberAndMarketIdAsync(string barcodeNumber, int marketId)
 		{
 			//parameter null check
-			if ((barcodeNumber is null) || (marketId == 0))
+			if (HelpFullFunctions.nullCheckObjectProps(new { barcodeNumber = barcodeNumber, marketId = marketId }))
 			{
 				throw new BadRequestException("barcode number veya market id  parametresi null olamaz");
 			}
@@ -96,7 +97,7 @@ namespace Business.Concretes.Product
 		public async Task<IProductServiceUpdateProductAsyncResponse> updateProductAsync(IProductServiceUpdateProductAsyncRequest product)
 		{
 			//parameter null check
-			if (product is null)
+			if (HelpFullFunctions.nullCheckObjectProps(product))
 			{
 				throw new BadRequestException("product parametresi null olamaz");
 			}
@@ -118,7 +119,7 @@ namespace Business.Concretes.Product
 		public async Task<bool> deleteProductAsync(string id)
 		{
 			// parameter null check
-			if (id is null)
+			if (HelpFullFunctions.nullCheckObjectProps(new { id = id}))
 			{
 				throw new BadRequestException("id parametresi null olamaz");
 			}

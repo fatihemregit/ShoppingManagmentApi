@@ -15,6 +15,10 @@ namespace ShoppingManagment.Utils.AutoMapper
 			//IProductServiceCreateProductAsyncResponse to ProductControllerCreateProductAsyncResponse
 			CreateMap<IProductServiceCreateProductAsyncResponse, ProductControllerCreateProductAsyncResponse>();
 			CreateMap<ProductControllerCreateProductAsyncResponse, IProductServiceCreateProductAsyncResponse>();
+			//IProductServiceGetProductWithBarcodeNumberAndMarketIdAsyncResponse to ProductControllerGetProductWithBarcodeNumberAndMarketIdAsyncResponse
+			CreateMap<IProductServiceGetProductWithBarcodeNumberAndMarketIdAsyncResponse, ProductControllerGetProductWithBarcodeNumberAndMarketIdAsyncResponse>();
+			CreateMap<ProductControllerGetProductWithBarcodeNumberAndMarketIdAsyncResponse, IProductServiceGetProductWithBarcodeNumberAndMarketIdAsyncResponse>();
+
 		}
 	}
 }

@@ -8,16 +8,9 @@ Kullanýcý ürün barkodunu okutur.
 <br>
 Alýþveriþ sonunda ürün listesi backend e gönderilir ve sipariþ kaydedilir.
 ## Bu Committe Yapýlan iþlemler
-- Product Controller ýn oluþturulmasý
-- Data katmanýnda,Interface nesnelerinin somut karþýlýklarýnýn Dependency Injection Container a eklenmesi
-- Business katmanýnda,Interface nesnelerinin somut karþýlýklarýnýn Dependency Injection Container a eklenmesi
-- Ana projeye AutoMapper kütüphanesinin yüklenmesi
-- Ana projede,program.cs implemantasyonlarý için MainExtensions sýnýfýnýn oluþturulmasý
-- Automapper ýn implementasyonu için gerekli kodlarýn yazýlmasý
-- Program.cs ile MainExtensions sýnýfý arasýndaki baðlantý kodununun yazýlmasý
-- Product Controller a yeni bir fonksiyon yazýlmasý ve gerekli fonksiyon nesnelerinin oluþturulmasý
-
-
+- Business katmanýnda yararlý fonksiyonlar için bir statik sýnýf oluþturulmasý.Ve null check için bir fonkisyon yazýlmasý
+- Product Service deki null check sisteminin deðiþtirilmesi
+- Product Controller a yeni bir fonksiyon yazýlmasý ve gerekli fonksiyon nesnesi nin oluþturulmasý
 ## Proje günlüðü
 ### Gün 1 (26.12.2024)
 - Api Projesi oluþturuldu(ShoppingManagment).
@@ -83,6 +76,10 @@ Alýþveriþ sonunda ürün listesi backend e gönderilir ve sipariþ kaydedilir.
 - Automapper ýn implementasyonu için gerekli kodlar yazýldý(MainExtensions sýnýfýndaki setAutoMapperForMainLayer fonksiyonu,MappingProfileForMainLayer(Utils/AutoMapper) sýnýfý)
 - Program.cs ile MainExtensions(Utils/Extensions) sýnýfý arasýndaki baðlantý kodu(builder.services. ...) yazýldý
 - Product Controller a yeni bir fonksiyon yazýldý(createProductAsync) ve gerekli fonksiyon nesneleri(ProductControllerCreateProductAsyncRequest,ProductControllerCreateProductAsyncResponse) oluþturuldu
+- Business katmanýnda yararlý fonksiyonlar için bir statik sýnýf oluþturuldu(HelpFullFunctions(Utils/Functions)).Ve null check için bir fonkisyon(nullCheckObjectProps) yazýldý.
+- Product Service deki null check sistemi deðiþtirildi.(HelpFullFunctions.nullCheckObjectProps fonksiyonu)
+- Product Controller a yeni bir fonksiyon yazýldý(getProductWithBarcodeNumberAndMarketIdAsync) ve gerekli fonksiyon nesnesi(ProductControllerGetProductWithBarcodeNumberAndMarketIdAsyncResponse) oluþturuldu
+ 
 ### Yapýlabilecek þeyler
 - ProductService sýnýfýndaki not
 - rate limiting (https://medium.com/devopsturkiye/net-core-rate-limiting-1afaed82f66a)(https://www.borakasmer.com/net-7-0da-rate-limiting-nedir/)
