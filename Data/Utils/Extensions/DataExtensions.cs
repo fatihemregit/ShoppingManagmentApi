@@ -1,4 +1,7 @@
-﻿using Data.EfCore.Context;
+﻿using Data.Abstracts.Market;
+using Data.Abstracts.Product;
+using Data.EfCore;
+using Data.EfCore.Context;
 using Data.Utils.AutoMapper;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -28,6 +31,12 @@ namespace Data.Utils.Extensions
 		public static void setAutoMapperForDataLayer(this IServiceCollection services)
 		{
 			services.AddAutoMapper(typeof(MappingProfileForDataLayer));
+		}
+
+		public static void setInterfaceConcretesForDataLayer(this IServiceCollection services)
+		{
+			services.AddScoped<IProductRepository,ProductRepository>();
+			services.AddScoped<IMarketRepository,MarketRepository>();
 		}
 
 

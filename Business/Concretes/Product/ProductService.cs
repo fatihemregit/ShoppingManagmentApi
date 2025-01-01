@@ -46,6 +46,7 @@ namespace Business.Concretes.Product
 		public async Task<IProductServiceCreateProductAsyncResponse> createProductAsync(IProductServiceCreateProductAsyncRequest product)
 		{
 			//parameter null check
+			//obje değerleri tek tek kontrol edilebilir(bunun için bir fonksiyon yazabiliriz)
 			if (product is null)
 			{
 				throw new BadRequestException("product parametresi null olamaz");

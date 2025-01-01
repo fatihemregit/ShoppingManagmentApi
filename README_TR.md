@@ -8,10 +8,15 @@ Kullanýcý ürün barkodunu okutur.
 <br>
 Alýþveriþ sonunda ürün listesi backend e gönderilir ve sipariþ kaydedilir.
 ## Bu Committe Yapýlan iþlemler
-- MarketRepository sýnýfýndaki hata fýrlatma sisteminin MarketService sýnýfýna taþýnmasý.
-- MarketService sýnýfýndaki geri kalan fonksiyonlarýn yazýlmasý
-- IMarketService interface nin MarketService sýnýfýna göre yazýlmasý
-- MarketService sýnýfýna,ImarketService interface nin uygulanmasý.
+- Product Controller ýn oluþturulmasý
+- Data katmanýnda,Interface nesnelerinin somut karþýlýklarýnýn Dependency Injection Container a eklenmesi
+- Business katmanýnda,Interface nesnelerinin somut karþýlýklarýnýn Dependency Injection Container a eklenmesi
+- Ana projeye AutoMapper kütüphanesinin yüklenmesi
+- Ana projede,program.cs implemantasyonlarý için MainExtensions sýnýfýnýn oluþturulmasý
+- Automapper ýn implementasyonu için gerekli kodlarýn yazýlmasý
+- Program.cs ile MainExtensions sýnýfý arasýndaki baðlantý kodununun yazýlmasý
+- Product Controller a yeni bir fonksiyon yazýlmasý ve gerekli fonksiyon nesnelerinin oluþturulmasý
+
 
 ## Proje günlüðü
 ### Gün 1 (26.12.2024)
@@ -69,7 +74,16 @@ Alýþveriþ sonunda ürün listesi backend e gönderilir ve sipariþ kaydedilir.
 - MarketService sýnýfýndaki geri kalan fonksiyonlar(getAllMarketsAsync,getMarketByIdAsync,updateMarketAsync,deleteMarketAsync) yazýldý.
 - IMarketService interface i MarketService sýnýfýna göre yazýldý
 - MarketService sýnýfýna,ImarketService interface i uygulandý.
+### Gün 6 (01.12.2024)
+- Product Controller oluþturuldu
+- Data katmanýnda,Interface nesnelerinin somut karþýlýklarý Dependency Injection Container a eklendi(DataExtensions daki setInterfaceConcretesForDataLayer metodu)
+- Business katmanýnda,Interface nesnelerinin somut karþýlýklarý Dependency Injection Container a eklendi(ServiceExtensions daki setInterfaceConcretesForBusinessLayer metodu)
+- Ana projeye AutoMapper kütüphanesi yüklendi
+- Ana projede,program.cs implemantasyonlarý için MainExtensions(Utils/Extensions) sýnýfý oluþturuldu
+- Automapper ýn implementasyonu için gerekli kodlar yazýldý(MainExtensions sýnýfýndaki setAutoMapperForMainLayer fonksiyonu,MappingProfileForMainLayer(Utils/AutoMapper) sýnýfý)
+- Program.cs ile MainExtensions(Utils/Extensions) sýnýfý arasýndaki baðlantý kodu(builder.services. ...) yazýldý
+- Product Controller a yeni bir fonksiyon yazýldý(createProductAsync) ve gerekli fonksiyon nesneleri(ProductControllerCreateProductAsyncRequest,ProductControllerCreateProductAsyncResponse) oluþturuldu
 ### Yapýlabilecek þeyler
 - ProductService sýnýfýndaki not
-- Data katmanýnda notfoundexception kulanýlmasý bir týk mantýksýz
+- rate limiting (https://medium.com/devopsturkiye/net-core-rate-limiting-1afaed82f66a)(https://www.borakasmer.com/net-7-0da-rate-limiting-nedir/)
 - Fark ettiysen servis fonksiyonlarýnýn sýnýflarý ile repository fonksiyonlarýnýn sýnýflarý arasýnda bir benzerlik var.Acaba bunlar birbirinden kalýtýlabilir mi
