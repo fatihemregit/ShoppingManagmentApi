@@ -8,7 +8,8 @@ Kullanýcý ürün barkodunu okutur.
 <br>
 Alýþveriþ sonunda ürün listesi backend e gönderilir ve sipariþ kaydedilir.
 ## Bu Committe Yapýlan iþlemler
-- Product Controllera yeni fonksiyonlar yazýlmasý ve gerekli fonksiyon nesnelerinin oluþturulmasý.
+- ProductDto nesnesine yeni alanlar eklenmesi.
+- ProductRepository sýnýfýnda deðiþiklikler yapýlmasý
 ## Proje günlüðü
 ### Gün 1 (26.12.2024)
 - Api Projesi oluþturuldu(ShoppingManagment).
@@ -79,6 +80,8 @@ Alýþveriþ sonunda ürün listesi backend e gönderilir ve sipariþ kaydedilir.
 - Product Controller a yeni bir fonksiyon yazýldý(getProductWithBarcodeNumberAndMarketIdAsync) ve gerekli fonksiyon nesnesi(ProductControllerGetProductWithBarcodeNumberAndMarketIdAsyncResponse) oluþturuldu
 ### Gün 7 (02.01.2025)
 - Product Controllera yeni fonksiyonlar yazýldý(updateProductAsync,deleteProductAsync) ve gerekli fonksiyon nesneleri(ProductControllerUpdateProductAsyncRequest,ProductControllerUpdateProductAsyncResponse) oluþturuldu.
+- ProductDto nesnesine yeni alanlar(CreatedDate,ModifiedDate) eklendi.
+- ProductRepository sýnýfýnda deðiþiklikler(yeni eklenen alanlarýn doldurulmasý) yapýldý
 ### Yapýlabilecek þeyler
 - ProductService sýnýfýndaki not
 - rate limiting (https://medium.com/devopsturkiye/net-core-rate-limiting-1afaed82f66a)(https://www.borakasmer.com/net-7-0da-rate-limiting-nedir/)

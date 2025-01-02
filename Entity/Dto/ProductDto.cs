@@ -22,8 +22,14 @@ namespace Entity.Dto
 		[Column(TypeName = "decimal(18, 2)")]
 		public decimal Price { get; set; }
 
-		//relation to MarketDto
-		public int MarketId { get; set; }
+        //date info
+
+        public DateTime CreatedDate { get; set; }
+
+        public DateTime ModifiedDate { get; set; }
+
+        //relation to MarketDto
+        public int MarketId { get; set; }
 		public MarketDto Market { get; set; }
 
 	}

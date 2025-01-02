@@ -30,6 +30,8 @@ namespace Data.EfCore
 		public async Task<IProductRepositoryCreateOneProductAsyncResponse?> createOneProductAsync(IProductRepositoryCreateOneProductAsyncRequest product)
 		{
 			ProductDto productDto = _mapper.Map<ProductDto>(product);
+			productDto.CreatedDate = DateTime.Now;
+			productDto.ModifiedDate = DateTime.Now;
 			await _context.Products.AddAsync(productDto);
 			int result = await _context.SaveChangesAsync();
 			if (result <= 0)
@@ -78,6 +80,7 @@ namespace Data.EfCore
 
 			foundProductwithIdAndMarketId.ProductName = product.ProductName;
 			foundProductwithIdAndMarketId.Price = product.Price;
+			foundProductwithIdAndMarketId.ModifiedDate = DateTime.Now;
 			int result = await _context.SaveChangesAsync();
 			if (result <= 0)
 			{
