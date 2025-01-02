@@ -8,9 +8,7 @@ Kullanýcý ürün barkodunu okutur.
 <br>
 Alýþveriþ sonunda ürün listesi backend e gönderilir ve sipariþ kaydedilir.
 ## Bu Committe Yapýlan iþlemler
-- Business katmanýnda yararlý fonksiyonlar için bir statik sýnýf oluþturulmasý.Ve null check için bir fonkisyon yazýlmasý
-- Product Service deki null check sisteminin deðiþtirilmesi
-- Product Controller a yeni bir fonksiyon yazýlmasý ve gerekli fonksiyon nesnesi nin oluþturulmasý
+- Product Controllera yeni fonksiyonlar yazýlmasý ve gerekli fonksiyon nesnelerinin oluþturulmasý.
 ## Proje günlüðü
 ### Gün 1 (26.12.2024)
 - Api Projesi oluþturuldu(ShoppingManagment).
@@ -67,7 +65,7 @@ Alýþveriþ sonunda ürün listesi backend e gönderilir ve sipariþ kaydedilir.
 - MarketService sýnýfýndaki geri kalan fonksiyonlar(getAllMarketsAsync,getMarketByIdAsync,updateMarketAsync,deleteMarketAsync) yazýldý.
 - IMarketService interface i MarketService sýnýfýna göre yazýldý
 - MarketService sýnýfýna,ImarketService interface i uygulandý.
-### Gün 6 (01.12.2024)
+### Gün 6 (01.01.2025)
 - Product Controller oluþturuldu
 - Data katmanýnda,Interface nesnelerinin somut karþýlýklarý Dependency Injection Container a eklendi(DataExtensions daki setInterfaceConcretesForDataLayer metodu)
 - Business katmanýnda,Interface nesnelerinin somut karþýlýklarý Dependency Injection Container a eklendi(ServiceExtensions daki setInterfaceConcretesForBusinessLayer metodu)
@@ -79,7 +77,8 @@ Alýþveriþ sonunda ürün listesi backend e gönderilir ve sipariþ kaydedilir.
 - Business katmanýnda yararlý fonksiyonlar için bir statik sýnýf oluþturuldu(HelpFullFunctions(Utils/Functions)).Ve null check için bir fonkisyon(nullCheckObjectProps) yazýldý.
 - Product Service deki null check sistemi deðiþtirildi.(HelpFullFunctions.nullCheckObjectProps fonksiyonu)
 - Product Controller a yeni bir fonksiyon yazýldý(getProductWithBarcodeNumberAndMarketIdAsync) ve gerekli fonksiyon nesnesi(ProductControllerGetProductWithBarcodeNumberAndMarketIdAsyncResponse) oluþturuldu
- 
+### Gün 7 (02.01.2025)
+- Product Controllera yeni fonksiyonlar yazýldý(updateProductAsync,deleteProductAsync) ve gerekli fonksiyon nesneleri(ProductControllerUpdateProductAsyncRequest,ProductControllerUpdateProductAsyncResponse) oluþturuldu.
 ### Yapýlabilecek þeyler
 - ProductService sýnýfýndaki not
 - rate limiting (https://medium.com/devopsturkiye/net-core-rate-limiting-1afaed82f66a)(https://www.borakasmer.com/net-7-0da-rate-limiting-nedir/)

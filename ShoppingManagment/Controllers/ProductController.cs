@@ -37,6 +37,23 @@ namespace ShoppingManagment.Controllers
 			ProductControllerGetProductWithBarcodeNumberAndMarketIdAsyncResponse productControllerResponse = _mapper.Map<ProductControllerGetProductWithBarcodeNumberAndMarketIdAsyncResponse>(productServiceResponse);
 			return Ok(productControllerResponse);
 		}
+		//Update
+		[HttpPut()]
+		public async Task<IActionResult> updateProductAsync([FromBody] ProductControllerUpdateProductAsyncRequest product)
+		{
+			IProductServiceUpdateProductAsyncResponse productServiceResponse = await _productService.updateProductAsync(_mapper.Map<IProductServiceUpdateProductAsyncRequest>(product));
+			ProductControllerUpdateProductAsyncResponse productControllerResponse = _mapper.Map<ProductControllerUpdateProductAsyncResponse>(productServiceResponse);
+			return Ok(productControllerResponse);
+		}
+		//Delete
+		[HttpDelete("{id}")]
+		public async Task<IActionResult> deleteProductAsync(string id)
+		{ 
+			bool productServiceResponse = await _productService.deleteProductAsync(id);
+			bool productControllerResponse = productServiceResponse;
+			return Ok(productControllerResponse);
+		}
+
 
 
 
