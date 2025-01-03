@@ -8,8 +8,7 @@ Kullanýcý ürün barkodunu okutur.
 <br>
 Alýþveriþ sonunda ürün listesi backend e gönderilir ve sipariþ kaydedilir.
 ## Bu Committe Yapýlan iþlemler
-- ProductDto nesnesine yeni alanlar eklenmesi.
-- ProductRepository sýnýfýnda deðiþiklikler yapýlmasý
+- MarketController sýnýfýnýn yazýlmasý ve gerekli fonksiyon nesnelerinin oluþturulmasý
 ## Proje günlüðü
 ### Gün 1 (26.12.2024)
 - Api Projesi oluþturuldu(ShoppingManagment).
@@ -82,7 +81,11 @@ Alýþveriþ sonunda ürün listesi backend e gönderilir ve sipariþ kaydedilir.
 - Product Controllera yeni fonksiyonlar yazýldý(updateProductAsync,deleteProductAsync) ve gerekli fonksiyon nesneleri(ProductControllerUpdateProductAsyncRequest,ProductControllerUpdateProductAsyncResponse) oluþturuldu.
 - ProductDto nesnesine yeni alanlar(CreatedDate,ModifiedDate) eklendi.
 - ProductRepository sýnýfýnda deðiþiklikler(yeni eklenen alanlarýn doldurulmasý) yapýldý
+### Gün 8 (03.01.2025)
+- MarketController sýnýfý yazýldý ve gerekli fonksiyon nesneleri(MarketControllerCreateMarketAsyncRequest,MarketControllerCreateMarketAsyncResponse,MarketControllerGetAllMarketsAsyncResponse,MarketControllerGetMarketByIdAsyncResponse,MarketControllerUpdateMarketAsyncRequest,MarketControllerUpdateMarketAsyncResponse) oluþturuldu
+
 ### Yapýlabilecek þeyler
 - ProductService sýnýfýndaki not
 - rate limiting (https://medium.com/devopsturkiye/net-core-rate-limiting-1afaed82f66a)(https://www.borakasmer.com/net-7-0da-rate-limiting-nedir/)
 - Fark ettiysen servis fonksiyonlarýnýn sýnýflarý ile repository fonksiyonlarýnýn sýnýflarý arasýnda bir benzerlik var.Acaba bunlar birbirinden kalýtýlabilir mi
+- ürün veritabanýnda yoksa production ortamýnda 404 mü dönmelimiyiz(exception larda production da dönmek üzere ayrý bir hata kodu mu olsa??)
