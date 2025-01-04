@@ -5,6 +5,7 @@ using Entity.MarketController;
 using Entity.IProductService;
 using Entity.ProductController;
 using ShoppingManagment.Controllers;
+using Data;
 
 namespace ShoppingManagment.Utils.AutoMapper
 {
@@ -47,6 +48,7 @@ namespace ShoppingManagment.Utils.AutoMapper
 			//IMarketServiceUpdateMarketAsyncResponse to MarketControllerUpdateMarketAsyncResponse
 			CreateMap<IMarketServiceUpdateMarketAsyncResponse, MarketControllerUpdateMarketAsyncResponse>();
 			CreateMap<MarketControllerUpdateMarketAsyncResponse, IMarketServiceUpdateMarketAsyncResponse>();
+
 
 		}
 	}

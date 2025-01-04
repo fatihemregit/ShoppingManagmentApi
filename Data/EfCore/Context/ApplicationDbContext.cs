@@ -16,8 +16,10 @@ namespace Data.EfCore.Context
 
         public DbSet<MarketDto> Markets { get; set; }
 
+		public DbSet<OrderDto> Orders { get; set; }
 
-        public ApplicationDbContext(DbContextOptions options) : base(options)
+
+		public ApplicationDbContext(DbContextOptions options) : base(options)
 		{
 		}
 
@@ -25,6 +27,7 @@ namespace Data.EfCore.Context
 		{
 			modelBuilder.ApplyConfiguration(new ProductDtoConfig());
 			modelBuilder.ApplyConfiguration(new MarketDtoConfig());
+			modelBuilder.ApplyConfiguration(new OrderDtoConfig());
 
 		}
 

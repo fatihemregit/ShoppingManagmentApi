@@ -8,6 +8,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Entity.IOrderRepository;
 
 namespace Data.Utils.AutoMapper
 {
@@ -61,6 +62,26 @@ namespace Data.Utils.AutoMapper
 			CreateMap<MarketDto, IMarketRepositoryUpdateOneMarketAsyncResponse>();
 			CreateMap<IMarketRepositoryUpdateOneMarketAsyncResponse, MarketDto>();
 
+
+
+
+			//OrderDto to IOrderRepositoryCreateOneOrderAsyncRequest
+			CreateMap<OrderDto, IOrderRepositoryCreateOneOrderAsyncRequest>();
+			CreateMap<IOrderRepositoryCreateOneOrderAsyncRequest, OrderDto>();
+			//OrderDto to IOrderRepositoryCreateOneOrderAsyncResponse
+			CreateMap<OrderDto, IOrderRepositoryCreateOneOrderAsyncResponse>();
+			CreateMap<IOrderRepositoryCreateOneOrderAsyncResponse, OrderDto>();
+
+			//OrderDto to IOrderRepositoryGetAllOrdersAsyncResponse
+			CreateMap<OrderDto, IOrderRepositoryGetAllOrdersAsyncResponse>();
+			CreateMap<IOrderRepositoryGetAllOrdersAsyncResponse, OrderDto>();
+			//OrderDto to IOrderRepositoryGetOrdersByOrderIdAsyncResponse
+			CreateMap<OrderDto, IOrderRepositoryGetOrdersByOrderIdAsyncResponse>();
+			CreateMap<IOrderRepositoryGetOrdersByOrderIdAsyncResponse, OrderDto>();
+
+			//OrderDto to IOrderRepositoryGetOneOrderByRowIdAsyncResponse
+			CreateMap<OrderDto, IOrderRepositoryGetOneOrderByRowIdAsyncResponse>();
+			CreateMap<IOrderRepositoryGetOneOrderByRowIdAsyncResponse, OrderDto>();
 
 		}
 	}

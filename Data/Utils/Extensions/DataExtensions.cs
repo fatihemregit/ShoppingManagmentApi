@@ -1,4 +1,5 @@
 ﻿using Data.Abstracts.Market;
+using Data.Abstracts.Order;
 using Data.Abstracts.Product;
 using Data.EfCore;
 using Data.EfCore.Context;
@@ -37,6 +38,7 @@ namespace Data.Utils.Extensions
 		{
 			services.AddScoped<IProductRepository,ProductRepository>();
 			services.AddScoped<IMarketRepository,MarketRepository>();
+			services.AddScoped<IOrderRepository, OrderRepository>();
 		}
 
 

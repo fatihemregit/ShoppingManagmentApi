@@ -32,5 +32,8 @@ namespace Entity.Dto
         public int MarketId { get; set; }
 		public MarketDto Market { get; set; }
 
+		//relation to OrderDto
+		public ICollection<OrderDto> Orders { get; set; }
+
 	}
 }

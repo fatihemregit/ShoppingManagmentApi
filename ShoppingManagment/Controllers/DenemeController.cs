@@ -1,4 +1,7 @@
-﻿using Entity.Exceptions;
+﻿using AutoMapper;
+using Data;
+using Data.Abstracts.Order;
+using Entity.Exceptions;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -8,6 +11,14 @@ namespace ShoppingManagment.Controllers
 	[ApiController]
 	public class DenemeController : ControllerBase
 	{
+
+		private readonly IMapper _mapper;
+
+		public DenemeController(IMapper mapper)
+		{
+			_mapper = mapper;
+		}
+
 		[HttpGet("custom")]
 		public IActionResult customBadRequestTest()
 		{

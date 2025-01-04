@@ -8,7 +8,14 @@ Kullanýcý ürün barkodunu okutur.
 <br>
 Alýþveriþ sonunda ürün listesi backend e gönderilir ve sipariþ kaydedilir.
 ## Bu Committe Yapýlan iþlemler
-- MarketController sýnýfýnýn yazýlmasý ve gerekli fonksiyon nesnelerinin oluþturulmasý
+- OrderDto nesnesinin oluþturulmasý.
+- OrderDto ile alakalý iliþkilerin kurulmasý
+- OrderDtoConfig sýnýfýnýn yazýlmasý.
+- OrderDto nun orderId prop u için CustomIdGeneratorForOrderDto sýnýfýnýn oluþturulmasý.
+- OrderDto nesnesinin ApplicationDbContext sýnýfýna eklenmesi.
+- OrderDto nesnesi için migrationlar oluþturulmasý ve veritabanýna uygulanmasý.
+- IOrderRepository interface nin yazýlmasý ve gerekli fonksiyon nesnelerinin oluþturulmasý.
+- OrderRepository sýnýfýnýn oluþturulmasý ve bazý fonksiyonlarýn yazýlmasý.
 ## Proje günlüðü
 ### Gün 1 (26.12.2024)
 - Api Projesi oluþturuldu(ShoppingManagment).
@@ -83,7 +90,15 @@ Alýþveriþ sonunda ürün listesi backend e gönderilir ve sipariþ kaydedilir.
 - ProductRepository sýnýfýnda deðiþiklikler(yeni eklenen alanlarýn doldurulmasý) yapýldý
 ### Gün 8 (03.01.2025)
 - MarketController sýnýfý yazýldý ve gerekli fonksiyon nesneleri(MarketControllerCreateMarketAsyncRequest,MarketControllerCreateMarketAsyncResponse,MarketControllerGetAllMarketsAsyncResponse,MarketControllerGetMarketByIdAsyncResponse,MarketControllerUpdateMarketAsyncRequest,MarketControllerUpdateMarketAsyncResponse) oluþturuldu
-
+### Gün 9 (04.01.2025)
+- OrderDto nesnesi oluþturuldu.
+- OrderDto ile alakalý iliþkiler kuruldu
+- OrderDtoConfig sýnýfý yazýldý.
+- OrderDto nun orderId prop u için CustomIdGeneratorForOrderDto sýnýfý oluþturuldu.
+- OrderDto nesnesi ApplicationDbContext sýnýfýna eklendi.
+- OrderDto nesnesi için migrationlar oluþturuldu ve veritabanýna uygulandý.
+- IOrderRepository interface yazýldý ve gerekli fonksiyon nesneleri(IOrderRepositoryCreateOneOrderAsyncRequest,IOrderRepositoryCreateOneOrderAsyncResponse,IOrderRepositoryGetAllOrdersAsyncResponse,IOrderRepositoryGetOrdersByOrderIdAsyncResponse,IOrderRepositoryGetOneOrderByRowIdAsyncResponse,IOrderRepositoryUpdateOneOrderAsyncRequest,IOrderRepositoryUpdateOneOrderAsyncResponse) oluþturuldu.
+- OrderRepository sýnýfý oluþturuldu ve bazý fonksiyonlar(createOneOrderAsync,getAllAsync,getOrdersByOrderIdAsync,getOneOrderByRowIdAsync) yazýldý.
 ### Yapýlabilecek þeyler
 - ProductService sýnýfýndaki not
 - rate limiting (https://medium.com/devopsturkiye/net-core-rate-limiting-1afaed82f66a)(https://www.borakasmer.com/net-7-0da-rate-limiting-nedir/)
