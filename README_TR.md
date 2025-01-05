@@ -8,7 +8,10 @@ Kullanýcý ürün barkodunu okutur.
 <br>
 Alýþveriþ sonunda ürün listesi backend e gönderilir ve sipariþ kaydedilir.
 ## Bu Committe Yapýlan iþlemler
-- IOrderService interface i nin yazýlmasý ve gerekli fonksiyon nesnelerinin oluþturulmasý.
+- OrderService sýnýfýnýn oluþturulmasý
+- IOrderService interface nin somut karþýlýðýnýn Dependency Injection Container a eklenmesi
+- HelpFullFunctions sýnýfýndaki nullCheckObjectProps fonksiyonunun liste tipi veriler Kabul edilebilir hale getirilmesi ve fonksiyonun gerekli testlerinin yapýlmasý.
+
 ## Proje günlüðü
 ### Gün 1 (26.12.2024)
 - Api Projesi oluþturuldu(ShoppingManagment).
@@ -95,6 +98,9 @@ Alýþveriþ sonunda ürün listesi backend e gönderilir ve sipariþ kaydedilir.
 ### Gün 10 (05.01.2025)
 - OrderRepository sýnýfýndaki yazýlmayan fonksiyonlar(updateOneOrderAsync,deleteOneOrderbyRowIdAsync,deleteOrdersByOrderIdAsync) yazýldý
 - IOrderService interface i yazýldý ve  gerekli fonksiyon nesneleri(IOrderServiceGetAllOrdersAsyncResponse,IOrderServiceGetOrdersByOrderIdAsyncResponse,IOrderServiceGetOrderByRowIdAsyncResponse,IOrderServiceUpdateOrderAsyncResponse,IOrderServiceUpdateOrderAsyncRequest) oluþturuldu.
+- OrderService sýnýfý oluþturuldu
+- IOrderService interface nin somut karþýlýðý Dependency Injection Container a eklendi
+- HelpFullFunctions sýnýfýndaki nullCheckObjectProps fonksiyonunda liste tipi veriler kabul edilmiyordu.Kabul edilebilir hale getirildi ve fonksiyonun gerekli testleri yapýldý.
 ### Yapýlabilecek þeyler
 - ProductService sýnýfýndaki not
 - rate limiting (https://medium.com/devopsturkiye/net-core-rate-limiting-1afaed82f66a)(https://www.borakasmer.com/net-7-0da-rate-limiting-nedir/)

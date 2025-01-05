@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Business.Abstracts.Order;
 using Data;
 using Data.Abstracts.Order;
 using Entity.Exceptions;
@@ -31,6 +32,14 @@ namespace ShoppingManagment.Controllers
 		{
 			return NotFound();
 		}
+
+		[HttpPost]
+		public async Task<IActionResult> orderTest([FromServices]IOrderService order)
+		{
+			await order.createOrderAsync(new List<string>() { "1","2","3"});
+			return Ok();
+		}
+
 
 	}
 }
