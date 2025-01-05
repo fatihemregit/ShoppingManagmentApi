@@ -122,19 +122,48 @@ namespace Business.Concretes.Order
 			return _mapper.Map<IOrderServiceGetOrderByRowIdAsyncResponse>(result);
 		}
 
-		public Task<IOrderServiceUpdateOrderAsyncResponse> updateOrderAsync(IOrderServiceUpdateOrderAsyncRequest order)
+		public async Task<IOrderServiceUpdateOrderAsyncResponse> updateOrderAsync(IOrderServiceUpdateOrderAsyncRequest order)
 		{
-			throw new NotImplementedException();
+			if (HelpFullFunctions.nullCheckObjectProps(order))
+			{
+				throw new BadRequestException("order parametresi null olamaz");
+			}
+			IOrderRepositoryGetOneOrderByRowIdAsyncResponse? foundOrder = await _orderRepository.getOneOrderByRowIdAsync(order.RowId);
+			if (foundOrder is null)
+			{ 
+				throw new NotFoundException($"{order.RowId} row id li sipariş bulunamadı");
+			}
+			IOrderRepositoryUpdateOneOrderAsyncRequest request = _mapper.Map<IOrderRepositoryUpdateOneOrderAsyncRequest>(order);
+			request.OrderId = foundOrder.OrderId;
+			request.ProductId = foundOrder.ProductId;
+			request.ProductPrice = foundOrder.ProductPrice;
+			IOrderRepositoryUpdateOneOrderAsyncResponse? result = await _orderRepository.updateOneOrderAsync(request);
+			if (result is null)
+			{
+				throw new BadRequestException("sipariş güncelleme başarısız");
+			}
+			return _mapper.Map<IOrderServiceUpdateOrderAsyncResponse>(result);
 		}
 
-		public Task<bool> deleteOrderbyRowIdAsync(int rowId)
+		public async Task<bool> deleteOrderbyRowIdAsync(int rowId)
 		{
-			throw new NotImplementedException();
+			bool result = await _orderRepository.deleteOneOrderbyRowIdAsync(rowId);
+			if(!result)
+			{
+				throw new BadRequestException("sipariş silme başarısız");
+			}
+			return result;
 		}
 
-		public Task<string> deleteOrdersByOrderIdAsync(string OrderId)
+		public async Task<bool> deleteOrdersByOrderIdAsync(string orderId)
 		{
-			throw new NotImplementedException();
+			bool result = await _orderRepository.deleteOrdersByOrderIdAsync(orderId);
+			if (!result)
+			{
+				throw new BadRequestException("sipariş silme başarısız");
+			}
+			return result;
+
 		}
 
 

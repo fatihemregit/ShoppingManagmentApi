@@ -20,7 +20,7 @@ namespace Business.Abstracts.Order
 
 		Task<bool> deleteOrderbyRowIdAsync(int rowId);
 
-		Task<string> deleteOrdersByOrderIdAsync(string OrderId);
+		Task<bool> deleteOrdersByOrderIdAsync(string orderId);
 
 
 

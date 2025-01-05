@@ -67,6 +67,14 @@ namespace Business.Utils.AutoMapper
 			CreateMap<IOrderServiceGetOrderByRowIdAsyncResponse, IOrderRepositoryGetOneOrderByRowIdAsyncResponse>();
 			CreateMap<IOrderRepositoryGetOneOrderByRowIdAsyncResponse, IOrderServiceGetOrderByRowIdAsyncResponse>();
 
+			//IOrderServiceUpdateOrderAsyncRequest to IOrderRepositoryUpdateOneOrderAsyncRequest
+			CreateMap<IOrderServiceUpdateOrderAsyncRequest, IOrderRepositoryUpdateOneOrderAsyncRequest>();
+			CreateMap<IOrderRepositoryUpdateOneOrderAsyncRequest, IOrderServiceUpdateOrderAsyncRequest>();
+
+			// IOrderServiceUpdateOrderAsyncResponse to IOrderRepositoryUpdateOneOrderAsyncResponse
+			CreateMap<IOrderServiceUpdateOrderAsyncResponse, IOrderRepositoryUpdateOneOrderAsyncResponse>();
+			CreateMap<IOrderRepositoryUpdateOneOrderAsyncResponse, IOrderServiceUpdateOrderAsyncResponse>();
+
 		}
 	}
 }
