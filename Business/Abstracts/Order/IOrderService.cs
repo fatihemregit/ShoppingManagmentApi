@@ -11,7 +11,7 @@ namespace Business.Abstracts.Order
 	{
 		Task<string> createOrderAsync(List<string> productIds);
 
-		Task<IOrderServiceGetAllOrdersAsyncResponse> getAllOrdersAsync();
+		Task<List<IOrderServiceGetAllOrdersAsyncResponse>> getAllOrdersAsync();
 
 		Task<List<IOrderServiceGetOrdersByOrderIdAsyncResponse>> getOrdersByOrderIdAsync(string orderId);
 

@@ -8,9 +8,7 @@ Kullanýcý ürün barkodunu okutur.
 <br>
 Alýþveriþ sonunda ürün listesi backend e gönderilir ve sipariþ kaydedilir.
 ## Bu Committe Yapýlan iþlemler
-- OrderService sýnýfýnýn oluþturulmasý
-- IOrderService interface nin somut karþýlýðýnýn Dependency Injection Container a eklenmesi
-- HelpFullFunctions sýnýfýndaki nullCheckObjectProps fonksiyonunun liste tipi veriler Kabul edilebilir hale getirilmesi ve fonksiyonun gerekli testlerinin yapýlmasý.
+- OrderService de ki bazý fonksiyonlarýn yazýlmasý
 
 ## Proje günlüðü
 ### Gün 1 (26.12.2024)
@@ -101,8 +99,11 @@ Alýþveriþ sonunda ürün listesi backend e gönderilir ve sipariþ kaydedilir.
 - OrderService sýnýfý oluþturuldu
 - IOrderService interface nin somut karþýlýðý Dependency Injection Container a eklendi
 - HelpFullFunctions sýnýfýndaki nullCheckObjectProps fonksiyonunda liste tipi veriler kabul edilmiyordu.Kabul edilebilir hale getirildi ve fonksiyonun gerekli testleri yapýldý.
+- OrderService de ki bazý fonksiyonlar(createOrderAsync,getAllOrdersAsync,getOrdersByOrderIdAsync,getOrderByRowIdAsync) yazýldý
 ### Yapýlabilecek þeyler
 - ProductService sýnýfýndaki not
+- HelpFullFunctions sýnýfýndaki nullCheckObjectProps daha iyi olabilir(eðer props forEach e girmezse basit veridir)(öz yineleme yaptýðýmýz yerde verileri objeye dönüþtürebiliriz)
+- IOrderRepository sýnýfýndaki not
 - rate limiting (https://medium.com/devopsturkiye/net-core-rate-limiting-1afaed82f66a)(https://www.borakasmer.com/net-7-0da-rate-limiting-nedir/)
 - Fark ettiysen servis fonksiyonlarýnýn sýnýflarý ile repository fonksiyonlarýnýn sýnýflarý arasýnda bir benzerlik var.Acaba bunlar birbirinden kalýtýlabilir mi
 - ürün veritabanýnda yoksa production ortamýnda 404 mü dönmelimiyiz(exception larda production da dönmek üzere ayrý bir hata kodu mu olsa??)

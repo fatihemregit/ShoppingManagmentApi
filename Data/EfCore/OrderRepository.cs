@@ -67,7 +67,6 @@ namespace Data.EfCore
 
 		public async Task<IOrderRepositoryUpdateOneOrderAsyncResponse?> updateOneOrderAsync(IOrderRepositoryUpdateOneOrderAsyncRequest order)
 		{
-			//burada kaldım
 			OrderDto? foundOrderDto =  await _context.Orders.Where(o => o.RowId == order.RowId).SingleOrDefaultAsync();
 			if (foundOrderDto is null)
 			{
@@ -137,8 +136,8 @@ namespace Data.EfCore
 		//          foreach (string item in productIds)
 		//          {
 		//		//found a product dto
-		//		ProductDto? foundProductDto = await _context.Products.Where(p => p.Id == item).SingleOrDefaultAsync();
-		//		if(foundProductDto is null)
+		//		ProductDto? foundProductDto = awit _context.Products.Where(p => p.Id == item).SingleOrDefaultAsync();
+		//		if(foundProductDto is null)a
 		//		{
 		//			return null;
 		//		}

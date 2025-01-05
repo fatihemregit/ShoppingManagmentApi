@@ -12,6 +12,7 @@ namespace Data.Abstracts.Order
 	{
 
 		//Create
+		//burada liste almak daha mantıklı değil mi?
 		Task<IOrderRepositoryCreateOneOrderAsyncResponse?> createOneOrderAsync(IOrderRepositoryCreateOneOrderAsyncRequest order);
 
 		//Read

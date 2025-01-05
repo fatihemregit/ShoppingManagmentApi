@@ -2,6 +2,8 @@
 using Business.Concretes.Market;
 using Entity.IMarketRepository;
 using Entity.IMarketService;
+using Entity.IOrderRepository;
+using Entity.IOrderService;
 using Entity.IProductRepository;
 using Entity.IProductService;
 using System;
@@ -52,6 +54,18 @@ namespace Business.Utils.AutoMapper
 			CreateMap<IMarketServiceUpdateMarketAsyncResponse, IMarketRepositoryUpdateOneMarketAsyncResponse>();
 			CreateMap<IMarketRepositoryUpdateOneMarketAsyncResponse, IMarketServiceUpdateMarketAsyncResponse>();
 
+
+			//IOrderServiceGetAllOrdersAsyncResponse to IOrderRepositoryGetAllOrdersAsyncResponse
+			CreateMap<IOrderServiceGetAllOrdersAsyncResponse, IOrderRepositoryGetAllOrdersAsyncResponse>();
+			CreateMap<IOrderRepositoryGetAllOrdersAsyncResponse, IOrderServiceGetAllOrdersAsyncResponse>();
+
+			//IOrderServiceGetOrdersByOrderIdAsyncResponse to IOrderRepositoryGetOrdersByOrderIdAsyncResponse>
+			CreateMap<IOrderServiceGetOrdersByOrderIdAsyncResponse, IOrderRepositoryGetOrdersByOrderIdAsyncResponse>();
+			CreateMap<IOrderRepositoryGetOrdersByOrderIdAsyncResponse, IOrderServiceGetOrdersByOrderIdAsyncResponse>();
+
+			//IOrderServiceGetOrderByRowIdAsyncResponse to IOrderRepositoryGetOneOrderByRowIdAsyncResponse
+			CreateMap<IOrderServiceGetOrderByRowIdAsyncResponse, IOrderRepositoryGetOneOrderByRowIdAsyncResponse>();
+			CreateMap<IOrderRepositoryGetOneOrderByRowIdAsyncResponse, IOrderServiceGetOrderByRowIdAsyncResponse>();
 
 		}
 	}
