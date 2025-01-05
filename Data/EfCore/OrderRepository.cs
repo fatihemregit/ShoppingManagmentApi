@@ -68,17 +68,57 @@ namespace Data.EfCore
 		public async Task<IOrderRepositoryUpdateOneOrderAsyncResponse?> updateOneOrderAsync(IOrderRepositoryUpdateOneOrderAsyncRequest order)
 		{
 			//burada kaldım
-			throw new NotImplementedException();
+			OrderDto? foundOrderDto =  await _context.Orders.Where(o => o.RowId == order.RowId).SingleOrDefaultAsync();
+			if (foundOrderDto is null)
+			{
+				return null;
+			}
+			foundOrderDto.OrderId = order.OrderId;
+			foundOrderDto.ProductId = order.ProductId;
+			foundOrderDto.ProductPrice = order.ProductPrice;
+			int result = await _context.SaveChangesAsync();
+			if (result <= 0)
+			{
+				return null;
+			}
+			return _mapper.Map<IOrderRepositoryUpdateOneOrderAsyncResponse>(foundOrderDto);
+
 		}
 
 		public async Task<bool> deleteOneOrderbyRowIdAsync(int RowId)
 		{
-			throw new NotImplementedException();
+			//şimdilik direkt siliyoruz.daha sonrasında safe delete eklenecek
+			OrderDto? foundOrderDto = await _context.Orders.Where(o => o.RowId == RowId).SingleOrDefaultAsync();
+			if (foundOrderDto is null)
+			{
+				return false;
+			}
+			_context.Orders.Remove(foundOrderDto);
+			int result = await _context.SaveChangesAsync();
+			if (result <= 0)
+			{
+				return false;
+			}
+			return true;
+
 		}
 
 		public async Task<bool> deleteOrdersByOrderIdAsync(string orderId)
 		{
-			throw new NotImplementedException();
+			//şimdilik direkt siliyoruz.daha sonrasında safe delete eklenecek
+			List<OrderDto> foundOrderDtos = await _context.Orders.Where(o => o.OrderId == orderId).ToListAsync();
+			if (foundOrderDtos.Count <= 0)
+			{
+				return false;
+			}
+			_context.Orders.RemoveRange(foundOrderDtos);
+			int result = await _context.SaveChangesAsync();
+			if (result <= 0)
+			{
+				return false;
+			}
+			return true;
+
 		}
 
 	

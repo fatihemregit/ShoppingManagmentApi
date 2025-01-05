@@ -8,14 +8,7 @@ Kullanýcý ürün barkodunu okutur.
 <br>
 Alýþveriþ sonunda ürün listesi backend e gönderilir ve sipariþ kaydedilir.
 ## Bu Committe Yapýlan iþlemler
-- OrderDto nesnesinin oluþturulmasý.
-- OrderDto ile alakalý iliþkilerin kurulmasý
-- OrderDtoConfig sýnýfýnýn yazýlmasý.
-- OrderDto nun orderId prop u için CustomIdGeneratorForOrderDto sýnýfýnýn oluþturulmasý.
-- OrderDto nesnesinin ApplicationDbContext sýnýfýna eklenmesi.
-- OrderDto nesnesi için migrationlar oluþturulmasý ve veritabanýna uygulanmasý.
-- IOrderRepository interface nin yazýlmasý ve gerekli fonksiyon nesnelerinin oluþturulmasý.
-- OrderRepository sýnýfýnýn oluþturulmasý ve bazý fonksiyonlarýn yazýlmasý.
+- OrderRepository sýnýfýndaki yazýlmayan fonksiyonlarýn yazýlmasý
 ## Proje günlüðü
 ### Gün 1 (26.12.2024)
 - Api Projesi oluþturuldu(ShoppingManagment).
@@ -99,6 +92,8 @@ Alýþveriþ sonunda ürün listesi backend e gönderilir ve sipariþ kaydedilir.
 - OrderDto nesnesi için migrationlar oluþturuldu ve veritabanýna uygulandý.
 - IOrderRepository interface yazýldý ve gerekli fonksiyon nesneleri(IOrderRepositoryCreateOneOrderAsyncRequest,IOrderRepositoryCreateOneOrderAsyncResponse,IOrderRepositoryGetAllOrdersAsyncResponse,IOrderRepositoryGetOrdersByOrderIdAsyncResponse,IOrderRepositoryGetOneOrderByRowIdAsyncResponse,IOrderRepositoryUpdateOneOrderAsyncRequest,IOrderRepositoryUpdateOneOrderAsyncResponse) oluþturuldu.
 - OrderRepository sýnýfý oluþturuldu ve bazý fonksiyonlar(createOneOrderAsync,getAllAsync,getOrdersByOrderIdAsync,getOneOrderByRowIdAsync) yazýldý.
+### Gün 10 (05.01.2025)
+- OrderRepository sýnýfýndaki yazýlmayan fonksiyonlar(updateOneOrderAsync,deleteOneOrderbyRowIdAsync,deleteOrdersByOrderIdAsync) yazýldý
 ### Yapýlabilecek þeyler
 - ProductService sýnýfýndaki not
 - rate limiting (https://medium.com/devopsturkiye/net-core-rate-limiting-1afaed82f66a)(https://www.borakasmer.com/net-7-0da-rate-limiting-nedir/)

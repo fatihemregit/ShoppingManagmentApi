@@ -83,6 +83,10 @@ namespace Data.Utils.AutoMapper
 			CreateMap<OrderDto, IOrderRepositoryGetOneOrderByRowIdAsyncResponse>();
 			CreateMap<IOrderRepositoryGetOneOrderByRowIdAsyncResponse, OrderDto>();
 
+			//OrderDto to IOrderRepositoryUpdateOneOrderAsyncResponse
+			CreateMap<OrderDto, IOrderRepositoryUpdateOneOrderAsyncResponse>();
+			CreateMap<IOrderRepositoryUpdateOneOrderAsyncResponse, OrderDto>();
+
 		}
 	}
 }
