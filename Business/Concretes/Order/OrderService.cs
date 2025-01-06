@@ -136,7 +136,6 @@ namespace Business.Concretes.Order
 			IOrderRepositoryUpdateOneOrderAsyncRequest request = _mapper.Map<IOrderRepositoryUpdateOneOrderAsyncRequest>(order);
 			request.OrderId = foundOrder.OrderId;
 			request.ProductId = foundOrder.ProductId;
-			request.ProductPrice = foundOrder.ProductPrice;
 			IOrderRepositoryUpdateOneOrderAsyncResponse? result = await _orderRepository.updateOneOrderAsync(request);
 			if (result is null)
 			{

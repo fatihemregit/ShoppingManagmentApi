@@ -8,7 +8,8 @@ Kullanýcý ürün barkodunu okutur.
 <br>
 Alýþveriþ sonunda ürün listesi backend e gönderilir ve sipariþ kaydedilir.
 ## Bu Committe Yapýlan iþlemler
-- OrderController sýnýfýnýn oluþturulmasý ve fonksiyonlarýndan birinin yazýlmasý
+- OrderController daki yazýlmayan fonksiyonlarýn yazýlmasý ve gerekli fonksiyon nesnelerinin oluþturulmasý
+- OrderService sýnýfýndaki updateOrderAsync metodundaki hatanýn düzeltilmesi
 
 ## Proje günlüðü
 ### Gün 1 (26.12.2024)
@@ -102,6 +103,9 @@ Alýþveriþ sonunda ürün listesi backend e gönderilir ve sipariþ kaydedilir.
 - OrderService de ki bazý fonksiyonlar(createOrderAsync,getAllOrdersAsync,getOrdersByOrderIdAsync,getOrderByRowIdAsync) yazýldý
 - OrderService de ki yazýlmayan fonksiyonlar(updateOrderAsync,deleteOrderbyRowIdAsync,deleteOrdersByOrderIdAsync) yazýldý
 - OrderController sýnýfý oluþturuldu ve fonksiyonlarýndan biri(CreateOrder) yazýldý
+### Gün 11 (06.01.2025)
+- OrderController daki yazýlmayan fonksiyonlar(getAllOrdersAsync,getOrdersByOrderIdAsync,getOrderByRowIdAsync,updateOrderAsync,deleteOrderbyRowIdAsync,deleteOrdersByOrderIdAsync) yazýldý ve gerekli fonksiyon nesneleri(OrderControllerGetAllOrdersAsyncResponse,OrderControllerGetOrdersByOrderIdAsyncResponse,OrderControllerGetOrderByRowIdAsyncResponse,OrderControllerUpdateOrderAsyncRequest,OrderControllerUpdateOrderAsyncResponse) oluþturuldu.
+- OrderService sýnýfýndaki updateOrderAsync metodundaki hata düzeltildi
 ### Yapýlabilecek þeyler
 - ProductService sýnýfýndaki not
 - HelpFullFunctions sýnýfýndaki nullCheckObjectProps daha iyi olabilir(eðer props forEach e girmezse basit veridir)(öz yineleme yaptýðýmýz yerde verileri objeye dönüþtürebiliriz)

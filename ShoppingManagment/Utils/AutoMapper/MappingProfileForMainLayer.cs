@@ -1,11 +1,12 @@
 ﻿using AutoMapper;
 using Entity.IMarketService;
 using Entity.MarketController;
-
-using Entity.IProductService;
+using Entity.OrderController;
 using Entity.ProductController;
+using Entity.IProductService;
 using ShoppingManagment.Controllers;
 using Data;
+using Entity.IOrderService;
 
 namespace ShoppingManagment.Utils.AutoMapper
 {
@@ -50,6 +51,22 @@ namespace ShoppingManagment.Utils.AutoMapper
 			CreateMap<MarketControllerUpdateMarketAsyncResponse, IMarketServiceUpdateMarketAsyncResponse>();
 
 
+
+			//IOrderServiceGetAllOrdersAsyncResponse to OrderControllerGetAllOrdersAsyncResponse
+			CreateMap<IOrderServiceGetAllOrdersAsyncResponse, OrderControllerGetAllOrdersAsyncResponse>();
+			CreateMap<OrderControllerGetAllOrdersAsyncResponse, IOrderServiceGetAllOrdersAsyncResponse>();
+			//IOrderServiceGetOrdersByOrderIdAsyncResponse to OrderControllerGetOrdersByOrderIdAsyncResponse
+			CreateMap<IOrderServiceGetOrdersByOrderIdAsyncResponse, OrderControllerGetOrdersByOrderIdAsyncResponse>();
+			CreateMap<OrderControllerGetOrdersByOrderIdAsyncResponse, IOrderServiceGetOrdersByOrderIdAsyncResponse>();
+			//IOrderServiceGetOrderByRowIdAsyncResponse to OrderControllerGetOrderByRowIdAsyncResponse
+			CreateMap<IOrderServiceGetOrderByRowIdAsyncResponse, OrderControllerGetOrderByRowIdAsyncResponse>();
+			CreateMap<OrderControllerGetOrderByRowIdAsyncResponse, IOrderServiceGetOrderByRowIdAsyncResponse>();
+			//IOrderServiceUpdateOrderAsyncRequest to OrderControllerUpdateOrderAsyncRequest
+			CreateMap<IOrderServiceUpdateOrderAsyncRequest, OrderControllerUpdateOrderAsyncRequest>();
+			CreateMap<OrderControllerUpdateOrderAsyncRequest, IOrderServiceUpdateOrderAsyncRequest>();
+			//IOrderServiceUpdateOrderAsyncResponse to OrderControllerUpdateOrderAsyncResponse
+			CreateMap<IOrderServiceUpdateOrderAsyncResponse, OrderControllerUpdateOrderAsyncResponse>();
+			CreateMap<OrderControllerUpdateOrderAsyncResponse, IOrderServiceUpdateOrderAsyncResponse>();
 		}
 	}
 }
