@@ -8,8 +8,8 @@ Kullanýcý ürün barkodunu okutur.
 <br>
 Alýþveriþ sonunda ürün listesi backend e gönderilir ve sipariþ kaydedilir.
 ## Bu Committe Yapýlan iþlemler
-- OrderController daki yazýlmayan fonksiyonlarýn yazýlmasý ve gerekli fonksiyon nesnelerinin oluþturulmasý
-- OrderService sýnýfýndaki updateOrderAsync metodundaki hatanýn düzeltilmesi
+- OrderRepository sýnýfýnda createOrdersAsync metodunda deðiþiklik yapýlmasý
+- OrderService sýnýfýndaki createOrderAsync metodunun, OrderRepository sýnýfýndaki createOrdersAsync metodundaki deðiþikliðe uygun hale getirilmesi
 
 ## Proje günlüðü
 ### Gün 1 (26.12.2024)
@@ -106,10 +106,12 @@ Alýþveriþ sonunda ürün listesi backend e gönderilir ve sipariþ kaydedilir.
 ### Gün 11 (06.01.2025)
 - OrderController daki yazýlmayan fonksiyonlar(getAllOrdersAsync,getOrdersByOrderIdAsync,getOrderByRowIdAsync,updateOrderAsync,deleteOrderbyRowIdAsync,deleteOrdersByOrderIdAsync) yazýldý ve gerekli fonksiyon nesneleri(OrderControllerGetAllOrdersAsyncResponse,OrderControllerGetOrdersByOrderIdAsyncResponse,OrderControllerGetOrderByRowIdAsyncResponse,OrderControllerUpdateOrderAsyncRequest,OrderControllerUpdateOrderAsyncResponse) oluþturuldu.
 - OrderService sýnýfýndaki updateOrderAsync metodundaki hata düzeltildi
+### Gün 12 (07.01.2025)
+- OrderRepository sýnýfýnda createOrdersAsync metodunda deðiþiklik yapýldý(tek kayýt deðil,liste kayýt alýmý)
+- OrderService sýnýfýndaki createOrderAsync metodu, OrderRepository sýnýfýndaki createOrdersAsync metodundaki deðiþikliðe uygun hale getirildi
 ### Yapýlabilecek þeyler
 - ProductService sýnýfýndaki not
 - HelpFullFunctions sýnýfýndaki nullCheckObjectProps daha iyi olabilir(eðer props forEach e girmezse basit veridir)(öz yineleme yaptýðýmýz yerde verileri objeye dönüþtürebiliriz)
-- IOrderRepository sýnýfýndaki not
 - rate limiting (https://medium.com/devopsturkiye/net-core-rate-limiting-1afaed82f66a)(https://www.borakasmer.com/net-7-0da-rate-limiting-nedir/)
 - Fark ettiysen servis fonksiyonlarýnýn sýnýflarý ile repository fonksiyonlarýnýn sýnýflarý arasýnda bir benzerlik var.Acaba bunlar birbirinden kalýtýlabilir mi
 - ürün veritabanýnda yoksa production ortamýnda 404 mü dönmelimiyiz(exception larda production da dönmek üzere ayrý bir hata kodu mu olsa??)

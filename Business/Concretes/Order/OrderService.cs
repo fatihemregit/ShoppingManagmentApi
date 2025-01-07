@@ -44,19 +44,19 @@ namespace Business.Concretes.Order
 			{
 				IProductRepositoryGetOneProductByIdAsyncResponse? result = await _productRepository.getOneProductByIdAsync(id);
 				if (result is null)
-				{ 
+				{
 					notAProducts.Add(id);
 				}
 			}
 			if (notAProducts.Count > 0)
 			{
 				string errorMessage = "product id ile ürün bulanamadı";
-				foreach(string i in notAProducts)
+				foreach (string i in notAProducts)
 				{
 					errorMessage += $"\n{i}";
 				}
 				throw new NotFoundException(errorMessage);
-            }
+			}
 
 		}
 
@@ -72,17 +72,20 @@ namespace Business.Concretes.Order
 			// bundan dolayı ürünleri tek tek kayıtlı olup olmadığını kontrol edeceğiz.eğer ürünlerden biri kayıtlı değilse throw fırlatcak )
 			//product id check
 			await checkProductsAsync(productIds);
-			IOrderRepositoryCreateOneOrderAsyncRequest orderRequest;
+			IOrderRepositoryCreateOrdersAsyncRequest orderRequest;
+			List<IOrderRepositoryCreateOrdersAsyncRequest> orderRequests = new List<IOrderRepositoryCreateOrdersAsyncRequest>();
 			string orderId = createOrderId();
+
 			foreach (string i in productIds)
 			{
 				IProductRepositoryGetOneProductByIdAsyncResponse? product = await _productRepository.getOneProductByIdAsync(i);
-				orderRequest = new IOrderRepositoryCreateOneOrderAsyncRequest { OrderId = orderId,ProductId = product.Id,ProductPrice = product.Price};
-				IOrderRepositoryCreateOneOrderAsyncResponse? orderResponse = await _orderRepository.createOneOrderAsync(orderRequest);
-				if (orderResponse is null)
-				{
-					throw new BadRequestException("sipariş oluşturma başarısız");
-				}
+				orderRequest = new IOrderRepositoryCreateOrdersAsyncRequest { OrderId = orderId, ProductId = product.Id, ProductPrice = product.Price };
+				orderRequests.Add(orderRequest);
+			}
+			List<IOrderRepositoryCreateOrdersAsyncResponse>? orderResponses = await _orderRepository.createOrdersAsync(orderRequests);
+			if (orderResponses is null)
+			{
+				throw new BadRequestException("sipariş oluşturma başarısız");
 			}
 
 			return orderId;
@@ -96,8 +99,8 @@ namespace Business.Concretes.Order
 
 		public async Task<List<IOrderServiceGetOrdersByOrderIdAsyncResponse>> getOrdersByOrderIdAsync(string orderId)
 		{
-			if (HelpFullFunctions.nullCheckObjectProps(new {orderId = orderId}))
-			{ 
+			if (HelpFullFunctions.nullCheckObjectProps(new { orderId = orderId }))
+			{
 				throw new BadRequestException("orderId parametresi null olamaz");
 			}
 			List<IOrderRepositoryGetOrdersByOrderIdAsyncResponse>? result = await _orderRepository.getOrdersByOrderIdAsync(orderId);
@@ -110,7 +113,7 @@ namespace Business.Concretes.Order
 
 		public async Task<IOrderServiceGetOrderByRowIdAsyncResponse> getOrderByRowIdAsync(int rowId)
 		{
-			if (HelpFullFunctions.nullCheckObjectProps(new {rowId = rowId}))
+			if (HelpFullFunctions.nullCheckObjectProps(new { rowId = rowId }))
 			{
 				throw new BadRequestException("rowId parametresi null olamaz");
 			}
@@ -130,7 +133,7 @@ namespace Business.Concretes.Order
 			}
 			IOrderRepositoryGetOneOrderByRowIdAsyncResponse? foundOrder = await _orderRepository.getOneOrderByRowIdAsync(order.RowId);
 			if (foundOrder is null)
-			{ 
+			{
 				throw new NotFoundException($"{order.RowId} row id li sipariş bulunamadı");
 			}
 			IOrderRepositoryUpdateOneOrderAsyncRequest request = _mapper.Map<IOrderRepositoryUpdateOneOrderAsyncRequest>(order);
@@ -147,7 +150,7 @@ namespace Business.Concretes.Order
 		public async Task<bool> deleteOrderbyRowIdAsync(int rowId)
 		{
 			bool result = await _orderRepository.deleteOneOrderbyRowIdAsync(rowId);
-			if(!result)
+			if (!result)
 			{
 				throw new BadRequestException("sipariş silme başarısız");
 			}
@@ -167,10 +170,10 @@ namespace Business.Concretes.Order
 
 
 
-		
 
-		
 
-		
+
+
+
 	}
 }

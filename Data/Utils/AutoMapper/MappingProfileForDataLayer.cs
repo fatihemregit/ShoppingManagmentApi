@@ -65,12 +65,12 @@ namespace Data.Utils.AutoMapper
 
 
 
-			//OrderDto to IOrderRepositoryCreateOneOrderAsyncRequest
-			CreateMap<OrderDto, IOrderRepositoryCreateOneOrderAsyncRequest>();
-			CreateMap<IOrderRepositoryCreateOneOrderAsyncRequest, OrderDto>();
-			//OrderDto to IOrderRepositoryCreateOneOrderAsyncResponse
-			CreateMap<OrderDto, IOrderRepositoryCreateOneOrderAsyncResponse>();
-			CreateMap<IOrderRepositoryCreateOneOrderAsyncResponse, OrderDto>();
+			//OrderDto to IOrderRepositoryCreateOrdersAsyncRequest
+			CreateMap<OrderDto, IOrderRepositoryCreateOrdersAsyncRequest>();
+			CreateMap<IOrderRepositoryCreateOrdersAsyncRequest, OrderDto>();
+			//OrderDto to IOrderRepositoryCreateOrdersAsyncResponse
+			CreateMap<OrderDto, IOrderRepositoryCreateOrdersAsyncResponse>();
+			CreateMap<IOrderRepositoryCreateOrdersAsyncResponse, OrderDto>();
 
 			//OrderDto to IOrderRepositoryGetAllOrdersAsyncResponse
 			CreateMap<OrderDto, IOrderRepositoryGetAllOrdersAsyncResponse>();

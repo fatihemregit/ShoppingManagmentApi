@@ -2,7 +2,7 @@
 
 namespace Entity.IOrderRepository
 {
-	public class IOrderRepositoryCreateOneOrderAsyncResponse
+	public class IOrderRepositoryCreateOrdersAsyncResponse
 	{
 		public int RowId { get; set; }
 

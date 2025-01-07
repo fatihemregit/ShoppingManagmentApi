@@ -1,6 +1,6 @@
 ﻿namespace Entity.IOrderRepository
 {
-	public class IOrderRepositoryCreateOneOrderAsyncRequest
+	public class IOrderRepositoryCreateOrdersAsyncRequest
 	{
 		public string OrderId { get; set; }
 

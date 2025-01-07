@@ -26,17 +26,17 @@ namespace Data.EfCore
 			_mapper = mapper;
 		}
 
-		public async Task<IOrderRepositoryCreateOneOrderAsyncResponse?> createOneOrderAsync(IOrderRepositoryCreateOneOrderAsyncRequest order)
+		public async Task<List<IOrderRepositoryCreateOrdersAsyncResponse>?> createOrdersAsync(List<IOrderRepositoryCreateOrdersAsyncRequest> orders)
 		{
-			OrderDto orderDto = _mapper.Map<OrderDto>(order);
-
-			await _context.Orders.AddAsync(orderDto);
+			List<OrderDto> orderDtos = _mapper.Map<List<OrderDto>>(orders);
+			await _context.Orders.AddRangeAsync(orderDtos);
 			int result = await _context.SaveChangesAsync();
 			if (result <= 0)
-			{ 
+			{
 				return null;
 			}
-			return _mapper.Map<IOrderRepositoryCreateOneOrderAsyncResponse>(orderDto);
+			return _mapper.Map<List<IOrderRepositoryCreateOrdersAsyncResponse>>(orderDtos);
+
 		}
 
 		public async Task<List<IOrderRepositoryGetAllOrdersAsyncResponse>> getAllAsync()
@@ -119,45 +119,5 @@ namespace Data.EfCore
 			return true;
 
 		}
-
-	
-
-		
-
-
-		
-
-		
-		//public async Task<string?> CreateOrderAsync(List<string> productIds)
-		//{
-		//	//acaba bu işlemleri business katmanında mı yapsak
-		//	string? orderId = null;
-
-		//          foreach (string item in productIds)
-		//          {
-		//		//found a product dto
-		//		ProductDto? foundProductDto = awit _context.Products.Where(p => p.Id == item).SingleOrDefaultAsync();
-		//		if(foundProductDto is null)a
-		//		{
-		//			return null;
-		//		}
-		//		OrderDto orderDto = new OrderDto();
-		//		orderDto.ProductId = foundProductDto.Id;
-		//		orderDto.ProductPrice = foundProductDto.Price;
-		//		if (orderId is null)
-		//		{
-		//			var idGenerator = new CustomIdGeneratorForOrderDto();
-		//			orderId = idGenerator.Next(_context.Entry(orderDto));
-		//		}
-		//		orderDto.OrderId = orderId;
-		//		_context.Orders.Add(orderDto);
-		//          }
-		//	int result = await _context.SaveChangesAsync();
-		//	if (result <= 0)
-		//	{
-		//		return null;
-		//	}
-		//	return orderId;
-		//      }
 	}
 }
