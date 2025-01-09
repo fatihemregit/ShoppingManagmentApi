@@ -8,7 +8,7 @@ namespace Entity.Exceptions
 {
 	public class ConflictException : CustomException
 	{
-		public ConflictException(string? message) : base(message, 409)
+		public ConflictException(string? message) : base(message, 409,409)
 		{
 		}
 	}

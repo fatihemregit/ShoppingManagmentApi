@@ -14,10 +14,12 @@ namespace ShoppingManagment.Controllers
 	{
 
 		private readonly IMapper _mapper;
+		private readonly IConfiguration _configuration;
 
-		public DenemeController(IMapper mapper)
+		public DenemeController(IMapper mapper, IConfiguration configuration)
 		{
 			_mapper = mapper;
+			_configuration = configuration;
 		}
 
 		[HttpGet("custom")]
@@ -40,6 +42,14 @@ namespace ShoppingManagment.Controllers
 		//	return Ok();
 		//}
 
+		[HttpGet("data")]
+		public IActionResult data()
+		{
+			var data = _configuration.GetSection("veri");
+
+			Console.WriteLine();
+			return Ok();
+		}
 
 	}
 }

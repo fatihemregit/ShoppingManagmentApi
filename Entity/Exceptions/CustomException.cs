@@ -8,11 +8,13 @@ namespace Entity.Exceptions
 {
 	public class CustomException : Exception
 	{
-        public int StatusCode { get; set; }
+        public int DevelopmentEnvironmentStatusCode { get; set; }
 
-		public CustomException(string? message, int statusCode) : base(message)
+        public int ProductionEnvironmentStatusCode { get; set; }
+		public CustomException(string? message, int developmentEnvironmentStatusCode, int productionEnvironmentStatusCode = 500) : base(message)
 		{
-			StatusCode = statusCode;
+			DevelopmentEnvironmentStatusCode = developmentEnvironmentStatusCode;
+			ProductionEnvironmentStatusCode = productionEnvironmentStatusCode;
 		}
 	}
 }

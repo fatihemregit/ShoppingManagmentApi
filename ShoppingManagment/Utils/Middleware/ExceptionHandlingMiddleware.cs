@@ -30,9 +30,14 @@ namespace ShoppingManagment.Utils.Middleware
 		{
             Console.WriteLine("handle exception çalıştı");
 			context.Response.ContentType = "application/json";
-			int statuscodeForCustomException = (exception is CustomException) ? ((CustomException)exception).StatusCode : 500;
-			context.Response.StatusCode = _env.IsDevelopment() ? statuscodeForCustomException: (int)HttpStatusCode.InternalServerError;
-
+			if (exception is CustomException)
+			{
+				context.Response.StatusCode = _env.IsDevelopment() ? ((CustomException)exception).DevelopmentEnvironmentStatusCode : ((CustomException)exception).ProductionEnvironmentStatusCode;
+			}
+			else
+			{
+				context.Response.StatusCode = (int)HttpStatusCode.InternalServerError;
+			}
 			var response = new
 			{
 				status = context.Response.StatusCode,
