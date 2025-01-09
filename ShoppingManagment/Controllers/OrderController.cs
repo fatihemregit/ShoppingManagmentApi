@@ -4,9 +4,11 @@ using Entity.IOrderService;
 using Entity.OrderController;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.RateLimiting;
 
 namespace ShoppingManagment.Controllers
 {
+	[EnableRateLimiting(policyName: "orderController")]
 	[Route("api/[controller]")]
 	[ApiController]
 	public class OrderController : ControllerBase
@@ -79,5 +81,12 @@ namespace ShoppingManagment.Controllers
 			bool orderControllerResponse = orderServiceResponse;
 			return Ok(orderControllerResponse);
 		}
+
+		[HttpGet("rateTest")]
+		public IActionResult rateTest()
+		{
+			return Ok();
+		}
+
 	}
 }

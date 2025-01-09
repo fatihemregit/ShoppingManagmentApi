@@ -9,6 +9,7 @@ Kullanýcý ürün barkodunu okutur.
 Alýþveriþ sonunda ürün listesi backend e gönderilir ve sipariþ kaydedilir.
 ## Bu Committe Yapýlan iþlemler
 - Exception sýnýflarýna production ortamýnda dönmek üzere ayrý hata kodlarý tanýmlanmasý.
+- Rate limiting sistemi kurulmasý ve controller lara  gerekli implemantasyonlarýn yapýlmasý.
 ## Proje günlüðü
 ### Gün 1 (26.12.2024)
 - Api Projesi oluþturuldu(ShoppingManagment).
@@ -110,7 +111,7 @@ Alýþveriþ sonunda ürün listesi backend e gönderilir ve sipariþ kaydedilir.
 ### Gün 13 (09.01.2025)
 - Devolopment ve Production ortamlarý launchSettings.json da tanýmlandý
 - Exception sýnýflarýna(ConflictException,NotFoundException,CustomException) production ortamýnda dönmek üzere ayrý hata kodlarý tanýmlandý.
+- Rate limiting sistemi kuruldu ve controller lara (ProductController,OrderController,MarketController) gerekli implemantasyonlar yapýldý.
 ### Yapýlabilecek þeyler
 - HelpFullFunctions sýnýfýndaki nullCheckObjectProps daha iyi olabilir(eðer props forEach e girmezse basit veridir)(öz yineleme yaptýðýmýz yerde verileri objeye dönüþtürebiliriz)
-- rate limiting (https://medium.com/devopsturkiye/net-core-rate-limiting-1afaed82f66a)(https://www.borakasmer.com/net-7-0da-rate-limiting-nedir/)
 - Fark ettiysen servis fonksiyonlarýnýn sýnýflarý ile repository fonksiyonlarýnýn sýnýflarý arasýnda bir benzerlik var.Acaba bunlar birbirinden kalýtýlabilir mi

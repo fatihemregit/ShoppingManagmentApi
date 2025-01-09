@@ -4,9 +4,11 @@ using Entity.IMarketService;
 using Entity.MarketController;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.RateLimiting;
 
 namespace ShoppingManagment.Controllers
 {
+	[EnableRateLimiting(policyName: "marketController")]
 	[Route("api/[controller]")]
 	[ApiController]
 	public class MarketController : ControllerBase
@@ -62,7 +64,11 @@ namespace ShoppingManagment.Controllers
 			return Ok(marketControllerResponse);
 		}
 
-
+		[HttpGet("rateTest")]
+		public IActionResult rateTest()
+		{
+			return Ok();
+		}
 
 
 

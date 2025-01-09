@@ -4,9 +4,11 @@ using Entity.IProductService;
 using Entity.ProductController;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.RateLimiting;
 
 namespace ShoppingManagment.Controllers
 {
+	[EnableRateLimiting(policyName: "productController")]
 	[Route("api/[controller]")]
 	[ApiController]
 	public class ProductController : ControllerBase
@@ -54,8 +56,11 @@ namespace ShoppingManagment.Controllers
 			return Ok(productControllerResponse);
 		}
 
-
-
+		[HttpGet("rateTest")]
+		public IActionResult rateTest()
+		{
+			return Ok();
+		}
 
 
 
