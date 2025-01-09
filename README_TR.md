@@ -8,9 +8,7 @@ Kullanýcý ürün barkodunu okutur.
 <br>
 Alýþveriþ sonunda ürün listesi backend e gönderilir ve sipariþ kaydedilir.
 ## Bu Committe Yapýlan iþlemler
-- OrderRepository sýnýfýnda createOrdersAsync metodunda deðiþiklik yapýlmasý
-- OrderService sýnýfýndaki createOrderAsync metodunun, OrderRepository sýnýfýndaki createOrdersAsync metodundaki deðiþikliðe uygun hale getirilmesi
-
+- Devolopment ve Production ortamlarýnýn launchSettings.json da tanýmlanmasý
 ## Proje günlüðü
 ### Gün 1 (26.12.2024)
 - Api Projesi oluþturuldu(ShoppingManagment).
@@ -109,8 +107,9 @@ Alýþveriþ sonunda ürün listesi backend e gönderilir ve sipariþ kaydedilir.
 ### Gün 12 (07.01.2025)
 - OrderRepository sýnýfýnda createOrdersAsync metodunda deðiþiklik yapýldý(tek kayýt deðil,liste kayýt alýmý)
 - OrderService sýnýfýndaki createOrderAsync metodu, OrderRepository sýnýfýndaki createOrdersAsync metodundaki deðiþikliðe uygun hale getirildi
+### Gün 13 (09.01.2025)
+- Devolopment ve Production ortamlarý launchSettings.json da tanýmlandý
 ### Yapýlabilecek þeyler
-- ProductService sýnýfýndaki not
 - HelpFullFunctions sýnýfýndaki nullCheckObjectProps daha iyi olabilir(eðer props forEach e girmezse basit veridir)(öz yineleme yaptýðýmýz yerde verileri objeye dönüþtürebiliriz)
 - rate limiting (https://medium.com/devopsturkiye/net-core-rate-limiting-1afaed82f66a)(https://www.borakasmer.com/net-7-0da-rate-limiting-nedir/)
 - Fark ettiysen servis fonksiyonlarýnýn sýnýflarý ile repository fonksiyonlarýnýn sýnýflarý arasýnda bir benzerlik var.Acaba bunlar birbirinden kalýtýlabilir mi

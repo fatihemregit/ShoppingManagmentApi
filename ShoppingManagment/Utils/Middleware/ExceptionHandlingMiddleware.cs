@@ -28,7 +28,7 @@ namespace ShoppingManagment.Utils.Middleware
 
 		private Task HandleExceptionAsync(HttpContext context, Exception exception)
 		{
-
+            Console.WriteLine("handle exception çalıştı");
 			context.Response.ContentType = "application/json";
 			int statuscodeForCustomException = (exception is CustomException) ? ((CustomException)exception).StatusCode : 500;
 			context.Response.StatusCode = _env.IsDevelopment() ? statuscodeForCustomException: (int)HttpStatusCode.InternalServerError;

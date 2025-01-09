@@ -27,11 +27,6 @@ namespace Business.Concretes.Product
 			_mapper = mapper;
 		}
 
-		//null sistemini geliştirebiliriz
-		//string verilerde isnullorempty fonksiyonu
-		//int değerlerde nullable tip kullanımı
-
-
 		//Create start
 		private async Task<bool> CheckIsAlreadyProductInDb(string barcodeNumber, int marketId)
 		{
