@@ -1,5 +1,8 @@
-﻿using Microsoft.AspNetCore.RateLimiting;
+﻿using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.RateLimiting;
+using Microsoft.IdentityModel.Tokens;
 using ShoppingManagment.Utils.AutoMapper;
+using System.Text;
 
 namespace ShoppingManagment.Utils.Extensions
 {
@@ -10,7 +13,7 @@ namespace ShoppingManagment.Utils.Extensions
 			services.AddAutoMapper(typeof(MappingProfileForMainLayer));
 		}
 
-		public static void setRateLimiter(this IServiceCollection services,IConfiguration configuration)
+		public static void setRateLimiter(this IServiceCollection services, IConfiguration configuration)
 		{
 			services.AddRateLimiter(options =>
 			{
@@ -39,9 +42,9 @@ namespace ShoppingManagment.Utils.Extensions
 					options.PermitLimit = ratelimitMultiple * 3;
 					options.Window = TimeSpan.FromMinutes(1);
 				});
-				
 
-				
+
+
 				//global limit
 				//options.GlobalLimiter = PartitionedRateLimiter.Create<HttpContext, string>(httpContext =>
 				//	RateLimitPartition.GetFixedWindowLimiter(
@@ -60,6 +63,28 @@ namespace ShoppingManagment.Utils.Extensions
 				};
 			});
 		}
+
+		public static void setAuthentication(this IServiceCollection services, IConfiguration configuration)
+		{
+			services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJwtBearer(options =>
+			{
+				options.TokenValidationParameters = new TokenValidationParameters
+				{
+					ValidateAudience = true,
+					ValidateIssuer = true,
+					ValidateLifetime = true,
+					ValidateIssuerSigningKey = true,
+					ValidIssuer = configuration.GetSection("jwt:issuer").Value,
+					ValidAudience = configuration.GetSection("jwt:audience").Value,
+					IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(configuration.GetSection("jwt:securityKey").Value)),
+					ClockSkew = TimeSpan.Zero
+				};
+			}
+			);
+		}
+
+
+
 
 	}
 }

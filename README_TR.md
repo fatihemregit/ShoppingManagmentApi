@@ -8,7 +8,7 @@ Kullanýcý ürün barkodunu okutur.
 <br>
 Alýþveriþ sonunda ürün listesi backend e gönderilir ve sipariþ kaydedilir.
 ## Bu Committe Yapýlan iþlemler
-Microsoft.AspNetCore.Identity.EntityFrameworkCore kütüphanesinin kurulmasý ve kodda gerekli deðiþiklerin yapýlmasý
+- Program.cs de Auth Ayarlarýnýn yapýlmasý
 ## Proje günlüðü
 ### Gün 1 (26.12.2024)
 - Api Projesi oluþturuldu(ShoppingManagment).
@@ -118,6 +118,7 @@ Microsoft.AspNetCore.Identity.EntityFrameworkCore kütüphanesinin kurulmasý ve ko
   (data katmanýnda ApplicationDbContext in IdentityDbContext e çevirilmesi,Entity Katmanýnda AppUser ve AppRole sýnýflarýnýn oluþturulmasý,
   <br> 
    veritabaný migration ýn oluþturulmasý ve uygulanmasý)
+- Program.cs de Auth Ayarlarý yapýldý(MainExtensions daki setAuthentication metodu)
 ### Yapýlabilecek þeyler
 - HelpFullFunctions sýnýfýndaki nullCheckObjectProps daha iyi olabilir(eðer props forEach e girmezse basit veridir)(öz yineleme yaptýðýmýz yerde verileri objeye dönüþtürebiliriz)
 - Fark ettiysen servis fonksiyonlarýnýn sýnýflarý ile repository fonksiyonlarýnýn sýnýflarý arasýnda bir benzerlik var.Acaba bunlar birbirinden kalýtýlabilir mi

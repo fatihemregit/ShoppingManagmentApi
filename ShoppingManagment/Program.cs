@@ -1,8 +1,11 @@
 using Business.Utils.Extensions;
 using Data.Utils.Extensions;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.RateLimiting;
+using Microsoft.IdentityModel.Tokens;
 using ShoppingManagment.Utils.Extensions;
 using ShoppingManagment.Utils.Middleware;
+using System.Text;
 using System.Threading.RateLimiting;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -19,7 +22,12 @@ builder.Services.setInterfaceConcretesForBusinessLayer();
 //MainExtensions
 builder.Services.setAutoMapperForMainLayer();
 builder.Services.setRateLimiter(builder.Configuration);
+builder.Services.setAuthentication(builder.Configuration);
+
+
 builder.Services.AddControllers();
+
+
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
@@ -36,6 +44,7 @@ if (app.Environment.IsDevelopment())
 }
 app.UseMiddleware<ExceptionHandlingMiddleware>();
 app.UseHttpsRedirection();
+app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllers();
