@@ -112,6 +112,7 @@ Alýþveriþ sonunda ürün listesi backend e gönderilir ve sipariþ kaydedilir.
 - Exception sýnýflarýna(ConflictException,NotFoundException,CustomException) production ortamýnda dönmek üzere ayrý hata kodlarý tanýmlandý.
 - Rate limiting sistemi kuruldu ve controller lara (ProductController,OrderController,MarketController) gerekli implemantasyonlar yapýldý.
 - Rate limiting ayarlarý ile alakalý kodlar program.cs den  MainExtensions daki setRateLimiter fonksiyonuna taþýndý
+
 ### Yapýlabilecek þeyler
 - HelpFullFunctions sýnýfýndaki nullCheckObjectProps daha iyi olabilir(eðer props forEach e girmezse basit veridir)(öz yineleme yaptýðýmýz yerde verileri objeye dönüþtürebiliriz)
 - Fark ettiysen servis fonksiyonlarýnýn sýnýflarý ile repository fonksiyonlarýnýn sýnýflarý arasýnda bir benzerlik var.Acaba bunlar birbirinden kalýtýlabilir mi
