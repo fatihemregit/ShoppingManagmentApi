@@ -1,16 +1,19 @@
 ﻿using Data.EfCore.Config;
 using Entity.Dto;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Identity;
+using Entity.Auth;
 
 namespace Data.EfCore.Context
 {
 	//Add-Migration firstmig -Context Data.EfCore.Context.ApplicationDbContext -Project Data -OutputDir "Efcore//Migrations"
-	public class ApplicationDbContext : DbContext
+	public class ApplicationDbContext : IdentityDbContext<AppUser,AppRole,Guid>
 	{
         public DbSet<ProductDto> Products { get; set; }
 
@@ -28,6 +31,7 @@ namespace Data.EfCore.Context
 			modelBuilder.ApplyConfiguration(new ProductDtoConfig());
 			modelBuilder.ApplyConfiguration(new MarketDtoConfig());
 			modelBuilder.ApplyConfiguration(new OrderDtoConfig());
+			base.OnModelCreating(modelBuilder);
 
 		}
 

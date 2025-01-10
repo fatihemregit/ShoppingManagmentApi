@@ -8,7 +8,7 @@ Kullanýcý ürün barkodunu okutur.
 <br>
 Alýþveriþ sonunda ürün listesi backend e gönderilir ve sipariþ kaydedilir.
 ## Bu Committe Yapýlan iþlemler
-- Rate limiting ayarlarý ile alakalý kodlarýn program.cs den  MainExtensions daki setRateLimiter fonksiyonuna taþýnmasý
+Microsoft.AspNetCore.Identity.EntityFrameworkCore kütüphanesinin kurulmasý ve kodda gerekli deðiþiklerin yapýlmasý
 ## Proje günlüðü
 ### Gün 1 (26.12.2024)
 - Api Projesi oluþturuldu(ShoppingManagment).
@@ -112,7 +112,12 @@ Alýþveriþ sonunda ürün listesi backend e gönderilir ve sipariþ kaydedilir.
 - Exception sýnýflarýna(ConflictException,NotFoundException,CustomException) production ortamýnda dönmek üzere ayrý hata kodlarý tanýmlandý.
 - Rate limiting sistemi kuruldu ve controller lara (ProductController,OrderController,MarketController) gerekli implemantasyonlar yapýldý.
 - Rate limiting ayarlarý ile alakalý kodlar program.cs den  MainExtensions daki setRateLimiter fonksiyonuna taþýndý
-
+### Gün 14 (10.01.2025)
+- Microsoft.AspNetCore.Identity.EntityFrameworkCore kütüphanesin kuruldu ve kodda gerekli deðiþikler yapýldý
+<br>
+  (data katmanýnda ApplicationDbContext in IdentityDbContext e çevirilmesi,Entity Katmanýnda AppUser ve AppRole sýnýflarýnýn oluþturulmasý,
+  <br> 
+   veritabaný migration ýn oluþturulmasý ve uygulanmasý)
 ### Yapýlabilecek þeyler
 - HelpFullFunctions sýnýfýndaki nullCheckObjectProps daha iyi olabilir(eðer props forEach e girmezse basit veridir)(öz yineleme yaptýðýmýz yerde verileri objeye dönüþtürebiliriz)
 - Fark ettiysen servis fonksiyonlarýnýn sýnýflarý ile repository fonksiyonlarýnýn sýnýflarý arasýnda bir benzerlik var.Acaba bunlar birbirinden kalýtýlabilir mi
