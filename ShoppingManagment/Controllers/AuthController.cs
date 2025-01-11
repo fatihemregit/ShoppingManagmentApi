@@ -4,6 +4,7 @@ using Entity.Exceptions;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
@@ -28,7 +29,9 @@ namespace ShoppingManagment.Controllers
 		}
 
 
-		//yeni kullanıcı ve token işlemleri
+		//yeni kullanıcı kaydı ve token işlemleri başlangıç
+
+		//access token oluşturma
 		private string CreateAccessToken(DateTime accessTokenExpiration)
 		{
 			//securityKey i oluşturuyoruz
@@ -46,6 +49,7 @@ namespace ShoppingManagment.Controllers
 			string accessToken = securityTokenHandler.WriteToken(securityToken);
 			return accessToken;
 		}
+		//Refresh token oluşturma
 		private string CreateRefreshToken()
 		{
 			byte[] number = new byte[32];
@@ -55,9 +59,9 @@ namespace ShoppingManagment.Controllers
 				return Convert.ToBase64String(number);
 			}
 		}
-		//kullanıcı kaydı oluşturma
+		//yeni kullanıcı kaydı oluşturma
 		[HttpPost("/register")]
-		public async Task<IActionResult> CreateUser([FromBody]CreateUserRequest userRequest)
+		public async Task<IActionResult> CreateUser([FromBody] CreateUserRequest userRequest)
 		{
 			//user nesnesini oluşturup,UserName,Email alanlarını dolduruyoruz
 			AppUser user = _mapper.Map<AppUser>(userRequest);
@@ -71,9 +75,9 @@ namespace ShoppingManagment.Controllers
 			//user nesnesinin refreshTokenEndDate alanını dolduruyoruz
 			user.RefreshTokenEndDate = refreshTokenEndDate;
 			//yeni kullanıcıyı veritabanına kaydediyoruz
-			IdentityResult createUserResult = await _userManager.CreateAsync(user,userRequest.Password);
+			IdentityResult createUserResult = await _userManager.CreateAsync(user, userRequest.Password);
 			if (createUserResult.Succeeded)
-			{ 
+			{
 				//kullanıcı kaydı başarılı accessToken üreteceğiz
 				TokenModel tokenModel = new TokenModel();
 				tokenModel.AccessToken = CreateAccessToken(accessTokenEndDate);
@@ -89,7 +93,8 @@ namespace ShoppingManagment.Controllers
 				return Ok();
 			}
 		}
-		
+
+		//kullanıcı kaydı sırasında hata varsa basma
 		public void CreateError(IEnumerable<IdentityError> Errors)
 		{
 			string errorMessage = "kullanıcı kaydı başarısız";
@@ -101,7 +106,50 @@ namespace ShoppingManagment.Controllers
 		}
 
 
-		
+
+
+		//yeni kullanıcı kaydı ve token işlemleri bitiş
+		//hali hazırda olan kullanıcının RefreshToken ile AcessToken ını yenilemesi başlangıç
+		public void throwAError(string message)
+		{
+			throw new IdentityException(message);
+		}
+		[HttpPost("/newAccessToken")]
+		public async Task<IActionResult> newAccessToken([FromBody] string RefreshToken)
+		{
+			//refresh Token ını veritabanında kontrol edelim
+			AppUser? foundUserwithRefershToken = await _userManager.Users.Where(u => u.RefreshToken == RefreshToken).SingleOrDefaultAsync();
+			if (foundUserwithRefershToken is not null)
+			{
+				//veritabanında varsa son kullanma tarihini kontrol edelim
+				if (foundUserwithRefershToken.RefreshTokenEndDate < DateTime.Now)
+				{
+					//son kullanma tarihi geçmiş ise Unauth dönüp bilgilendirme yapalım
+					throwAError("Refresh token süresi dolmuş.lütfen yeniden login olun");
+					return Ok();
+				}
+				else
+				{
+					//son kullanma tarihi geçmemiş ise yeni token oluşturalım ve eski AcessToken ı kara listeye ekleyelim
+					//yeni token oluşturma
+					DateTime accessTokenExpiration = DateTime.Now.AddMinutes(15);
+					string accessToken = CreateAccessToken(accessTokenExpiration);
+					NewAccessTokenResponse response = new NewAccessTokenResponse();
+					response.AcessTokenExpiration = accessTokenExpiration;
+					response.AccessToken = accessToken;
+					//kara liste(daha sonra yapılacak)
+					return Ok(response);
+				}
+			}
+			else
+			{
+				//veritabanında yoksa Unauth dönüp bilgilendirme yapalım
+				throwAError("RefreshToken  bulunamadı");
+				return Ok();
+			}
+
+		}
+		//hali hazırda olan kullanıcının RefreshToken ile AcessToken ını yenilemesi bitiş
 
 
 	}
@@ -116,12 +164,17 @@ namespace ShoppingManagment.Controllers
 
 	public class CreateUserRequest
 	{
-        public string UserName { get; set; }
+		public string UserName { get; set; }
 
-        public string Email { get; set; }
+		public string Email { get; set; }
 
-        public string Password { get; set; }
-    }
+		public string Password { get; set; }
+	}
 
+	public class NewAccessTokenResponse
+	{
+		public string AccessToken { get; set; }
+		public DateTime AcessTokenExpiration { get; set; }
+	}
 
 }
