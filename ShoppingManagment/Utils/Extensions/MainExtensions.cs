@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Authentication.JwtBearer;
+﻿using Entity.Auth;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.RateLimiting;
 using Microsoft.IdentityModel.Tokens;
 using ShoppingManagment.Utils.AutoMapper;
@@ -66,6 +67,19 @@ namespace ShoppingManagment.Utils.Extensions
 
 		public static void setAuthentication(this IServiceCollection services, IConfiguration configuration)
 		{
+			services.AddIdentity<AppUser, AppRole>(options =>
+			{
+				options.Password.RequiredLength = 8;//şifrenin kaç haneli olduğu
+				options.Password.RequireNonAlphanumeric = true; //Alfanumerik zorunluluğunu kaldırıyoruz.
+				options.Password.RequireLowercase = true; //Küçük harf zorunluluğunu kaldırıyoruz.
+				options.Password.RequireUppercase = true; //Büyük harf zorunluluğunu kaldırıyoruz.
+				options.Password.RequireDigit = true; //0-9 arası sayısal karakter zorunluluğunu kaldırıyoruz.
+				options.User.RequireUniqueEmail = true; //Email adreslerini tekilleştiriyoruz.
+				options.User.AllowedUserNameCharacters = "abcçdefghiıjklmnoöpqrsştuüvwxyzABCÇDEFGHIİJKLMNOÖPQRSŞTUÜVWXYZ0123456789-._@+"; //Kullanıcı adında geçerli olan karakterleri belirtiyoruz.
+
+			});
+
+
 			services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJwtBearer(options =>
 			{
 				options.TokenValidationParameters = new TokenValidationParameters
@@ -81,6 +95,7 @@ namespace ShoppingManagment.Utils.Extensions
 				};
 			}
 			);
+
 		}
 
 
