@@ -7,6 +7,7 @@ using Entity.IProductService;
 using ShoppingManagment.Controllers;
 using Data;
 using Entity.IOrderService;
+using Entity.Auth;
 
 namespace ShoppingManagment.Utils.AutoMapper
 {
@@ -67,6 +68,10 @@ namespace ShoppingManagment.Utils.AutoMapper
 			//IOrderServiceUpdateOrderAsyncResponse to OrderControllerUpdateOrderAsyncResponse
 			CreateMap<IOrderServiceUpdateOrderAsyncResponse, OrderControllerUpdateOrderAsyncResponse>();
 			CreateMap<OrderControllerUpdateOrderAsyncResponse, IOrderServiceUpdateOrderAsyncResponse>();
+			//AppUser to CreateUserRequest
+			CreateMap<AppUser, CreateUserRequest>();
+			CreateMap<CreateUserRequest, AppUser>();
+
 		}
 	}
 }

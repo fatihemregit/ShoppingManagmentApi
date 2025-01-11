@@ -60,7 +60,7 @@ namespace ShoppingManagment.Controllers
 			}
 		}
 		//yeni kullanıcı kaydı oluşturma
-		[HttpPost("/register")]
+		[HttpPost("register")]
 		public async Task<IActionResult> CreateUser([FromBody] CreateUserRequest userRequest)
 		{
 			//user nesnesini oluşturup,UserName,Email alanlarını dolduruyoruz
@@ -95,7 +95,7 @@ namespace ShoppingManagment.Controllers
 		}
 
 		//kullanıcı kaydı sırasında hata varsa basma
-		public void CreateError(IEnumerable<IdentityError> Errors)
+		private void CreateError(IEnumerable<IdentityError> Errors)
 		{
 			string errorMessage = "kullanıcı kaydı başarısız";
 			foreach (IdentityError e in Errors)
@@ -136,10 +136,10 @@ namespace ShoppingManagment.Controllers
 			throw new IdentityException(message);
 		}
 		[HttpPost("newAccessToken")]
-		public async Task<IActionResult> newAccessToken([FromBody] string RefreshToken)
+		public async Task<IActionResult> newAccessToken([FromBody] NewAccessTokenRequest request)
 		{
 			//refresh Token ını veritabanında kontrol edelim(son kullanma tarihi,böyle bir token var mı yok mu)
-			if (!(await checkRefreshToken(RefreshToken)))
+			if (!(await checkRefreshToken(request.RefreshToken)))
 			{
 				//refresh token hatalı
 				throwAError("refresh token hatalı");
@@ -220,6 +220,12 @@ namespace ShoppingManagment.Controllers
 
 		public string Password { get; set; }
 	}
+
+	public class NewAccessTokenRequest
+	{
+        public string RefreshToken { get; set; }
+
+    }
 
 	public class NewAccessTokenResponse
 	{

@@ -3,6 +3,7 @@ using Business.Abstracts.Order;
 using Data;
 using Data.Abstracts.Order;
 using Entity.Exceptions;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -48,6 +49,14 @@ namespace ShoppingManagment.Controllers
 			var data = _configuration.GetSection("veri");
 
 			Console.WriteLine();
+			return Ok();
+		}
+
+
+		[Authorize(AuthenticationSchemes = "Bearer")]
+		[HttpGet("authTest")]
+		public IActionResult authTest()
+		{ 
 			return Ok();
 		}
 

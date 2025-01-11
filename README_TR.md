@@ -8,7 +8,7 @@ Kullanýcý ürün barkodunu okutur.
 <br>
 Alýþveriþ sonunda ürün listesi backend e gönderilir ve sipariþ kaydedilir.
 ## Bu Committe Yapýlan iþlemler
-- Login iþlemi için gerekli kodlarýn yazýlmasý.
+- AuthController daki ufak hatalarýn giderilmesi
 ## Proje günlüðü
 ### Gün 1 (26.12.2024)
 - Api Projesi oluþturuldu(ShoppingManagment).
@@ -125,6 +125,7 @@ Alýþveriþ sonunda ürün listesi backend e gönderilir ve sipariþ kaydedilir.
 - Yeni kullanýcý kaydýnda þartlar(MainExtensions daki setAuthentication metodundaki AddIdentity kýsmý) eklendi.
 - Hali hazýrda olan kullanýcýnýn RefreshToken ile AcessToken ýný yenilemesi için gerekli kodlar yazýldý.
 - Login iþlemi için gerekli kodlar yazýldý
+- AuthController daki ufak hatalar giderildi.
 ### Yapýlabilecek þeyler
 - HelpFullFunctions sýnýfýndaki nullCheckObjectProps daha iyi olabilir(eðer props forEach e girmezse basit veridir)(öz yineleme yaptýðýmýz yerde verileri objeye dönüþtürebiliriz)
 - Fark ettiysen servis fonksiyonlarýnýn sýnýflarý ile repository fonksiyonlarýnýn sýnýflarý arasýnda bir benzerlik var.Acaba bunlar birbirinden kalýtýlabilir mi
