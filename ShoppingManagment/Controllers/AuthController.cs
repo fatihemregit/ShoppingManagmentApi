@@ -110,46 +110,96 @@ namespace ShoppingManagment.Controllers
 
 		//yeni kullanıcı kaydı ve token işlemleri bitiş
 		//hali hazırda olan kullanıcının RefreshToken ile AcessToken ını yenilemesi başlangıç
-		public void throwAError(string message)
+
+		private  async Task<bool> checkRefreshToken(string RefreshToken)
 		{
-			throw new IdentityException(message);
-		}
-		[HttpPost("/newAccessToken")]
-		public async Task<IActionResult> newAccessToken([FromBody] string RefreshToken)
-		{
-			//refresh Token ını veritabanında kontrol edelim
 			AppUser? foundUserwithRefershToken = await _userManager.Users.Where(u => u.RefreshToken == RefreshToken).SingleOrDefaultAsync();
-			if (foundUserwithRefershToken is not null)
+			if(foundUserwithRefershToken is not null)
 			{
-				//veritabanında varsa son kullanma tarihini kontrol edelim
+				//veritabanında RefreshToken ile alakalı user var
+				//refresh token ın son kullanma tarihini kontrol edelim
 				if (foundUserwithRefershToken.RefreshTokenEndDate < DateTime.Now)
 				{
-					//son kullanma tarihi geçmiş ise Unauth dönüp bilgilendirme yapalım
-					throwAError("Refresh token süresi dolmuş.lütfen yeniden login olun");
-					return Ok();
+					return false;
+					//throwAError("Refresh token süresi dolmuş.lütfen yeniden login olun");
 				}
-				else
-				{
-					//son kullanma tarihi geçmemiş ise yeni token oluşturalım ve eski AcessToken ı kara listeye ekleyelim
-					//yeni token oluşturma
-					DateTime accessTokenExpiration = DateTime.Now.AddMinutes(15);
-					string accessToken = CreateAccessToken(accessTokenExpiration);
-					NewAccessTokenResponse response = new NewAccessTokenResponse();
-					response.AcessTokenExpiration = accessTokenExpiration;
-					response.AccessToken = accessToken;
-					//kara liste(daha sonra yapılacak)
-					return Ok(response);
-				}
+				return true;
 			}
 			else
 			{
-				//veritabanında yoksa Unauth dönüp bilgilendirme yapalım
-				throwAError("RefreshToken  bulunamadı");
+				return false;
+			}
+		}
+
+		private void throwAError(string message)
+		{
+			throw new IdentityException(message);
+		}
+		[HttpPost("newAccessToken")]
+		public async Task<IActionResult> newAccessToken([FromBody] string RefreshToken)
+		{
+			//refresh Token ını veritabanında kontrol edelim(son kullanma tarihi,böyle bir token var mı yok mu)
+			if (!(await checkRefreshToken(RefreshToken)))
+			{
+				//refresh token hatalı
+				throwAError("refresh token hatalı");
+			}
+			//veritabanında sıkıntı yok
+			//yeni token oluşturalım
+			DateTime accessTokenExpiration = DateTime.Now.AddMinutes(15);
+			string accessToken = CreateAccessToken(accessTokenExpiration);
+			NewAccessTokenResponse response = new NewAccessTokenResponse();
+			response.AcessTokenExpiration = accessTokenExpiration;
+			response.AccessToken = accessToken;
+			//kara liste(daha sonra yapılacak)
+			return Ok(response);
+		}
+		//hali hazırda olan kullanıcının RefreshToken ile AcessToken ını yenilemesi bitiş
+
+		//login işlemi(kullanıcının refresh tokenı ve AcessTokenı bitmiş)
+		[HttpPost("login")]
+		public async Task<IActionResult> Login(LoginUserRequest request)
+		{
+			//bu bilgilere göre kullanıcının olup olmadığını kontrol edelim
+			AppUser? foundUser = await _userManager.FindByNameAsync(request.UserName);
+			if (foundUser is null)
+			{
+				throwAError("kulllanıcı bilgileri hatalı");
+				return Ok();
+			}
+			//bu bilgilere göre kullanıcı var
+			if (await _userManager.CheckPasswordAsync(foundUser,request.Password))
+			{
+				TokenModel tokenModel = new TokenModel();
+				//kullanıcı parolası doğru  refresh token ve AcessToken üretelim
+				//Refresh tokenı check edelim
+				if (!(await checkRefreshToken(foundUser.RefreshToken)))
+				{
+					//refresh token bitmiş yeni bir refresh token oluşturalım
+					foundUser.RefreshToken = CreateRefreshToken();
+					foundUser.RefreshTokenEndDate = DateTime.Now.AddDays(7);
+					await _userManager.UpdateAsync(foundUser);
+					await _userManager.UpdateSecurityStampAsync(foundUser);
+				}
+				//refresh tokenı atayalım
+				tokenModel.RefreshToken = foundUser.RefreshToken;
+				tokenModel.RefreshTokenExpiration = (DateTime)foundUser.RefreshTokenEndDate;
+				//access token oluşturalım
+				DateTime accessTokenExpiration = DateTime.Now.AddMinutes(15);
+				tokenModel.AccessToken = CreateAccessToken(accessTokenExpiration);
+				tokenModel.AcessTokenExpiration = accessTokenExpiration;
+				return Ok(tokenModel);
+			}
+			else
+			{
+				//kullanıcı parolası yanlış hata fırlatalım
+				throwAError("kulllanıcı bilgileri hatalı");
 				return Ok();
 			}
 
+
+
 		}
-		//hali hazırda olan kullanıcının RefreshToken ile AcessToken ını yenilemesi bitiş
 
 
 	}
@@ -175,6 +225,13 @@ namespace ShoppingManagment.Controllers
 	{
 		public string AccessToken { get; set; }
 		public DateTime AcessTokenExpiration { get; set; }
+	}
+
+	public class LoginUserRequest
+	{
+		public string UserName { get; set; }
+		public string Password { get; set; }
+
 	}
 
 }

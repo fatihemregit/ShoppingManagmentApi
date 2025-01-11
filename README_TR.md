@@ -8,7 +8,7 @@ Kullanýcý ürün barkodunu okutur.
 <br>
 Alýþveriþ sonunda ürün listesi backend e gönderilir ve sipariþ kaydedilir.
 ## Bu Committe Yapýlan iþlemler
-- Hali hazýrda olan kullanýcýnýn RefreshToken ile AcessToken ýný yenilemesi için gerekli kodlar yazýldý
+- Login iþlemi için gerekli kodlarýn yazýlmasý.
 ## Proje günlüðü
 ### Gün 1 (26.12.2024)
 - Api Projesi oluþturuldu(ShoppingManagment).
@@ -123,7 +123,8 @@ Alýþveriþ sonunda ürün listesi backend e gönderilir ve sipariþ kaydedilir.
 - secrets.json daki "jwt:issuer"  ve "jwt:audience" deðerlerinin daha güvenli hale getirilmesi
 - AuthController sýnýfý oluþturuldu,yeni kullanýcý kaydý ve token oluþturma ile ilgili kodlar yazýldý.
 - Yeni kullanýcý kaydýnda þartlar(MainExtensions daki setAuthentication metodundaki AddIdentity kýsmý) eklendi.
-- Hali hazýrda olan kullanýcýnýn RefreshToken ile AcessToken ýný yenilemesi için gerekli kodlar yazýldý
+- Hali hazýrda olan kullanýcýnýn RefreshToken ile AcessToken ýný yenilemesi için gerekli kodlar yazýldý.
+- Login iþlemi için gerekli kodlar yazýldý
 ### Yapýlabilecek þeyler
 - HelpFullFunctions sýnýfýndaki nullCheckObjectProps daha iyi olabilir(eðer props forEach e girmezse basit veridir)(öz yineleme yaptýðýmýz yerde verileri objeye dönüþtürebiliriz)
 - Fark ettiysen servis fonksiyonlarýnýn sýnýflarý ile repository fonksiyonlarýnýn sýnýflarý arasýnda bir benzerlik var.Acaba bunlar birbirinden kalýtýlabilir mi
