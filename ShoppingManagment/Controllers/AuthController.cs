@@ -63,6 +63,7 @@ namespace ShoppingManagment.Controllers
 		[HttpPost("register")]
 		public async Task<IActionResult> CreateUser([FromBody] CreateUserRequest userRequest)
 		{
+			//ÖNERİ:kullanıcının refresh tokenını veritabanına göndermeden önce şifreleyip gönderelim
 			//user nesnesini oluşturup,UserName,Email alanlarını dolduruyoruz
 			AppUser user = _mapper.Map<AppUser>(userRequest);
 			//tokenlerin bitiş tarihlerini tanımlıyoruz	

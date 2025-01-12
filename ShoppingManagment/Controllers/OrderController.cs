@@ -2,12 +2,14 @@
 using Business.Abstracts.Order;
 using Entity.IOrderService;
 using Entity.OrderController;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.RateLimiting;
 
 namespace ShoppingManagment.Controllers
 {
+	[Authorize(AuthenticationSchemes = "Bearer")]
 	[EnableRateLimiting(policyName: "orderController")]
 	[Route("api/[controller]")]
 	[ApiController]
