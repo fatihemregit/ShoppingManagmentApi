@@ -8,7 +8,8 @@ Kullanýcý ürün barkodunu okutur.
 <br>
 Alýþveriþ sonunda ürün listesi backend e gönderilir ve sipariþ kaydedilir.
 ## Bu Committe Yapýlan iþlemler
-- IdentityException sýnýfýnda deðiþiklik  yapýlmasý
+- AuthControllerdeki kodlarýn Business Katmanýna taþýnmasý için IAuthService interface inin ,AuthService sýnýfýnýn ve fonksiyon nesnelerinin oluþturulmasý
+
 ## Proje günlüðü
 ### Gün 1 (26.12.2024)
 - Api Projesi oluþturuldu(ShoppingManagment).
@@ -127,6 +128,8 @@ Alýþveriþ sonunda ürün listesi backend e gönderilir ve sipariþ kaydedilir.
 - Login iþlemi için gerekli kodlar yazýldý
 - AuthController daki ufak hatalar giderildi.
 - IdentityException sýnýfýnda deðiþiklik(production hata kodu 401 e çekildi) yapýldý
+### Gün 16 (13.01.2025)
+- AuthControllerdeki kodlarýn Business Katmanýna taþýnmasý için IAuthService interface i ,AuthService sýnýfý ve fonksiyon nesneleri oluþturudu
 ### Yapýlabilecek þeyler
 - HelpFullFunctions sýnýfýndaki nullCheckObjectProps daha iyi olabilir(eðer props forEach e girmezse basit veridir)(öz yineleme yaptýðýmýz yerde verileri objeye dönüþtürebiliriz)
 - Fark ettiysen servis fonksiyonlarýnýn sýnýflarý ile repository fonksiyonlarýnýn sýnýflarý arasýnda bir benzerlik var.Acaba bunlar birbirinden kalýtýlabilir mi
