@@ -8,6 +8,8 @@ using ShoppingManagment.Controllers;
 using Data;
 using Entity.IOrderService;
 using Entity.Auth;
+using Entity.IAuthService;
+using Entity.AuthController;
 
 namespace ShoppingManagment.Utils.AutoMapper
 {
@@ -68,9 +70,29 @@ namespace ShoppingManagment.Utils.AutoMapper
 			//IOrderServiceUpdateOrderAsyncResponse to OrderControllerUpdateOrderAsyncResponse
 			CreateMap<IOrderServiceUpdateOrderAsyncResponse, OrderControllerUpdateOrderAsyncResponse>();
 			CreateMap<OrderControllerUpdateOrderAsyncResponse, IOrderServiceUpdateOrderAsyncResponse>();
-			//AppUser to CreateUserRequest
-			CreateMap<AppUser, CreateUserRequest>();
-			CreateMap<CreateUserRequest, AppUser>();
+
+			//IAuthServiceCreateUserRequest to AuthControllerCreateUserRequest
+			CreateMap<IAuthServiceCreateUserRequest, AuthControllerCreateUserRequest>();
+			CreateMap<AuthControllerCreateUserRequest, IAuthServiceCreateUserRequest>();
+			//IAuthServiceCreateUserResponse to AuthControllerCreateUserResponse
+			CreateMap<IAuthServiceCreateUserResponse, AuthControllerCreateUserResponse>();
+			CreateMap<AuthControllerCreateUserResponse, IAuthServiceCreateUserResponse>();
+
+			//IAuthServiceNewAccessTokenRequest to AuthControllerNewAccessTokenRequest
+			CreateMap<IAuthServiceNewAccessTokenRequest, AuthControllerNewAccessTokenRequest>();
+			CreateMap<AuthControllerNewAccessTokenRequest, IAuthServiceNewAccessTokenRequest>();
+
+			//IAuthServiceNewAccessTokenResponse to AuthControllerNewAccessTokenResponse
+			CreateMap<IAuthServiceNewAccessTokenResponse, AuthControllerNewAccessTokenResponse>();
+			CreateMap<AuthControllerNewAccessTokenResponse, IAuthServiceNewAccessTokenResponse>();
+
+			//IAuthServiceLoginRequest to AuthControllerLoginRequest
+			CreateMap<IAuthServiceLoginRequest, AuthControllerLoginRequest>();
+			CreateMap<AuthControllerLoginRequest, IAuthServiceLoginRequest>();
+
+			//IAuthServiceLoginResponse to AuthControllerLoginResponse
+			CreateMap<IAuthServiceLoginResponse, AuthControllerLoginResponse>();
+			CreateMap<AuthControllerLoginResponse, IAuthServiceLoginResponse>();
 
 		}
 	}

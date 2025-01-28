@@ -80,16 +80,23 @@ namespace Business.Concretes.Auth
 			//refresh Token ı veritabanına kaydedelim
 			appUser.RefreshToken = userrefreshToken;
 			appUser.RefreshTokenEndDate = refreshTokenExpiration;
-			await _userManager.CreateAsync(appUser,user.Password);
-
-			IAuthServiceCreateUserResponse result = new IAuthServiceCreateUserResponse()
+			IdentityResult identityResult = await _userManager.CreateAsync(appUser, user.Password);
+			if (identityResult.Succeeded)
 			{
-				AccessToken = userAcessToken,
-				AcessTokenExpiration = accessTokenExpiration,
-				RefreshToken = userrefreshToken,
-				RefreshTokenExpiration = refreshTokenExpiration,
-			};
-			return result;
+				IAuthServiceCreateUserResponse result = new IAuthServiceCreateUserResponse()
+				{
+					AccessToken = userAcessToken,
+					AcessTokenExpiration = accessTokenExpiration,
+					RefreshToken = userrefreshToken,
+					RefreshTokenExpiration = refreshTokenExpiration,
+				};
+				return result;
+			}
+			else
+			{
+				throw new IdentityException("kullanıcı kaydı başarısız");
+			}
+			
 		}
 
 		//Create User functions end

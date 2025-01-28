@@ -12,6 +12,7 @@ using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Cryptography;
 using System.Text;
+using Entity.AuthController;
 
 namespace ShoppingManagment.Controllers
 {
@@ -38,6 +39,7 @@ namespace ShoppingManagment.Controllers
 		/*
 		 fterm:Hs@3n9#@LV
 		 Saturate6417:u%cH5AGCLVbXm4KPbkvt
+		 Customary3029:anHsPVAH8#5uD@@X@!9J
 		 */
 
 		//yeni kullanıcı kaydı ve token işlemleri başlangıç
@@ -72,38 +74,12 @@ namespace ShoppingManagment.Controllers
 		}
 		//yeni kullanıcı kaydı oluşturma
 		[HttpPost("register")]
-		public async Task<IActionResult> CreateUser([FromBody] CreateUserRequest userRequest)
+		public async Task<IActionResult> CreateUser([FromBody] AuthControllerCreateUserRequest userRequest)
 		{
-			//ÖNERİ:kullanıcının refresh tokenını veritabanına göndermeden önce şifreleyip gönderelim
-			//user nesnesini oluşturup,UserName,Email alanlarını dolduruyoruz
-			AppUser user = _mapper.Map<AppUser>(userRequest);
-			//tokenlerin bitiş tarihlerini tanımlıyoruz	
-			DateTime refreshTokenEndDate = DateTime.Now.AddDays(7);
-			DateTime accessTokenEndDate = DateTime.Now.AddMinutes(15);
-			//refreshToken ı tanımlıyoruz
-			string refreshToken = CreateRefreshToken();
-			//user nesnesinin refreshToken alanını dolduruyoruz
-			user.RefreshToken = refreshToken;
-			//user nesnesinin refreshTokenEndDate alanını dolduruyoruz
-			user.RefreshTokenEndDate = refreshTokenEndDate;
-			//yeni kullanıcıyı veritabanına kaydediyoruz
-			IdentityResult createUserResult = await _userManager.CreateAsync(user, userRequest.Password);
-			if (createUserResult.Succeeded)
-			{
-				//kullanıcı kaydı başarılı accessToken üreteceğiz
-				TokenModel tokenModel = new TokenModel();
-				tokenModel.AccessToken = CreateAccessToken(accessTokenEndDate);
-				tokenModel.AcessTokenExpiration = accessTokenEndDate;
-				tokenModel.RefreshToken = refreshToken;
-				tokenModel.RefreshTokenExpiration = refreshTokenEndDate;
-				return Ok(tokenModel);
-			}
-			else
-			{
-				//kullanıcı kaydı başarısız hataları döneceğiz
-				CreateError(createUserResult.Errors);
-				return Ok();
-			}
+			IAuthServiceCreateUserResponse authServiceResponse = await _authService.createUser(_mapper.Map<IAuthServiceCreateUserRequest>(userRequest));
+			AuthControllerCreateUserResponse authControllerResponse = _mapper.Map<AuthControllerCreateUserResponse>(authServiceResponse);
+			return Ok(authControllerResponse);
+
 		}
 
 		//kullanıcı kaydı sırasında hata varsa basma
@@ -148,69 +124,21 @@ namespace ShoppingManagment.Controllers
 			throw new IdentityException(message);
 		}
 		[HttpPost("newAccessToken")]
-		public async Task<IActionResult> newAccessToken([FromBody] NewAccessTokenRequest request)
+		public async Task<IActionResult> newAccessToken([FromBody] AuthControllerNewAccessTokenRequest request)
 		{
-			//refresh Token ını veritabanında kontrol edelim(son kullanma tarihi,böyle bir token var mı yok mu)
-			if (!(await checkRefreshToken(request.RefreshToken)))
-			{
-				//refresh token hatalı
-				throwAError("refresh token hatalı");
-			}
-			//veritabanında sıkıntı yok
-			//yeni token oluşturalım
-			DateTime accessTokenExpiration = DateTime.Now.AddMinutes(15);
-			string accessToken = CreateAccessToken(accessTokenExpiration);
-			NewAccessTokenResponse response = new NewAccessTokenResponse();
-			response.AcessTokenExpiration = accessTokenExpiration;
-			response.AccessToken = accessToken;
-			//kara liste(daha sonra yapılacak)
-			return Ok(response);
+			IAuthServiceNewAccessTokenResponse authServiceResponse = await _authService.newAccessToken(_mapper.Map<IAuthServiceNewAccessTokenRequest>(request));
+			AuthControllerNewAccessTokenResponse authControllerResponse = _mapper.Map<AuthControllerNewAccessTokenResponse>(authServiceResponse);
+			return Ok(authControllerResponse);
 		}
 		//hali hazırda olan kullanıcının RefreshToken ile AcessToken ını yenilemesi bitiş
 
 		//login işlemi(kullanıcının refresh tokenı ve AcessTokenı bitmiş)
 		[HttpPost("login")]
-		public async Task<IActionResult> Login(LoginUserRequest request)
+		public async Task<IActionResult> Login(AuthControllerLoginRequest request)
 		{
-			//bu bilgilere göre kullanıcının olup olmadığını kontrol edelim
-			AppUser? foundUser = await _userManager.FindByNameAsync(request.UserName);
-			if (foundUser is null)
-			{
-				throwAError("kulllanıcı bilgileri hatalı");
-				return Ok();
-			}
-			//bu bilgilere göre kullanıcı var
-			if (await _userManager.CheckPasswordAsync(foundUser,request.Password))
-			{
-				TokenModel tokenModel = new TokenModel();
-				//kullanıcı parolası doğru  refresh token ve AcessToken üretelim
-				//Refresh tokenı check edelim
-				if (!(await checkRefreshToken(foundUser.RefreshToken)))
-				{
-					//refresh token bitmiş yeni bir refresh token oluşturalım
-					foundUser.RefreshToken = CreateRefreshToken();
-					foundUser.RefreshTokenEndDate = DateTime.Now.AddDays(7);
-					await _userManager.UpdateAsync(foundUser);
-					await _userManager.UpdateSecurityStampAsync(foundUser);
-				}
-				//refresh tokenı atayalım
-				tokenModel.RefreshToken = foundUser.RefreshToken;
-				tokenModel.RefreshTokenExpiration = (DateTime)foundUser.RefreshTokenEndDate;
-				//access token oluşturalım
-				DateTime accessTokenExpiration = DateTime.Now.AddMinutes(15);
-				tokenModel.AccessToken = CreateAccessToken(accessTokenExpiration);
-				tokenModel.AcessTokenExpiration = accessTokenExpiration;
-				return Ok(tokenModel);
-			}
-			else
-			{
-				//kullanıcı parolası yanlış hata fırlatalım
-				throwAError("kulllanıcı bilgileri hatalı");
-				return Ok();
-			}
-
-
-
+			IAuthServiceLoginResponse authServiceResponse = await _authService.login(_mapper.Map<IAuthServiceLoginRequest>(request));
+			AuthControllerLoginResponse authControllerResponse = _mapper.Map<AuthControllerLoginResponse>(authServiceResponse);
+			return Ok(authControllerResponse);
 		}
 
 		[HttpPost("serviceTest")]
