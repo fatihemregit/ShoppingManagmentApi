@@ -82,6 +82,7 @@ namespace Business.Utils.AutoMapper
 			CreateMap<IAuthServiceCreateUserRequest, AppUser>();
 			CreateMap<AppUser, IAuthServiceCreateUserRequest>();
 
+
 		}
 	}
 }

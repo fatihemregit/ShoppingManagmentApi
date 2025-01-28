@@ -37,6 +37,7 @@ namespace ShoppingManagment.Controllers
 
 		/*
 		 fterm:Hs@3n9#@LV
+		 Saturate6417:u%cH5AGCLVbXm4KPbkvt
 		 */
 
 		//yeni kullanıcı kaydı ve token işlemleri başlangıç
