@@ -1,5 +1,7 @@
 ﻿using AutoMapper;
 using Business.Concretes.Market;
+using Entity.Auth;
+using Entity.IAuthService;
 using Entity.IMarketRepository;
 using Entity.IMarketService;
 using Entity.IOrderRepository;
@@ -74,6 +76,11 @@ namespace Business.Utils.AutoMapper
 			// IOrderServiceUpdateOrderAsyncResponse to IOrderRepositoryUpdateOneOrderAsyncResponse
 			CreateMap<IOrderServiceUpdateOrderAsyncResponse, IOrderRepositoryUpdateOneOrderAsyncResponse>();
 			CreateMap<IOrderRepositoryUpdateOneOrderAsyncResponse, IOrderServiceUpdateOrderAsyncResponse>();
+
+
+			//IAuthServiceCreateUserRequest to AppUser
+			CreateMap<IAuthServiceCreateUserRequest, AppUser>();
+			CreateMap<AppUser, IAuthServiceCreateUserRequest>();
 
 		}
 	}

@@ -66,11 +66,12 @@ namespace Business.Concretes.Auth
 
 		public async Task<IAuthServiceCreateUserResponse> createUser(IAuthServiceCreateUserRequest user)
 		{
+			//çalışıyor problem yok
 			//yanlış hatırlamıyor isem app user nesnesi maplenerek kullanılamıyordu.bir bakmak lazım
 			AppUser appUser = _mapper.Map<AppUser>(user);
 			//tokenlerin bitiş tarihleri tanımlama
-			DateTime accessTokenExpiration = DateTime.Now.AddMinutes(int.Parse(_configuration.GetSection("accessTokenExpirationInMinute").Value));
-			DateTime refreshTokenExpiration = DateTime.Now.AddDays(int.Parse(_configuration.GetSection("refreshTokenExpirationInDay").Value));
+			DateTime accessTokenExpiration = DateTime.Now.AddMinutes(int.Parse(_configuration.GetSection("jwt:accessTokenExpirationInMinute").Value));
+			DateTime refreshTokenExpiration = DateTime.Now.AddDays(int.Parse(_configuration.GetSection("jwt:refreshTokenExpirationInDay").Value));
 			//tokenları oluşturalım
 			//acess Token Oluşturma
 			string userAcessToken = CreateAccessToken(accessTokenExpiration);
@@ -79,7 +80,7 @@ namespace Business.Concretes.Auth
 			//refresh Token ı veritabanına kaydedelim
 			appUser.RefreshToken = userrefreshToken;
 			appUser.RefreshTokenEndDate = refreshTokenExpiration;
-			await _userManager.CreateAsync(appUser);
+			await _userManager.CreateAsync(appUser,user.Password);
 
 			IAuthServiceCreateUserResponse result = new IAuthServiceCreateUserResponse()
 			{
@@ -97,6 +98,7 @@ namespace Business.Concretes.Auth
 		//login user functions start
 		public async Task<IAuthServiceLoginResponse> login(IAuthServiceLoginRequest user)
 		{
+			//çalışıyor problem yok
 			//bu kod daha iyi nasıl yazılabilir?
 			AppUser? foundUser = await _userManager.FindByNameAsync(user.UserName);
 			if (foundUser is null)
@@ -114,7 +116,7 @@ namespace Business.Concretes.Auth
 				{
 					//süre dolmuş.yeni token ile alakalı işlemleri yapalım
 					foundUser.RefreshToken = CreateRefreshToken();
-					foundUser.RefreshTokenEndDate = DateTime.Now.AddDays(int.Parse(_configuration.GetSection("refreshTokenExpirationInDay").Value));
+					foundUser.RefreshTokenEndDate = DateTime.Now.AddDays(int.Parse(_configuration.GetSection("jwt:refreshTokenExpirationInDay").Value));
 					await _userManager.UpdateAsync(foundUser);
 					await _userManager.UpdateSecurityStampAsync(foundUser);
 				}
@@ -124,7 +126,7 @@ namespace Business.Concretes.Auth
 				}
 				//acess token ı yenileyelim
 				//bu accessTokenExpiration değişkenini çok sık kullanıyoruz.Acaba global e mi çeksek?
-				DateTime accessTokenExpiration = DateTime.Now.AddMinutes(int.Parse(_configuration.GetSection("accessTokenExpirationInMinute").Value));
+				DateTime accessTokenExpiration = DateTime.Now.AddMinutes(int.Parse(_configuration.GetSection("jwt:accessTokenExpirationInMinute").Value));
 				string newAcessToken = CreateAccessToken(accessTokenExpiration);
 				IAuthServiceLoginResponse result = new IAuthServiceLoginResponse
 				{
@@ -175,13 +177,15 @@ namespace Business.Concretes.Auth
 
 		public async Task<IAuthServiceNewAccessTokenResponse> newAccessToken(IAuthServiceNewAccessTokenRequest refreshToken)
 		{
+			//çalışıyor problem yok
+
 			if (!(await checkRefreshToken(refreshToken.RefreshToken)))
 			{
 				//token da hata var.Hata fırlatalım
 				throw new IdentityException("refresh token hatalı");
 			}
 			//token da hata yok.token oluşturalım
-			DateTime accessTokenExpiration = DateTime.Now.AddMinutes(int.Parse(_configuration.GetSection("accessTokenExpirationInMinute").Value));
+			DateTime accessTokenExpiration = DateTime.Now.AddMinutes(int.Parse(_configuration.GetSection("jwt:accessTokenExpirationInMinute").Value));
 			string newAcessToken = CreateAccessToken(accessTokenExpiration);
 			IAuthServiceNewAccessTokenResponse result = new IAuthServiceNewAccessTokenResponse() {
 				AccessToken = newAcessToken, 

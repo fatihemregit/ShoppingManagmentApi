@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using Business.Abstracts.Auth;
 using Entity.Auth;
+using Entity.IAuthService;
 using Entity.Exceptions;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
@@ -33,6 +34,10 @@ namespace ShoppingManagment.Controllers
 			_authService = authService;
 		}
 
+
+		/*
+		 fterm:Hs@3n9#@LV
+		 */
 
 		//yeni kullanıcı kaydı ve token işlemleri başlangıç
 
@@ -207,10 +212,10 @@ namespace ShoppingManagment.Controllers
 
 		}
 
-		[HttpGet("serviceTest")]
-		public IActionResult serviceTest()
+		[HttpPost("serviceTest")]
+		public async Task<IActionResult> serviceTest([FromBody]IAuthServiceNewAccessTokenRequest request)
 		{
-			return Ok();
+			return Ok(await _authService.newAccessToken(request));
 		}
 
 

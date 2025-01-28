@@ -8,8 +8,7 @@ Kullanýcý ürün barkodunu okutur.
 <br>
 Alýþveriþ sonunda ürün listesi backend e gönderilir ve sipariþ kaydedilir.
 ## Bu Committe Yapýlan iþlemler
-- AuthService sýnýfýnýn yazýlmasý Ve IauthService ile arasýndaki baðlantý kodunun yazýlmasý.
-- AuthController da AuthService Sýnýfýnýn test edilmesi için hazýrlýk yapýlmasý ancak Test edilmemesi
+- AuthService sýnýfýnýn test edilmesi
 ## Proje günlüðü
 ### Gün 1 (26.12.2024)
 - Api Projesi oluþturuldu(ShoppingManagment).
@@ -133,6 +132,7 @@ Alýþveriþ sonunda ürün listesi backend e gönderilir ve sipariþ kaydedilir.
 ### Gün 17 (28.01.2025)
 - AuthService sýnýfý yazýldý.ve IauthService ile arasýndaki baðlantý kodu(AddScoped) yazýldý.
 - AuthController da AuthService Sýnýfýnýn test edilmesi için hazýrlýk yapýldý ancak Test edilmedi
+- AuthService sýnýfý test edildi.(Herhangi bir problem gözükmüyor)
 ### Yapýlabilecek þeyler
 - HelpFullFunctions sýnýfýndaki nullCheckObjectProps daha iyi olabilir(eðer props forEach e girmezse basit veridir)(öz yineleme yaptýðýmýz yerde verileri objeye dönüþtürebiliriz)
 - Fark ettiysen servis fonksiyonlarýnýn sýnýflarý ile repository fonksiyonlarýnýn sýnýflarý arasýnda bir benzerlik var.Acaba bunlar birbirinden kalýtýlabilir mi
