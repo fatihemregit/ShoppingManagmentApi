@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Business.Abstracts.Auth;
 using Entity.Auth;
 using Entity.Exceptions;
 using Microsoft.AspNetCore.Http;
@@ -18,14 +19,18 @@ namespace ShoppingManagment.Controllers
 	public class AuthController : ControllerBase
 	{
 		private readonly IConfiguration _configuration;
+
+		private readonly IAuthService _authService;
+
 		private readonly UserManager<AppUser> _userManager;
 		private readonly IMapper _mapper;
 
-		public AuthController(IConfiguration configuration, UserManager<AppUser> userManager, IMapper mapper)
+		public AuthController(IConfiguration configuration, UserManager<AppUser> userManager, IMapper mapper, IAuthService authService)
 		{
 			_configuration = configuration;
 			_userManager = userManager;
 			_mapper = mapper;
+			_authService = authService;
 		}
 
 
@@ -201,6 +206,13 @@ namespace ShoppingManagment.Controllers
 
 
 		}
+
+		[HttpGet("serviceTest")]
+		public IActionResult serviceTest()
+		{
+			return Ok();
+		}
+
 
 
 	}
