@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using Business.Abstracts.Auth;
+using Business.Utils.Functions;
 using Entity.Auth;
 using Entity.Exceptions;
 using Entity.IAuthService;
@@ -66,7 +67,11 @@ namespace Business.Concretes.Auth
 
 		public async Task<IAuthServiceCreateUserResponse> createUser(IAuthServiceCreateUserRequest user)
 		{
-			//çalışıyor problem yok
+			if (HelpFullFunctions.nullCheckObjectProps(user))
+			{
+				throw new BadRequestException("user parametresi null olamaz");
+			}
+
 			//yanlış hatırlamıyor isem app user nesnesi maplenerek kullanılamıyordu.bir bakmak lazım
 			AppUser appUser = _mapper.Map<AppUser>(user);
 			//tokenlerin bitiş tarihleri tanımlama
@@ -105,7 +110,11 @@ namespace Business.Concretes.Auth
 		//login user functions start
 		public async Task<IAuthServiceLoginResponse> login(IAuthServiceLoginRequest user)
 		{
-			//çalışıyor problem yok
+			if (HelpFullFunctions.nullCheckObjectProps(user))
+			{
+				throw new BadRequestException("user parametresi null olamaz");
+			}
+
 			//bu kod daha iyi nasıl yazılabilir?
 			AppUser? foundUser = await _userManager.FindByNameAsync(user.UserName);
 			if (foundUser is null)
@@ -184,7 +193,10 @@ namespace Business.Concretes.Auth
 
 		public async Task<IAuthServiceNewAccessTokenResponse> newAccessToken(IAuthServiceNewAccessTokenRequest refreshToken)
 		{
-			//çalışıyor problem yok
+			if (HelpFullFunctions.nullCheckObjectProps(refreshToken))
+			{
+				throw new BadRequestException("refreshToken parametresi null olamaz");
+			}
 
 			if (!(await checkRefreshToken(refreshToken.RefreshToken)))
 			{

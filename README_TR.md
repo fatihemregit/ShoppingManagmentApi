@@ -8,7 +8,7 @@ Kullanýcý ürün barkodunu okutur.
 <br>
 Alýþveriþ sonunda ürün listesi backend e gönderilir ve sipariþ kaydedilir.
 ## Bu Committe Yapýlan iþlemler
-- AuthControllerdaki gereksiz kodlarýn silinmesi
+- AuthService sýnýfýna parameter null check eklenmesi
 ## Proje günlüðü
 ### Gün 1 (26.12.2024)
 - Api Projesi oluþturuldu(ShoppingManagment).
@@ -135,6 +135,7 @@ Alýþveriþ sonunda ürün listesi backend e gönderilir ve sipariþ kaydedilir.
 - AuthService sýnýfý test edildi.(Herhangi bir problem gözükmüyor)
 - AuthController ýn business katmanýndaki Authservice sýnýfýna baðlantýsý yapýldý
 - AuthControllerdaki gereksiz kodlar silindi
+- AuthService sýnýfýna parameter null check eklendi
 ### Yapýlabilecek þeyler
 - HelpFullFunctions sýnýfýndaki nullCheckObjectProps daha iyi olabilir(eðer props forEach e girmezse basit veridir)(öz yineleme yaptýðýmýz yerde verileri objeye dönüþtürebiliriz)
 - AuthService sýnýfýna null check eklenmesi
