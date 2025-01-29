@@ -45,7 +45,7 @@ namespace ShoppingManagment.Utils.Extensions
 					options.Window = TimeSpan.FromMinutes(1);
 				});
 
-				options.AddFixedWindowLimiter("AuthController", options =>
+				options.AddFixedWindowLimiter("authController", options =>
 				{
 					options.AutoReplenishment = true;
 					options.PermitLimit = ratelimitMultiple * 1;

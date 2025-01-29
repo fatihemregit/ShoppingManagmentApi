@@ -13,10 +13,12 @@ using System.IdentityModel.Tokens.Jwt;
 using System.Security.Cryptography;
 using System.Text;
 using Entity.AuthController;
+using Microsoft.AspNetCore.RateLimiting;
 
 namespace ShoppingManagment.Controllers
 {
 	[Route("api/[controller]")]
+	[EnableRateLimiting(policyName: "authController")]
 	[ApiController]
 	public class AuthController : ControllerBase
 	{

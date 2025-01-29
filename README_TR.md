@@ -8,7 +8,7 @@ Kullanýcý ürün barkodunu okutur.
 <br>
 Alýþveriþ sonunda ürün listesi backend e gönderilir ve sipariþ kaydedilir.
 ## Bu Committe Yapýlan iþlemler
-- MainExtensions da AuthController için rate limit kuralý tanýmlanmasý
+- AuthControllerda,rateLimit in aktif edilmesi
 ## Proje günlüðü
 ### Gün 1 (26.12.2024)
 - Api Projesi oluþturuldu(ShoppingManagment).
@@ -140,6 +140,7 @@ Alýþveriþ sonunda ürün listesi backend e gönderilir ve sipariþ kaydedilir.
 - OrderService Sýnýfýndaki bazý fonksiyonlara(deleteOrderbyRowIdAsync,deleteOrdersByOrderIdAsync) parameter null check eklendi
 - MarketService Sýnýfýndaki fonksiyonlardaki parameter null check sistemi deðiþtirildi.
 - MainExtensions da AuthController için rate limit kuralý tanýmlandý
+- AuthControllerda,rateLimit aktif edildi(EnableRateLimiting)
 ### Yapýlabilecek þeyler
 - HelpFullFunctions sýnýfýndaki nullCheckObjectProps daha iyi olabilir(eðer props forEach e girmezse basit veridir)(öz yineleme yaptýðýmýz yerde verileri objeye dönüþtürebiliriz)
 - Fark ettiysen servis fonksiyonlarýnýn sýnýflarý ile repository fonksiyonlarýnýn sýnýflarý arasýnda bir benzerlik var.Acaba bunlar birbirinden kalýtýlabilir mi
