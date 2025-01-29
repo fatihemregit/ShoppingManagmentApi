@@ -149,6 +149,10 @@ namespace Business.Concretes.Order
 
 		public async Task<bool> deleteOrderbyRowIdAsync(int rowId)
 		{
+			if (HelpFullFunctions.nullCheckObjectProps(new { rowId = rowId }))
+			{
+				throw new BadRequestException("rowId parametresi null olamaz");
+			}
 			bool result = await _orderRepository.deleteOneOrderbyRowIdAsync(rowId);
 			if (!result)
 			{
@@ -159,6 +163,10 @@ namespace Business.Concretes.Order
 
 		public async Task<bool> deleteOrdersByOrderIdAsync(string orderId)
 		{
+			if (HelpFullFunctions.nullCheckObjectProps(new { orderId = orderId }))
+			{
+				throw new BadRequestException("orderId parametresi null olamaz");
+			}
 			bool result = await _orderRepository.deleteOrdersByOrderIdAsync(orderId);
 			if (!result)
 			{
