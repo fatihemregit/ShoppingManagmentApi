@@ -2,12 +2,14 @@
 using Business.Abstracts.Product;
 using Entity.IProductService;
 using Entity.ProductController;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.RateLimiting;
 
 namespace ShoppingManagment.Controllers
 {
+	[Authorize(AuthenticationSchemes = "Bearer")]
 	[EnableRateLimiting(policyName: "productController")]
 	[Route("api/[controller]")]
 	[ApiController]

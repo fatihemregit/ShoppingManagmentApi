@@ -2,12 +2,14 @@
 using Business.Abstracts.Market;
 using Entity.IMarketService;
 using Entity.MarketController;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.RateLimiting;
 
 namespace ShoppingManagment.Controllers
 {
+	[Authorize(AuthenticationSchemes = "Bearer")]
 	[EnableRateLimiting(policyName: "marketController")]
 	[Route("api/[controller]")]
 	[ApiController]
