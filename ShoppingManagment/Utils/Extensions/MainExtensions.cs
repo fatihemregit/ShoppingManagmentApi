@@ -45,7 +45,12 @@ namespace ShoppingManagment.Utils.Extensions
 					options.Window = TimeSpan.FromMinutes(1);
 				});
 
-
+				options.AddFixedWindowLimiter("AuthController", options =>
+				{
+					options.AutoReplenishment = true;
+					options.PermitLimit = ratelimitMultiple * 1;
+					options.Window = TimeSpan.FromMinutes(1);
+				});
 
 				//global limit
 				//options.GlobalLimiter = PartitionedRateLimiter.Create<HttpContext, string>(httpContext =>
