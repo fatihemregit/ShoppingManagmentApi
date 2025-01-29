@@ -9,6 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Business.Abstracts.Market;
+using Business.Utils.Functions;
 
 namespace Business.Concretes.Market
 {
@@ -29,7 +30,7 @@ namespace Business.Concretes.Market
 		private async Task<bool> checkisAlreadyMarketInDb(string marketName)
 		{
 			//null check
-			if (marketName is null)
+			if (HelpFullFunctions.nullCheckObjectProps(new {marketName = marketName}))
 			{
 				throw new BadRequestException("marketName parametresi null olamaz");
 			}
@@ -41,14 +42,14 @@ namespace Business.Concretes.Market
 		public async Task<IMarketServiceCreateMarketAsyncResponse> createMarketAsync(IMarketServiceCreateMarketAsyncRequest market)
 		{
 			//null check
-			if (market is null)
+			if (HelpFullFunctions.nullCheckObjectProps(market))
 			{
 				throw new BadRequestException("market parametresi null olamaz");
 			}
 			//daha önce böyle bir market var mı onun kontrolü
 			if (await checkisAlreadyMarketInDb(market.MarketName))
 			{
-				throw new ConflictException("bu ürün zaten daha önceden kaydedilmiş");
+				throw new ConflictException("bu market zaten daha önceden kaydedilmiş");
 			}
 			//yeni market oluşturma
 			IMarketRepositoryCreateOneMarketAsyncResponse? result = await _repository.createOneMarketAsync(_mapper.Map<IMarketRepositoryCreateOneMarketAsyncRequest>(market));
@@ -74,7 +75,7 @@ namespace Business.Concretes.Market
 		public async Task<IMarketServiceGetMarketByIdAsyncResponse> getMarketByIdAsync(int id)
 		{
 			//null check
-			if (id == 0)
+			if (HelpFullFunctions.nullCheckObjectProps(new {id = id}))
 			{
 				throw new BadRequestException("id parametresi null olamaz");
 			}
@@ -95,7 +96,7 @@ namespace Business.Concretes.Market
 		public async Task<IMarketServiceUpdateMarketAsyncResponse> updateMarketAsync(IMarketServiceUpdateMarketAsyncRequest market)
 		{
 			//null check
-			if (market is null)
+			if (HelpFullFunctions.nullCheckObjectProps(market))
 			{
 				throw new BadRequestException("market parametresi null olamaz");
 			}
@@ -115,7 +116,7 @@ namespace Business.Concretes.Market
 		public async Task<bool> deleteMarketAsync(int id)
 		{
 			//null check
-			if (id == 0)
+			if (HelpFullFunctions.nullCheckObjectProps(new {id = id}))
 			{
 				throw new BadRequestException("id parametresi null olamaz");
 			}

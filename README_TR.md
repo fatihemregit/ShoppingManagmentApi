@@ -8,7 +8,7 @@ Kullanýcý ürün barkodunu okutur.
 <br>
 Alýþveriþ sonunda ürün listesi backend e gönderilir ve sipariþ kaydedilir.
 ## Bu Committe Yapýlan iþlemler
-- OrderService Sýnýfýndaki bazý fonksiyonlara parameter null check eklenmesi
+- MarketService Sýnýfýndaki fonksiyonlardaki parameter null check sisteminin deðiþtirilmesi
 ## Proje günlüðü
 ### Gün 1 (26.12.2024)
 - Api Projesi oluþturuldu(ShoppingManagment).
@@ -138,6 +138,7 @@ Alýþveriþ sonunda ürün listesi backend e gönderilir ve sipariþ kaydedilir.
 - AuthService sýnýfýna parameter null check eklendi
 ### Gün 18(29.01.2025)
 - OrderService Sýnýfýndaki bazý fonksiyonlara(deleteOrderbyRowIdAsync,deleteOrdersByOrderIdAsync) parameter null check eklendi
+- MarketService Sýnýfýndaki fonksiyonlardaki parameter null check sistemi deðiþtirildi
 ### Yapýlabilecek þeyler
 - HelpFullFunctions sýnýfýndaki nullCheckObjectProps daha iyi olabilir(eðer props forEach e girmezse basit veridir)(öz yineleme yaptýðýmýz yerde verileri objeye dönüþtürebiliriz)
 - Fark ettiysen servis fonksiyonlarýnýn sýnýflarý ile repository fonksiyonlarýnýn sýnýflarý arasýnda bir benzerlik var.Acaba bunlar birbirinden kalýtýlabilir mi
