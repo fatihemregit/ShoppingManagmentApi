@@ -3,6 +3,8 @@ using Data.Utils.Extensions;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.RateLimiting;
 using Microsoft.IdentityModel.Tokens;
+using NLog.Extensions.Logging;
+using NLog;
 using ShoppingManagment.Utils.Extensions;
 using ShoppingManagment.Utils.Middleware;
 using System.Text;
@@ -23,6 +25,12 @@ builder.Services.setInterfaceConcretesForBusinessLayer();
 builder.Services.setAutoMapperForMainLayer();
 builder.Services.setRateLimiter(builder.Configuration);
 builder.Services.setAuthentication(builder.Configuration);
+
+// NLog yapýlandýrmasýný yükle
+var logger = LogManager.Setup().LoadConfigurationFromFile("NLog.config").GetCurrentClassLogger();
+builder.Logging.ClearProviders();
+builder.Logging.SetMinimumLevel(Microsoft.Extensions.Logging.LogLevel.Trace);
+builder.Logging.AddNLog();
 
 
 builder.Services.AddControllers();

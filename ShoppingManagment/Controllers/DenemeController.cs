@@ -6,6 +6,7 @@ using Entity.Exceptions;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using NLog;
 
 namespace ShoppingManagment.Controllers
 {
@@ -16,17 +17,26 @@ namespace ShoppingManagment.Controllers
 
 		private readonly IMapper _mapper;
 		private readonly IConfiguration _configuration;
+		private readonly ILogger<DenemeController> _logger;
 
-		public DenemeController(IMapper mapper, IConfiguration configuration)
+		public DenemeController(IMapper mapper, IConfiguration configuration, ILogger<DenemeController> logger)
 		{
 			_mapper = mapper;
 			_configuration = configuration;
+			_logger = logger;
 		}
 
 		[HttpGet("custom")]
 		public IActionResult customBadRequestTest()
 		{
 			throw new NotFoundException("hata");
+		}
+
+		[HttpGet("logTest")]
+		public IActionResult logTest()
+		{
+			_logger.LogInformation("sucess");
+			return Ok();
 		}
 
 

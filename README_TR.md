@@ -8,7 +8,7 @@ Kullanýcý ürün barkodunu okutur.
 <br>
 Alýþveriþ sonunda ürün listesi backend e gönderilir ve sipariþ kaydedilir.
 ## Bu Committe Yapýlan iþlemler
-- Logging sistemi ile alakalý kütüphanelerin yüklenmesi
+- Loglama sistemi ile alakalý konfigürasyonlarýn yapýlmasý ve loglama sisteminin test edilmesi
 ## Proje günlüðü
 ### Gün 1 (26.12.2024)
 - Api Projesi oluþturuldu(ShoppingManagment).
@@ -144,6 +144,7 @@ Alýþveriþ sonunda ürün listesi backend e gönderilir ve sipariþ kaydedilir.
 - MarketController ve ProductController da Authorize aktif edildi(Authorize(AuthenticationSchemes = "Bearer"))
 ### Gün 19(01.02.2025)
 - Logging sistemi(nlog) ile alakalý kütüphaneler yüklendi(NLog,NLog.Extensions.Logging)
+- Loglama sistemi ile alakalý konfigürasyonlar(nlog.config,Program.cs) yapýldý ve loglama sistemi test edildi(DenemeController)
 ### Yapýlabilecek þeyler
 - HelpFullFunctions sýnýfýndaki nullCheckObjectProps daha iyi olabilir(eðer props forEach e girmezse basit veridir)(öz yineleme yaptýðýmýz yerde verileri objeye dönüþtürebiliriz)
 - Detaylý bir logging sistemi
