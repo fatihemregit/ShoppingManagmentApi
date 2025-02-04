@@ -8,7 +8,7 @@ Kullanýcý ürün barkodunu okutur.
 <br>
 Alýþveriþ sonunda ürün listesi backend e gönderilir ve sipariþ kaydedilir.
 ## Bu Committe Yapýlan iþlemler
-- Loglama sisteminin çok katmanlý mimari sistemine uygun hale getirilmesi
+- Loglama sisteminin,Dependency Injection ayarlarýnýn yapýlmasý
 ## Proje günlüðü
 ### Gün 1 (26.12.2024)
 - Api Projesi oluþturuldu(ShoppingManagment).
@@ -147,6 +147,7 @@ Alýþveriþ sonunda ürün listesi backend e gönderilir ve sipariþ kaydedilir.
 - Loglama sistemi ile alakalý konfigürasyonlar(nlog.config,Program.cs) yapýldý ve loglama sistemi test edildi(DenemeController)
 ### Gün 20(04.01.2025)
 - Loglama sistemi çok katmanlý mimari sistemine uygun hale getirildi
+- Loglama sistemi,Dependency Injection ayarlarý(Business.Utils.Extensions.ServiceExtensions sýnýfý setInterfaceConcretesForBusinessLayer metodu,Data.Utils.Extensions.DataExtensions sýnýfý setInterfaceConcretesForDataLayer metodu) yapýldý
 ### Yapýlabilecek þeyler
 - HelpFullFunctions sýnýfýndaki nullCheckObjectProps daha iyi olabilir(eðer props forEach e girmezse basit veridir)(öz yineleme yaptýðýmýz yerde verileri objeye dönüþtürebiliriz)
 - Detaylý bir logging sistemi

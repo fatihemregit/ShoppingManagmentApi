@@ -1,8 +1,10 @@
 ﻿using Business.Abstracts.Auth;
+using Business.Abstracts.Logger;
 using Business.Abstracts.Market;
 using Business.Abstracts.Order;
 using Business.Abstracts.Product;
 using Business.Concretes.Auth;
+using Business.Concretes.Logger;
 using Business.Concretes.Market;
 using Business.Concretes.Order;
 using Business.Concretes.Product;
@@ -29,6 +31,7 @@ namespace Business.Utils.Extensions
 			services.AddScoped<IMarketService,MarketService>();
 			services.AddScoped<IOrderService, OrderService>();
 			services.AddScoped<IAuthService, AuthService>();
+			services.AddScoped<ILoggerService, LoggerService>();
 		}
 
 	}
