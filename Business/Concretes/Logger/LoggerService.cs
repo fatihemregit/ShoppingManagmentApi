@@ -55,6 +55,7 @@ namespace Business.Concretes.Logger
 		}
 		public void unSucessInDataLayer(string message, object item)
 		{
+			//Öneri.Veritabanı hatalarınıdamı eklesek?
 			_logger.logWarning($"Unsucessful in Data Layer|message:{message}|object Info:{writeObject(item)}");
 		}
 	}

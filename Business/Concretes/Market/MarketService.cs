@@ -10,18 +10,21 @@ using System.Text;
 using System.Threading.Tasks;
 using Business.Abstracts.Market;
 using Business.Utils.Functions;
+using Business.Abstracts.Logger;
 
 namespace Business.Concretes.Market
 {
-	public class MarketService:IMarketService
+	public class MarketService : IMarketService
 	{
 		private readonly IMarketRepository _repository;
 		private readonly IMapper _mapper;
+		private readonly ILoggerService _logger;
 
-		public MarketService(IMarketRepository marketRepository, IMapper mapper)
+		public MarketService(IMarketRepository marketRepository, IMapper mapper, ILoggerService logger)
 		{
 			_repository = marketRepository;
 			_mapper = mapper;
+			_logger = logger;
 		}
 
 
@@ -30,7 +33,7 @@ namespace Business.Concretes.Market
 		private async Task<bool> checkisAlreadyMarketInDb(string marketName)
 		{
 			//null check
-			if (HelpFullFunctions.nullCheckObjectProps(new {marketName = marketName}))
+			if (HelpFullFunctions.nullCheckObjectProps(new { marketName = marketName }))
 			{
 				throw new BadRequestException("marketName parametresi null olamaz");
 			}
@@ -44,11 +47,13 @@ namespace Business.Concretes.Market
 			//null check
 			if (HelpFullFunctions.nullCheckObjectProps(market))
 			{
+				_logger.unSucessInBusinessLayer("market parametresi null olamaz", market);
 				throw new BadRequestException("market parametresi null olamaz");
 			}
 			//daha önce böyle bir market var mı onun kontrolü
 			if (await checkisAlreadyMarketInDb(market.MarketName))
 			{
+				_logger.unSucessInBusinessLayer("bu market zaten daha önceden kaydedilmiş", market);
 				throw new ConflictException("bu market zaten daha önceden kaydedilmiş");
 			}
 			//yeni market oluşturma
@@ -56,10 +61,12 @@ namespace Business.Concretes.Market
 			//market oluşturma başarısız
 			if (result is null)
 			{
+				_logger.unSucessInBusinessLayer("market ekleme başarısız",market);
 				throw new BadRequestException("market ekleme başarısız");
 			}
 			//market oluşturma başarılı
 			//oluşturulan marketi dönme
+			_logger.sucessInBusinessLayer("market ekleme başarılı",result);
 			return _mapper.Map<IMarketServiceCreateMarketAsyncResponse>(result);
 
 		}
@@ -75,8 +82,9 @@ namespace Business.Concretes.Market
 		public async Task<IMarketServiceGetMarketByIdAsyncResponse> getMarketByIdAsync(int id)
 		{
 			//null check
-			if (HelpFullFunctions.nullCheckObjectProps(new {id = id}))
+			if (HelpFullFunctions.nullCheckObjectProps(new { id = id }))
 			{
+				_logger.unSucessInBusinessLayer("id parametresi null olamaz", new { id = id });
 				throw new BadRequestException("id parametresi null olamaz");
 			}
 
@@ -85,9 +93,11 @@ namespace Business.Concretes.Market
 			if (result is null)
 			{
 				//id ye göre market bulunamadı
+				_logger.unSucessInBusinessLayer($"{id} id li market bulunamadı",new {id = id});
 				throw new NotFoundException($"{id} id li market bulunamadı");
 			}
 			//id ye göre market var marketi dönelim
+			_logger.sucessInBusinessLayer($"{id} id li market bulundu",result);
 			return _mapper.Map<IMarketServiceGetMarketByIdAsyncResponse>(result);
 		}
 		//Read End
@@ -98,14 +108,18 @@ namespace Business.Concretes.Market
 			//null check
 			if (HelpFullFunctions.nullCheckObjectProps(market))
 			{
+				_logger.unSucessInBusinessLayer("market parametresi null olamaz",market);
 				throw new BadRequestException("market parametresi null olamaz");
+
 			}
 			//eğer market güncellleme başarısız olursa result null gelir
 			IMarketRepositoryUpdateOneMarketAsyncResponse? result = await _repository.updateOneMarketAsync(_mapper.Map<IMarketRepositoryUpdateOneMarketAsyncRequest>(market));
 			if (result is null)
 			{
+				_logger.unSucessInBusinessLayer("market güncelleme başarısız", market);
 				throw new BadRequestException("market güncelleme başarısız");
 			}
+			_logger.sucessInBusinessLayer("market güncelleme başarılı",result);
 			return _mapper.Map<IMarketServiceUpdateMarketAsyncResponse>(result);
 
 		}
@@ -116,14 +130,16 @@ namespace Business.Concretes.Market
 		public async Task<bool> deleteMarketAsync(int id)
 		{
 			//null check
-			if (HelpFullFunctions.nullCheckObjectProps(new {id = id}))
+			if (HelpFullFunctions.nullCheckObjectProps(new { id = id }))
 			{
+				_logger.unSucessInBusinessLayer("id parametresi null olamaz", new { id = id });
 				throw new BadRequestException("id parametresi null olamaz");
 			}
 			//eğer market silme işlemi başarısız ise result 'false' gelir
 			bool result = await _repository.deleteOneMarketByIdAsync(id);
 			if (!result)
 			{
+				_logger.unSucessInBusinessLayer("market silme başarısız", new { id = id });
 				throw new BadRequestException("market silme başarısız");
 			}
 			return result;

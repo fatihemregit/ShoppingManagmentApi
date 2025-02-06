@@ -8,7 +8,7 @@ Kullanýcý ürün barkodunu okutur.
 <br>
 Alýþveriþ sonunda ürün listesi backend e gönderilir ve sipariþ kaydedilir.
 ## Bu Committe Yapýlan iþlemler
-- AuthService sýnýfýnda loglama sisteminin implementasyonunun yapýlmasý
+- MarketService sýnýfýnda loglama sisteminin implementasyonunun yapýlmasý
 ## Proje günlüðü
 ### Gün 1 (26.12.2024)
 - Api Projesi oluþturuldu(ShoppingManagment).
@@ -150,6 +150,7 @@ Alýþveriþ sonunda ürün listesi backend e gönderilir ve sipariþ kaydedilir.
 - Loglama sistemi,Dependency Injection ayarlarý(Business.Utils.Extensions.ServiceExtensions sýnýfý setInterfaceConcretesForBusinessLayer metodu,Data.Utils.Extensions.DataExtensions sýnýfý setInterfaceConcretesForDataLayer metodu) yapýldý
 ### Gün 21(06.02.2025)
 - AuthService sýnýfýnda loglama sisteminin implementasyonu yapýldý
+- MarketService sýnýfýnda loglama sisteminin implementasyonu yapýldý
 ### Yapýlabilecek þeyler
 - LoggerService teki writeObject metodunun düzenlemesi
 - HelpFullFunctions sýnýfýndaki nullCheckObjectProps daha iyi olabilir(eðer props forEach e girmezse basit veridir)(öz yineleme yaptýðýmýz yerde verileri objeye dönüþtürebiliriz)
