@@ -27,6 +27,8 @@ namespace Business.Concretes.Logger
 
 		private string writeObject(object item)
 		{
+			//objenin proplarından biri null geldiğinde ne yapacağız?
+			//objenin proplarından biri referans(nesne) geldiğinde ne yapacağız?
 			string result = "";
 			Type type = item.GetType();
 			result += $"object Type : {type.Name}|";

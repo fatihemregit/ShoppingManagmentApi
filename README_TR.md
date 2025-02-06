@@ -8,7 +8,7 @@ Kullanýcý ürün barkodunu okutur.
 <br>
 Alýþveriþ sonunda ürün listesi backend e gönderilir ve sipariþ kaydedilir.
 ## Bu Committe Yapýlan iþlemler
-- Loglama sisteminin,Dependency Injection ayarlarýnýn yapýlmasý
+- AuthService sýnýfýnda loglama sisteminin implementasyonunun yapýlmasý
 ## Proje günlüðü
 ### Gün 1 (26.12.2024)
 - Api Projesi oluþturuldu(ShoppingManagment).
@@ -145,10 +145,13 @@ Alýþveriþ sonunda ürün listesi backend e gönderilir ve sipariþ kaydedilir.
 ### Gün 19(01.02.2025)
 - Logging sistemi(nlog) ile alakalý kütüphaneler yüklendi(NLog,NLog.Extensions.Logging)
 - Loglama sistemi ile alakalý konfigürasyonlar(nlog.config,Program.cs) yapýldý ve loglama sistemi test edildi(DenemeController)
-### Gün 20(04.01.2025)
+### Gün 20(04.02.2025)
 - Loglama sistemi çok katmanlý mimari sistemine uygun hale getirildi
 - Loglama sistemi,Dependency Injection ayarlarý(Business.Utils.Extensions.ServiceExtensions sýnýfý setInterfaceConcretesForBusinessLayer metodu,Data.Utils.Extensions.DataExtensions sýnýfý setInterfaceConcretesForDataLayer metodu) yapýldý
+### Gün 21(06.02.2025)
+- AuthService sýnýfýnda loglama sisteminin implementasyonu yapýldý
 ### Yapýlabilecek þeyler
+- LoggerService teki writeObject metodunun düzenlemesi
 - HelpFullFunctions sýnýfýndaki nullCheckObjectProps daha iyi olabilir(eðer props forEach e girmezse basit veridir)(öz yineleme yaptýðýmýz yerde verileri objeye dönüþtürebiliriz)
 - Detaylý bir logging sistemi
 - Fark ettiysen servis fonksiyonlarýnýn sýnýflarý ile repository fonksiyonlarýnýn sýnýflarý arasýnda bir benzerlik var.Acaba bunlar birbirinden kalýtýlabilir mi

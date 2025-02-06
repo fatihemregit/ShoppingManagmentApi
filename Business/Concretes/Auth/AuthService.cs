@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using Business.Abstracts.Auth;
+using Business.Abstracts.Logger;
 using Business.Utils.Functions;
 using Entity.Auth;
 using Entity.Exceptions;
@@ -23,14 +24,16 @@ namespace Business.Concretes.Auth
 		private readonly UserManager<AppUser> _userManager;
 
 		private readonly IConfiguration _configuration;
-
 		private readonly IMapper _mapper;
+		private readonly ILoggerService _logger;
 
-		public AuthService(UserManager<AppUser> userManager, IConfiguration configuration, IMapper mapper)
+
+		public AuthService(UserManager<AppUser> userManager, IConfiguration configuration, IMapper mapper, ILoggerService logger)
 		{
 			_userManager = userManager;
 			_configuration = configuration;
 			_mapper = mapper;
+			_logger = logger;
 		}
 
 		//Create User functions start
@@ -69,6 +72,7 @@ namespace Business.Concretes.Auth
 		{
 			if (HelpFullFunctions.nullCheckObjectProps(user))
 			{
+				_logger.unSucessInBusinessLayer("user parametresi null olamaz", user);
 				throw new BadRequestException("user parametresi null olamaz");
 			}
 
@@ -95,10 +99,12 @@ namespace Business.Concretes.Auth
 					RefreshToken = userrefreshToken,
 					RefreshTokenExpiration = refreshTokenExpiration,
 				};
+				_logger.sucessInBusinessLayer($"{user.UserName} adlı kullanıcının kullanıcı kaydı başarılı",result);
 				return result;
 			}
 			else
 			{
+				_logger.unSucessInBusinessLayer($"kullanıcı kaydı başarısız",user);
 				throw new IdentityException("kullanıcı kaydı başarısız");
 			}
 			
@@ -112,6 +118,7 @@ namespace Business.Concretes.Auth
 		{
 			if (HelpFullFunctions.nullCheckObjectProps(user))
 			{
+				_logger.unSucessInBusinessLayer("user parametresi null olamaz",user);
 				throw new BadRequestException("user parametresi null olamaz");
 			}
 
@@ -120,6 +127,7 @@ namespace Business.Concretes.Auth
 			if (foundUser is null)
 			{
 				//verilen kullanıcı adına göre kullanıcı yok hata dönelim
+				_logger.unSucessInBusinessLayer("kullanıcı bilgileri hatalı", user);
 				throw new IdentityException("kullanıcı bilgileri hatalı");
 			}
 
@@ -151,11 +159,13 @@ namespace Business.Concretes.Auth
 					RefreshToken = foundUser.RefreshToken,
 					RefreshTokenExpiration = (DateTime)foundUser.RefreshTokenEndDate
 				};
+				_logger.sucessInBusinessLayer("kullanıcı girişi başarılı",result);
 				return result;
 			}
 			else
 			{
 				//verilen parola yanlış hata dönelim
+				_logger.unSucessInBusinessLayer("kullanıcı bilgileri hatalı", user);
 				throw new IdentityException("kullanıcı bilgileri hatalı");
 			}
 
@@ -195,12 +205,14 @@ namespace Business.Concretes.Auth
 		{
 			if (HelpFullFunctions.nullCheckObjectProps(refreshToken))
 			{
+				_logger.unSucessInBusinessLayer("refreshToken parametresi null olamaz",refreshToken);
 				throw new BadRequestException("refreshToken parametresi null olamaz");
 			}
 
 			if (!(await checkRefreshToken(refreshToken.RefreshToken)))
 			{
 				//token da hata var.Hata fırlatalım
+				_logger.unSucessInBusinessLayer("refresh token hatalı", refreshToken);
 				throw new IdentityException("refresh token hatalı");
 			}
 			//token da hata yok.token oluşturalım
@@ -210,6 +222,7 @@ namespace Business.Concretes.Auth
 				AccessToken = newAcessToken, 
 				AcessTokenExpiration = accessTokenExpiration
 			};
+			_logger.sucessInBusinessLayer("yeni token oluşturma başarılı",new {result = result,refreshToken = refreshToken});
 			return result;
 		}
 

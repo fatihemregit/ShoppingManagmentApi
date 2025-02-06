@@ -38,6 +38,8 @@ namespace ShoppingManagment.Utils.Middleware
 			{
 				context.Response.StatusCode = (int)HttpStatusCode.InternalServerError;
 			}
+			//Öneri : customException sa loglamayı zaten yapmış oluruz. o yüzden sadece dahili hataları log error yapalım
+
 			var response = new
 			{
 				status = context.Response.StatusCode,
