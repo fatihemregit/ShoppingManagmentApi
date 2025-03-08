@@ -1,8 +1,10 @@
 ﻿using AutoMapper;
+using Data.Abstracts.Logger;
 using Data.Abstracts.Market;
 using Data.EfCore.Context;
 using Entity.Dto;
 using Entity.Exceptions;
+
 using Entity.IMarketRepository;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -15,6 +17,7 @@ namespace Data.EfCore
 {
 	public class MarketRepository : IMarketRepository
 	{
+		//daha sonrasında veritabanından kaynaklı hataları da loglayalım
 
 		private readonly ApplicationDbContext _context;
 		private readonly IMapper _mapper;
@@ -32,6 +35,7 @@ namespace Data.EfCore
 			int result = await _context.SaveChangesAsync();
 			if (result <= 0)
 			{
+
 				return null;
 			}
 			return _mapper.Map<IMarketRepositoryCreateOneMarketAsyncResponse>(marketDto);
