@@ -8,8 +8,8 @@ Kullanýcý ürün barkodunu okutur.
 <br>
 Alýþveriþ sonunda ürün listesi backend e gönderilir ve sipariþ kaydedilir.
 ## Bu Committe Yapýlan iþlemler
-- MarketRepository Sýnýfýnda bazý yorum satýrlarýnýn eklenmesi.
-- MarketRepository Sýnýfýnda bazý BreakPoint noktalarýnýn eklenmesi.
+- Loglama sistemi için gerekli olan dosyalarýn bazýlarýnýn silinmesi
+- Projeye yeni bir katman eklenmesi
 ## Proje günlüðü
 ### Gün 1 (26.12.2024)
 - Api Projesi oluþturuldu(ShoppingManagment).
@@ -155,9 +155,12 @@ Alýþveriþ sonunda ürün listesi backend e gönderilir ve sipariþ kaydedilir.
 ## Gün 22 (08.03.2025)
 - MarketRepository Sýnýfýnda bazý yorum satýrlarý(20.satýr) eklendi.
 - MarketRepository Sýnýfýnda BreakPoint noktalarý eklendi.
- 
+### Gün 23(09.03.2025)
+- Loglama sistemi için gerekli olan dosyalarýn bazýlarý(Business katmanýndaki ILoggerService ve LoggerService sýnýfý,Data Katmanýndaki IBaseLogger ve Nlogger sýnýfý) silindi
+- Projeye yeni bir katman(Core katmaný) eklendi
 ### Yapýlabilecek þeyler
 - LoggerService teki writeObject metodunun düzenlemesi
 - HelpFullFunctions sýnýfýndaki nullCheckObjectProps daha iyi olabilir(eðer props forEach e girmezse basit veridir)(öz yineleme yaptýðýmýz yerde verileri objeye dönüþtürebiliriz)
 - Detaylý bir logging sistemi
 - Fark ettiysen servis fonksiyonlarýnýn sýnýflarý ile repository fonksiyonlarýnýn sýnýflarý arasýnda bir benzerlik var.Acaba bunlar birbirinden kalýtýlabilir mi
+- Logger sisteminin taþýnmasý
