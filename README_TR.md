@@ -8,8 +8,7 @@ Kullanýcý ürün barkodunu okutur.
 <br>
 Alýþveriþ sonunda ürün listesi backend e gönderilir ve sipariþ kaydedilir.
 ## Bu Committe Yapýlan iþlemler
-- Loglama sistemi için gerekli olan dosyalarýn bazýlarýnýn silinmesi
-- Projeye yeni bir katman eklenmesi
+- Loglama sisteminin Ana Projeden silinmesi
 ## Proje günlüðü
 ### Gün 1 (26.12.2024)
 - Api Projesi oluþturuldu(ShoppingManagment).
@@ -158,6 +157,8 @@ Alýþveriþ sonunda ürün listesi backend e gönderilir ve sipariþ kaydedilir.
 ### Gün 23(09.03.2025)
 - Loglama sistemi için gerekli olan dosyalarýn bazýlarý(Business katmanýndaki ILoggerService ve LoggerService sýnýfý,Data Katmanýndaki IBaseLogger ve Nlogger sýnýfý) silindi
 - Projeye yeni bir katman(Core katmaný) eklendi
+### Gün 24 (10.03.2025)
+- Loglama sistemi Ana Projeden(kütüphanelerinin silinmesi(NLog,NLog.Extensions.Logging),Nlog.config dosyasýnýn silinmesi) silindi
 ### Yapýlabilecek þeyler
 - LoggerService teki writeObject metodunun düzenlemesi
 - HelpFullFunctions sýnýfýndaki nullCheckObjectProps daha iyi olabilir(eðer props forEach e girmezse basit veridir)(öz yineleme yaptýðýmýz yerde verileri objeye dönüþtürebiliriz)
