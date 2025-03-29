@@ -1,4 +1,4 @@
-﻿using Data.Abstracts.Logger;
+﻿//using Data.Abstracts.Logger;
 using Data.Abstracts.Market;
 using Data.Abstracts.Order;
 using Data.Abstracts.Product;
@@ -40,7 +40,7 @@ namespace Data.Utils.Extensions
 			services.AddScoped<IProductRepository,ProductRepository>();
 			services.AddScoped<IMarketRepository,MarketRepository>();
 			services.AddScoped<IOrderRepository, OrderRepository>();
-			services.AddScoped<IBaseLogger, NLogger>();
+			//services.AddScoped<IBaseLogger, NLogger>();
 		}
 
 

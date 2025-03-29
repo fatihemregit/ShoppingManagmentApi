@@ -8,7 +8,8 @@ Kullanýcý ürün barkodunu okutur.
 <br>
 Alýþveriþ sonunda ürün listesi backend e gönderilir ve sipariþ kaydedilir.
 ## Bu Committe Yapýlan iþlemler
-- Loglama sistemi için Core katmanýnda gerekli dosyalarýn oluþturulmasý.
+- Busines katmanýndaki loglama ile alakalý ifadelerin belirli dosyalarda yorum satýrýna alýnmasý.
+- Business Ve Data katmanýnda, Loglama ile alakalý Dependency Injection ayarlarýnýn yorum satýrýna alýnmasý.
 ## Proje günlüðü
 ### Gün 1 (26.12.2024)
 - Api Projesi oluþturuldu(ShoppingManagment).
@@ -160,6 +161,9 @@ Alýþveriþ sonunda ürün listesi backend e gönderilir ve sipariþ kaydedilir.
 ### Gün 24 (10.03.2025)
 - Loglama sistemi Ana Projeden(kütüphanelerinin silinmesi(NLog,NLog.Extensions.Logging),Nlog.config dosyasýnýn silinmesi) silindi
 - Loglama sistemi için Core katmanýnda gerekli dosyalar oluþturuldu(Core.Data.Abstracts.Logging.ILoggingRepository,Core.Data.EfCore.Context.CoreDbContext,Core.Data.EfCore.LoggingRepository)
+### Gün 25(29.03.2025)
+- Busines katmanýndaki loglama ile alakalý ifadeler(_logger ile baþlayan satýrlar) belirli dosyalarda(AuthService,MarketService) yorum satýrýna alýndý.
+- Business Ve Data katmanýnda, Loglama ile alakalý Dependency Injection ayarlarý(services.AddScoped) yorum satýrýna alýndý.
 ### Yapýlabilecek þeyler
 - LoggerService teki writeObject metodunun düzenlemesi
 - HelpFullFunctions sýnýfýndaki nullCheckObjectProps daha iyi olabilir(eðer props forEach e girmezse basit veridir)(öz yineleme yaptýðýmýz yerde verileri objeye dönüþtürebiliriz)
