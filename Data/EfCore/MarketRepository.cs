@@ -1,5 +1,5 @@
 ﻿using AutoMapper;
-using Data.Abstracts.Logger;
+//using Data.Abstracts.Logger;
 using Data.Abstracts.Market;
 using Data.EfCore.Context;
 using Entity.Dto;

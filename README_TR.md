@@ -8,8 +8,7 @@ Kullanýcý ürün barkodunu okutur.
 <br>
 Alýþveriþ sonunda ürün listesi backend e gönderilir ve sipariþ kaydedilir.
 ## Bu Committe Yapýlan iþlemler
-- Busines katmanýndaki loglama ile alakalý ifadelerin belirli dosyalarda yorum satýrýna alýnmasý.
-- Business Ve Data katmanýnda, Loglama ile alakalý Dependency Injection ayarlarýnýn yorum satýrýna alýnmasý.
+- Bazý dosyalarda ufak deðiþiklik yapýlmasý.
 ## Proje günlüðü
 ### Gün 1 (26.12.2024)
 - Api Projesi oluþturuldu(ShoppingManagment).
@@ -164,6 +163,7 @@ Alýþveriþ sonunda ürün listesi backend e gönderilir ve sipariþ kaydedilir.
 ### Gün 25(29.03.2025)
 - Busines katmanýndaki loglama ile alakalý ifadeler(_logger ile baþlayan satýrlar) belirli dosyalarda(AuthService,MarketService) yorum satýrýna alýndý.
 - Business Ve Data katmanýnda, Loglama ile alakalý Dependency Injection ayarlarý(services.AddScoped) yorum satýrýna alýndý.
+- bazý dosyalarda (MarketRepository,DenemeController) ufak deðiþiklik yapýldý.
 ### Yapýlabilecek þeyler
 - LoggerService teki writeObject metodunun düzenlemesi
 - HelpFullFunctions sýnýfýndaki nullCheckObjectProps daha iyi olabilir(eðer props forEach e girmezse basit veridir)(öz yineleme yaptýðýmýz yerde verileri objeye dönüþtürebiliriz)

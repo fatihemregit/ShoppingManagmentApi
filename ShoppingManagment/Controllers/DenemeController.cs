@@ -6,7 +6,7 @@ using Entity.Exceptions;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using NLog;
+//using NLog;
 
 namespace ShoppingManagment.Controllers
 {
