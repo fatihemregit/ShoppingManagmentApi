@@ -161,7 +161,7 @@ At the end of the shopping, the product list is sent to the backend and the orde
 ### Day 24 (10.03.2025)
 - Logging system deleted from Main Project (deletion of libraries (NLog, NLog.Extensions.Logging), deletion of Nlog.config file)
 - Created necessary files in Core layer for logging system (Core.Data.Abstracts.Logging.ILoggingRepository,Core.Data.EfCore.Context.CoreDbContext,Core.Data.EfCore.LoggingRepository)
-#### Day 25 (29.03.2025)
+### Day 25 (29.03.2025)
 - Logging related statements (lines starting with _logger) in the Busines layer have been moved to the comment line in certain files (AuthService, MarketService).
 - In the Business and Data layer, Dependency Injection settings related to logging (services.AddScoped) were added to the comment line.
 - minor changes were made in some files (MarketRepository,TrialController).
