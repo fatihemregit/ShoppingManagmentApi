@@ -130,7 +130,7 @@ At the end of the shopping, the product list is sent to the backend and the orde
 - The necessary codes were written for the login process
 - Minor errors in AuthController were fixed.
 - Changes were made in IdentityException class (production error code was changed to 401)
-#### Day 16 (13.01.2025)
+### Day 16 (13.01.2025)
 - Created IAuthService interface, AuthService class and function objects to move the code in AuthControls to the Business Layer
 ### Day 17 (28.01.2025)
 - AuthService class was written. and connection code (AddScoped) between it and IauthService was written.
@@ -139,7 +139,7 @@ At the end of the shopping, the product list is sent to the backend and the orde
 - AuthController was connected to Authservice class in business layer
 - Unnecessary code in AuthController was deleted
 - Parameter null check was added to AuthService class
-#### Day 18 (29.01.2025)
+### Day 18 (29.01.2025)
 - Added parameter null check to some functions in OrderService Class (deleteOrderbyRowIdAsync, deleteOrdersByOrderIdAsync)
 - Changed parameter null check system in functions in MarketService Class.
 - Defined rate limit rule for AuthController in MainExtensions
@@ -148,7 +148,7 @@ At the end of the shopping, the product list is sent to the backend and the orde
 ### Day 19 (01.02.2025)
 - Installed logging system (nlog) related libraries (NLog, NLog.Extensions.Logging)
 - Configured logging system (nlog.config, Program.cs) and tested logging system (TrialController)
-#### Day 20 (04.02.2025)
+### Day 20 (04.02.2025)
 - Logging system has been adapted to multi-tier architecture
 - Logging system, Dependency Injection settings (Business.Utils.Extensions.ServiceExtensions class setInterfaceConcretesForBusinessLayer method, Data.Utils.Extensions.DataExtensions class setInterfaceConcretesForDataLayer method) were made
 ### Day 21 (06.02.2025)
