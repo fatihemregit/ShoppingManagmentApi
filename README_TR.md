@@ -114,9 +114,7 @@ Alýþveriþ sonunda ürün listesi backend e gönderilir ve sipariþ kaydedilir.
 - Rate limiting ayarlarý ile alakalý kodlar program.cs den  MainExtensions daki setRateLimiter fonksiyonuna taþýndý
 ### Gün 14 (10.01.2025)
 - Microsoft.AspNetCore.Identity.EntityFrameworkCore kütüphanesin kuruldu ve kodda gerekli deðiþikler yapýldý
-<br>
   (data katmanýnda ApplicationDbContext in IdentityDbContext e çevirilmesi,Entity Katmanýnda AppUser ve AppRole sýnýflarýnýn oluþturulmasý,
-  <br> 
    veritabaný migration ýn oluþturulmasý ve uygulanmasý)
 - Program.cs de Auth Ayarlarý yapýldý(MainExtensions daki setAuthentication metodu)
 ### Gün 15 (11.01.2025)
