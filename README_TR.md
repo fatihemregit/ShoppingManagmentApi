@@ -8,7 +8,7 @@ Kullanýcý ürün barkodunu okutur.
 <br>
 Alýþveriþ sonunda ürün listesi backend e gönderilir ve sipariþ kaydedilir.
 ## Bu Committe Yapýlan iþlemler
-- Bazý dosyalarda ufak deðiþiklik yapýlmasý.
+- Readme Dosyasýna ingilizce desteði eklenmesi
 ## Proje günlüðü
 ### Gün 1 (26.12.2024)
 - Api Projesi oluþturuldu(ShoppingManagment).
@@ -170,3 +170,5 @@ Alýþveriþ sonunda ürün listesi backend e gönderilir ve sipariþ kaydedilir.
 - Detaylý bir logging sistemi
 - Fark ettiysen servis fonksiyonlarýnýn sýnýflarý ile repository fonksiyonlarýnýn sýnýflarý arasýnda bir benzerlik var.Acaba bunlar birbirinden kalýtýlabilir mi
 - Logger sisteminin taþýnmasý
+- Github projesinin gizliden açýk hale çekilmesi
+- yeni yapacaðým proje veresiye defteri olsun
