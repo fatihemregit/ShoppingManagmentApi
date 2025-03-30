@@ -13,7 +13,7 @@ At the end of the shopping, the product list is sent to the backend and the orde
 ## Tasks Completed in This Commit
 - Minor modifications to some files
 ## Project Log
-#### Day 1 (26.12.2024)
+### Day 1 (26.12.2024)
 - Api Project created (ShoppingManagment).
 - Created the necessary projects for layered architecture (Business, Data, Entity).
 - Dto objects (Entity/Dto/ProductDto.cs and MarketDto.cs) were written
@@ -37,7 +37,7 @@ At the end of the shopping, the product list is sent to the backend and the orde
 - The content of the README files was written.
 - Version control system (Github) connection was made.
 - Created gitignore file for version control system.
-#### Day 2 (27.12.2024)
+### Day 2 (27.12.2024)
 - In the Business Layer, the folder structure required for regular code writing was created (Abstracts,Abstracts/Market,Abstracts/Product,Concretes,Concretes/Market,Concretes/Product,Utils,Utils/AutoMapper,Utils/Extensions).
 - MappingProfileForBusinessLayer(Business/Utils/AutoMapper) and ServiceExtensions(Business/Utils/Extensions) classes have been created.
 - In the Business Layer, the AutoMapper library was loaded and the necessary code for implementation (setAutoMapperForBusinessLayer in ServiceExtensions) was written.
@@ -45,9 +45,9 @@ At the end of the shopping, the product list is sent to the backend and the orde
 - Custom Exceptions folder was created (Entity/Exceptions) and Custom Exceptions classes (BadRequestException, ConflictException, OkException) were written
 - IProductService (Business/Abstracts/Product) interface was created.
 - ProductService class (Business/Concretes/Product) was created, some functions (getProductWithBarcodeNumberAndMarketId, createProduct, CheckIsAlreadyProductInDb) were written to the class, Objects specific to these methods (IProductServiceCreateProduct, IProductServiceGetProductWithBarcodeNumberAndMarketId) have been written, necessary mapping codes have been written to MappingProfileForBusinessLayer(Business/Utils/AutoMapper) class
-#### Day 3 (28.12.2024)
+### Day 3 (28.12.2024)
 - Added a new function (updateProduct) to the ProductService class
-#### Day 4 (29.12. 2024)
+### Day 4 (29.12. 2024)
 - A new function (deleteProduct) was written in the ProductService class
 - Function classes used in the IProductRepository interface were rewritten according to request,response
 - Function classes used in the IMarketRepository interface were rewritten according to request,response
@@ -59,7 +59,7 @@ At the end of the shopping, the product list is sent to the backend and the orde
 - Wrote the IProductService interface according to the ProductService class
 - Implemented the IProductService interface to the ProductService class.
 - Custom Error Handling system was created and implemented in the code
-#### Day 5 (31.12.2024)
+### Day 5 (31.12.2024)
 - Parameter null check system was written to ProductService class
 - A new function (createMarketAsync) was written to MarketService class.
 - A new function (getOneMarketByNameAsync) has been written to IMarketRepository class.
@@ -68,7 +68,7 @@ At the end of the shopping, the product list is sent to the backend and the orde
 - The remaining functions in the MarketService class (getAllMarketsAsync, getMarketByIdAsync, updateMarketAsync, deleteMarketAsync) have been written.
 - ImarketService interface was written according to MarketService class
 - ImarketService interface was implemented to MarketService class.
-#### Day 6 (01.01.2025)
+### Day 6 (01.01.2025)
 - Created Product Controller
 - In Data layer, added concrete counterparts of Interface objects to Dependency Injection Container (setInterfaceConcretesForDataLayer method in DataExtensions)
 - In Business layer, added concrete counterparts of Interface objects to Dependency Injection Container (setInterfaceConcretesForBusinessLayer method in ServiceExtensions)
@@ -80,7 +80,7 @@ At the end of the shopping, the product list is sent to the backend and the orde
 - A static class was created for useful functions in the Business layer (HelpFullFunctions(Utils/Functions)).And a function for null check (nullCheckObjectProps) was written.
 - Changed the null check system in Product Service.(HelpFullFunctions.nullCheckObjectProps function)
 - Created a new function in Product Controller(getProductWithBarcodeNumberAndMarketIdAsync) and created the required function object(ProductControllerGetProductWithBarcodeNumberAndMarketIdAsyncResponse)
-#### Day 7 (02.01.2025)
+### Day 7 (02.01.2025)
 - New functions (updateProductAsync, deleteProductAsync) and necessary function objects (ProductControllerUpdateProductAsyncRequest, ProductControllerUpdateProductAsyncResponse) were created in Product Controller.
 - Added new fields (CreatedDate, ModifiedDate) to ProductDto object.
 - Changes were made to the ProductRepository class (filling the newly added fields)
