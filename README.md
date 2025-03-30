@@ -117,9 +117,7 @@ At the end of the shopping, the product list is sent to the backend and the orde
 - The codes related to rate limiting settings were moved from program.cs to setRateLimiter function in MainExtensions
 ### Day 14 (10.01.2025)
 - Microsoft.AspNetCore.Identity.EntityFrameworkCore library was installed and necessary changes were made in the code
-<br>
  (conversion of ApplicationDbContext to IdentityDbContext in data layer, creation of AppUser and AppRole classes in Entity Layer, creation and implementation of
- <br> 
  database migration)
 - Auth Settings were made in Program.cs (setAuthentication method in MainExtensions)
 ### Day 15 (11.01.2025)
