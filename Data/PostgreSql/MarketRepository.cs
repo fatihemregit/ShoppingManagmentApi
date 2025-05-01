@@ -1,10 +1,7 @@
 ﻿using AutoMapper;
-//using Data.Abstracts.Logger;
 using Data.Abstracts.Market;
 using Data.EfCore.Context;
 using Entity.Dto;
-using Entity.Exceptions;
-
 using Entity.IMarketRepository;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -13,14 +10,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Data.EfCore
+namespace Data.PostgreSql
 {
 	public class MarketRepository : IMarketRepository
 	{
-		//daha sonrasında veritabanından kaynaklı hataları da loglayalım
-
 		private readonly ApplicationDbContextSqlServer _context;
 		private readonly IMapper _mapper;
+
 
 		public MarketRepository(ApplicationDbContextSqlServer context, IMapper mapper)
 		{
@@ -101,7 +97,5 @@ namespace Data.EfCore
 			}
 			return true;
 		}
-
-
 	}
 }

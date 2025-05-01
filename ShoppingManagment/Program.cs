@@ -15,7 +15,8 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 
 //DataExtensions
-builder.Services.ConfigureSqlContextForDataLayer(builder.Configuration);
+//builder.Services.ConfigureSqlContextForDataLayerSqlServer(builder.Configuration);
+builder.Services.ConfigureSqlContextForDataLayerPostgre(builder.Configuration);
 builder.Services.setInterfaceConcretesForDataLayer();
 builder.Services.setAutoMapperForDataLayer();
 //ServiceExtensions

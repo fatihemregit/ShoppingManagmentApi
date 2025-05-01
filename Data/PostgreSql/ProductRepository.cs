@@ -1,25 +1,24 @@
 ﻿using AutoMapper;
 using Data.Abstracts.Product;
 using Data.EfCore.Context;
+using Data.PostgreSql.Context;
 using Entity.Dto;
-using Entity.Exceptions;
 using Entity.IProductRepository;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Infrastructure.Internal;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Data.EfCore
+namespace Data.PostgreSql
 {
 	public class ProductRepository : IProductRepository
 	{
-		private readonly ApplicationDbContextSqlServer _context;
+		private readonly ApplicationDbContextPostgre _context;
 		private readonly IMapper _mapper;
 
-		public ProductRepository(ApplicationDbContextSqlServer context, IMapper mapper)
+		public ProductRepository(ApplicationDbContextPostgre context, IMapper mapper)
 		{
 			_context = context;
 			_mapper = mapper;
@@ -106,7 +105,5 @@ namespace Data.EfCore
 			}
 			return true;
 		}
-
-
 	}
 }

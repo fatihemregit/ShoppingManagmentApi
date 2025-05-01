@@ -12,8 +12,8 @@ using Entity.Auth;
 
 namespace Data.EfCore.Context
 {
-	//Add-Migration firstmig -Context Data.EfCore.Context.ApplicationDbContext -Project Data -OutputDir "Efcore//Migrations"
-	public class ApplicationDbContext : IdentityDbContext<AppUser,AppRole,Guid>
+	//Add-Migration firstmig -Context Data.EfCore.Context.ApplicationDbContextSqlServer -Project Data -OutputDir "Efcore//Migrations"
+	public class ApplicationDbContextSqlServer : IdentityDbContext<AppUser,AppRole,Guid>
 	{
         public DbSet<ProductDto> Products { get; set; }
 
@@ -22,7 +22,7 @@ namespace Data.EfCore.Context
 		public DbSet<OrderDto> Orders { get; set; }
 
 
-		public ApplicationDbContext(DbContextOptions options) : base(options)
+		public ApplicationDbContextSqlServer(DbContextOptions options) : base(options)
 		{
 		}
 

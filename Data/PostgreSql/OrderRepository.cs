@@ -1,26 +1,24 @@
 ﻿using AutoMapper;
 using Data.Abstracts.Order;
-using Data.EfCore.Config;
 using Data.EfCore.Context;
+using Data.PostgreSql.Context;
 using Entity.Dto;
 using Entity.IOrderRepository;
-
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Reflection.Emit;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Data.EfCore
+namespace Data.PostgreSql
 {
 	public class OrderRepository : IOrderRepository
 	{
-		private readonly ApplicationDbContextSqlServer _context;
+		private readonly ApplicationDbContextPostgre _context;
 		private readonly IMapper _mapper;
 
-		public OrderRepository(ApplicationDbContextSqlServer context, IMapper mapper)
+		public OrderRepository(ApplicationDbContextPostgre context, IMapper mapper)
 		{
 			_context = context;
 			_mapper = mapper;
@@ -67,7 +65,7 @@ namespace Data.EfCore
 
 		public async Task<IOrderRepositoryUpdateOneOrderAsyncResponse?> updateOneOrderAsync(IOrderRepositoryUpdateOneOrderAsyncRequest order)
 		{
-			OrderDto? foundOrderDto =  await _context.Orders.Where(o => o.RowId == order.RowId).SingleOrDefaultAsync();
+			OrderDto? foundOrderDto = await _context.Orders.Where(o => o.RowId == order.RowId).SingleOrDefaultAsync();
 			if (foundOrderDto is null)
 			{
 				return null;

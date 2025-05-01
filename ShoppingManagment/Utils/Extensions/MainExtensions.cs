@@ -83,7 +83,7 @@ namespace ShoppingManagment.Utils.Extensions
 				options.User.RequireUniqueEmail = true; //Email adreslerini tekilleştiriyoruz.
 				options.User.AllowedUserNameCharacters = "abcçdefghiıjklmnoöpqrsştuüvwxyzABCÇDEFGHIİJKLMNOÖPQRSŞTUÜVWXYZ0123456789-._@+"; //Kullanıcı adında geçerli olan karakterleri belirtiyoruz.
 
-			}).AddEntityFrameworkStores<ApplicationDbContext>();
+			}).AddEntityFrameworkStores<ApplicationDbContextSqlServer>();
 
 
 			services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJwtBearer(options =>
