@@ -3,3 +3,6 @@ nixPkgs = ["dotnet-sdk_8"]
 
 [start]
 cmd = "dotnet run --project ./ShoppingManagment/ShoppingManagment.csproj --urls=http://0.0.0.0:5000"
+
+[variables]
+ASPNETCORE_URLS = "http://0.0.0.0:5000"
