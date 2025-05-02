@@ -26,7 +26,7 @@ builder.Services.setInterfaceConcretesForBusinessLayer();
 builder.Services.setAutoMapperForMainLayer();
 builder.Services.setRateLimiter(builder.Configuration);
 builder.Services.setAuthentication(builder.Configuration);
-
+builder.Services.AddCors();
 //// NLog yapýlandýrmasýný yükle
 //var logger = LogManager.Setup().LoadConfigurationFromFile("NLog.config").GetCurrentClassLogger();
 //builder.Logging.ClearProviders();
@@ -44,6 +44,7 @@ builder.Services.AddSwaggerGen();
 
 var app = builder.Build();
 app.UseRateLimiter();
+app.UseCors(x => x.AllowAnyHeader().AllowAnyMethod().WithOrigins());
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
