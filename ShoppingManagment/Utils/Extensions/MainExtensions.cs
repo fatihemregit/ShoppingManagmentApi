@@ -1,4 +1,5 @@
 ﻿using Data.EfCore.Context;
+using Data.PostgreSql.Context;
 using Entity.Auth;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.RateLimiting;
@@ -73,6 +74,19 @@ namespace ShoppingManagment.Utils.Extensions
 
 		public static void setAuthentication(this IServiceCollection services, IConfiguration configuration)
 		{
+			//Sql
+			//services.AddIdentity<AppUser, AppRole>(options =>
+			//{
+			//	options.Password.RequiredLength = 8;//şifrenin kaç haneli olduğu
+			//	options.Password.RequireNonAlphanumeric = true; //Alfanumerik zorunluluğunu kaldırıyoruz.
+			//	options.Password.RequireLowercase = true; //Küçük harf zorunluluğunu kaldırıyoruz.
+			//	options.Password.RequireUppercase = true; //Büyük harf zorunluluğunu kaldırıyoruz.
+			//	options.Password.RequireDigit = true; //0-9 arası sayısal karakter zorunluluğunu kaldırıyoruz.
+			//	options.User.RequireUniqueEmail = true; //Email adreslerini tekilleştiriyoruz.
+			//	options.User.AllowedUserNameCharacters = "abcçdefghiıjklmnoöpqrsştuüvwxyzABCÇDEFGHIİJKLMNOÖPQRSŞTUÜVWXYZ0123456789-._@+"; //Kullanıcı adında geçerli olan karakterleri belirtiyoruz.
+
+			//}).AddEntityFrameworkStores<ApplicationDbContextSqlServer>();
+			//Postgre
 			services.AddIdentity<AppUser, AppRole>(options =>
 			{
 				options.Password.RequiredLength = 8;//şifrenin kaç haneli olduğu
@@ -83,7 +97,7 @@ namespace ShoppingManagment.Utils.Extensions
 				options.User.RequireUniqueEmail = true; //Email adreslerini tekilleştiriyoruz.
 				options.User.AllowedUserNameCharacters = "abcçdefghiıjklmnoöpqrsştuüvwxyzABCÇDEFGHIİJKLMNOÖPQRSŞTUÜVWXYZ0123456789-._@+"; //Kullanıcı adında geçerli olan karakterleri belirtiyoruz.
 
-			}).AddEntityFrameworkStores<ApplicationDbContextSqlServer>();
+			}).AddEntityFrameworkStores<ApplicationDbContextPostgre>();
 
 
 			services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJwtBearer(options =>

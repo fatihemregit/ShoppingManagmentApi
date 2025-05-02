@@ -88,16 +88,16 @@ namespace Business.Concretes.Auth
 			string userrefreshToken = CreateRefreshToken();
 			//refresh Token ı veritabanına kaydedelim
 			appUser.RefreshToken = userrefreshToken;
-			appUser.RefreshTokenEndDate = refreshTokenExpiration;
+			appUser.RefreshTokenEndDate = refreshTokenExpiration.ToUniversalTime();
 			IdentityResult identityResult = await _userManager.CreateAsync(appUser, user.Password);
 			if (identityResult.Succeeded)
 			{
 				IAuthServiceCreateUserResponse result = new IAuthServiceCreateUserResponse()
 				{
 					AccessToken = userAcessToken,
-					AcessTokenExpiration = accessTokenExpiration,
+					AcessTokenExpiration = accessTokenExpiration.ToUniversalTime(),
 					RefreshToken = userrefreshToken,
-					RefreshTokenExpiration = refreshTokenExpiration,
+					RefreshTokenExpiration = refreshTokenExpiration.ToUniversalTime(),
 				};
 				//_logger.sucessInBusinessLayer($"{user.UserName} adlı kullanıcının kullanıcı kaydı başarılı",result);
 				return result;
@@ -136,7 +136,7 @@ namespace Business.Concretes.Auth
 				//verilen kullanıcı bilgileri doğru.gerekli işlemleri yapalım
 				//refresh Tokenın süresini check edelim ve süresi dolmuş ise yeni bir token oluşturup yeni bir süre atayalım
 				//süresi dolmamış ise veritabanındaki tokenı dönelim
-				if (foundUser.RefreshTokenEndDate < DateTime.Now)
+				if (foundUser.RefreshTokenEndDate < DateTime.Now.ToUniversalTime())
 				{
 					//süre dolmuş.yeni token ile alakalı işlemleri yapalım
 					foundUser.RefreshToken = CreateRefreshToken();

@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using Data.Abstracts.Market;
 using Data.EfCore.Context;
+using Data.PostgreSql.Context;
 using Entity.Dto;
 using Entity.IMarketRepository;
 using Microsoft.EntityFrameworkCore;
@@ -14,11 +15,11 @@ namespace Data.PostgreSql
 {
 	public class MarketRepository : IMarketRepository
 	{
-		private readonly ApplicationDbContextSqlServer _context;
+		private readonly ApplicationDbContextPostgre _context;
 		private readonly IMapper _mapper;
 
 
-		public MarketRepository(ApplicationDbContextSqlServer context, IMapper mapper)
+		public MarketRepository(ApplicationDbContextPostgre context, IMapper mapper)
 		{
 			_context = context;
 			_mapper = mapper;

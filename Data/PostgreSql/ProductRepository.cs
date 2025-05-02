@@ -29,8 +29,8 @@ namespace Data.PostgreSql
 		public async Task<IProductRepositoryCreateOneProductAsyncResponse?> createOneProductAsync(IProductRepositoryCreateOneProductAsyncRequest product)
 		{
 			ProductDto productDto = _mapper.Map<ProductDto>(product);
-			productDto.CreatedDate = DateTime.Now;
-			productDto.ModifiedDate = DateTime.Now;
+			productDto.CreatedDate = DateTime.Now.ToUniversalTime();
+			productDto.ModifiedDate = DateTime.Now.ToUniversalTime();
 			await _context.Products.AddAsync(productDto);
 			int result = await _context.SaveChangesAsync();
 			if (result <= 0)
@@ -79,7 +79,7 @@ namespace Data.PostgreSql
 
 			foundProductwithIdAndMarketId.ProductName = product.ProductName;
 			foundProductwithIdAndMarketId.Price = product.Price;
-			foundProductwithIdAndMarketId.ModifiedDate = DateTime.Now;
+			foundProductwithIdAndMarketId.ModifiedDate = DateTime.Now.ToUniversalTime();
 			int result = await _context.SaveChangesAsync();
 			if (result <= 0)
 			{
