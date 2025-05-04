@@ -13,11 +13,12 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Entity", "Entity\Entity.csp
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{3799D994-4C46-4D55-8A0B-6A3C2F5C9020}"
 	ProjectSection(SolutionItems) = preProject
+		Dockerfile = Dockerfile
 		README.md = README.md
 		README_TR.md = README_TR.md
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Core", "Core\Core.csproj", "{BA5B77BA-2B1E-478E-BDB7-B12775BE5718}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Core", "Core\Core.csproj", "{BA5B77BA-2B1E-478E-BDB7-B12775BE5718}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

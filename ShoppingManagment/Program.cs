@@ -41,9 +41,9 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-
 var app = builder.Build();
 app.UseRateLimiter();
+app.MapGet("/", () => "Yükleme baþarýlý");
 app.UseCors(x => x.AllowAnyHeader().AllowAnyMethod().WithOrigins());
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())

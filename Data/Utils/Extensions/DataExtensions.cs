@@ -39,12 +39,12 @@ namespace Data.Utils.Extensions
 			services.AddDbContext<ApplicationDbContextPostgre>((options) =>
 			{
 
-				//options.UseNpgsql(configuration.GetConnectionString("sqlConnectionPostgreDb"),
-				//	x => x.MigrationsAssembly("Data")
-				//	);
-				options.UseNpgsql(configuration.GetConnectionString("sqlConnectionPostgreDbRemote"),
+				options.UseNpgsql(configuration.GetConnectionString("sqlConnectionPostgreDb"),
 					x => x.MigrationsAssembly("Data")
 					);
+				//options.UseNpgsql(configuration.GetConnectionString("sqlConnectionPostgreDbRemote"),
+				//	x => x.MigrationsAssembly("Data")
+				//	);
 			});
 		}
 
