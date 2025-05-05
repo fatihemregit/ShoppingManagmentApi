@@ -5,6 +5,7 @@ using Data.PostgreSql.Context;
 using Entity.Dto;
 using Entity.IOrderRepository;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,11 +18,14 @@ namespace Data.PostgreSql
 	{
 		private readonly ApplicationDbContextPostgre _context;
 		private readonly IMapper _mapper;
+		private readonly ILogger<OrderRepository> _logger;
 
-		public OrderRepository(ApplicationDbContextPostgre context, IMapper mapper)
+
+		public OrderRepository(ApplicationDbContextPostgre context, IMapper mapper, ILogger<OrderRepository> logger)
 		{
 			_context = context;
 			_mapper = mapper;
+			_logger = logger;
 		}
 
 		public async Task<List<IOrderRepositoryCreateOrdersAsyncResponse>?> createOrdersAsync(List<IOrderRepositoryCreateOrdersAsyncRequest> orders)
@@ -31,8 +35,10 @@ namespace Data.PostgreSql
 			int result = await _context.SaveChangesAsync();
 			if (result <= 0)
 			{
+				_logger.LogDebug("sipariş oluşturulamadı");
 				return null;
 			}
+			_logger.LogInformation($"sipariş oluşturuldu(sipariş id :{orderDtos.First().OrderId})");
 			return _mapper.Map<List<IOrderRepositoryCreateOrdersAsyncResponse>>(orderDtos);
 
 		}
@@ -40,6 +46,7 @@ namespace Data.PostgreSql
 		public async Task<List<IOrderRepositoryGetAllOrdersAsyncResponse>> getAllAsync()
 		{
 			List<OrderDto> ordersInDb = await _context.Orders.ToListAsync();
+			_logger.LogInformation($"siparişler getirildi");
 			return _mapper.Map<List<IOrderRepositoryGetAllOrdersAsyncResponse>>(ordersInDb);
 		}
 
@@ -48,8 +55,10 @@ namespace Data.PostgreSql
 			List<OrderDto> ordersInDbwithOrderId = await _context.Orders.Where(o => o.OrderId == orderId).ToListAsync();
 			if (ordersInDbwithOrderId.Count <= 0)
 			{
+				_logger.LogDebug($"sipariş bulunamadı {orderId}");
 				return null;
 			}
+			_logger.LogInformation($"siparişler getirildi(row id {orderId})");
 			return _mapper.Map<List<IOrderRepositoryGetOrdersByOrderIdAsyncResponse>>(ordersInDbwithOrderId);
 		}
 
@@ -58,8 +67,10 @@ namespace Data.PostgreSql
 			OrderDto? orderInDbWithRowId = await _context.Orders.Where(o => o.RowId == RowId).SingleOrDefaultAsync();
 			if (orderInDbWithRowId is null)
 			{
+				_logger.LogDebug($"sipariş bulunamadı row id : {RowId}");
 				return null;
 			}
+			_logger.LogInformation($"sipariş getirildi(order Id : {orderInDbWithRowId.OrderId})");
 			return _mapper.Map<IOrderRepositoryGetOneOrderByRowIdAsyncResponse>(orderInDbWithRowId);
 		}
 
@@ -68,6 +79,7 @@ namespace Data.PostgreSql
 			OrderDto? foundOrderDto = await _context.Orders.Where(o => o.RowId == order.RowId).SingleOrDefaultAsync();
 			if (foundOrderDto is null)
 			{
+				_logger.LogDebug($"sipariş bulunamadı row id : {order.RowId}");
 				return null;
 			}
 			foundOrderDto.OrderId = order.OrderId;
@@ -76,8 +88,10 @@ namespace Data.PostgreSql
 			int result = await _context.SaveChangesAsync();
 			if (result <= 0)
 			{
+				_logger.LogDebug($"sipariş güncellenemedi (row id : ${order.RowId})");
 				return null;
 			}
+			_logger.LogInformation($"sipariş güncellendi (row id : ${order.RowId})");
 			return _mapper.Map<IOrderRepositoryUpdateOneOrderAsyncResponse>(foundOrderDto);
 
 		}
@@ -88,14 +102,17 @@ namespace Data.PostgreSql
 			OrderDto? foundOrderDto = await _context.Orders.Where(o => o.RowId == RowId).SingleOrDefaultAsync();
 			if (foundOrderDto is null)
 			{
+				_logger.LogDebug($"sipariş bulunamadı row id : {RowId}");
 				return false;
 			}
 			_context.Orders.Remove(foundOrderDto);
 			int result = await _context.SaveChangesAsync();
 			if (result <= 0)
 			{
+				_logger.LogDebug($"sipariş silinemedi (row id : ${RowId})");
 				return false;
 			}
+			_logger.LogInformation($"sipariş silindi (row id : ${RowId})");
 			return true;
 
 		}
@@ -106,12 +123,16 @@ namespace Data.PostgreSql
 			List<OrderDto> foundOrderDtos = await _context.Orders.Where(o => o.OrderId == orderId).ToListAsync();
 			if (foundOrderDtos.Count <= 0)
 			{
+				_logger.LogDebug($"siparişler silinemedi (order Id : ${orderId})");
+
 				return false;
 			}
 			_context.Orders.RemoveRange(foundOrderDtos);
 			int result = await _context.SaveChangesAsync();
 			if (result <= 0)
 			{
+				_logger.LogInformation($"siparişler silindi (order Id : ${orderId})");
+
 				return false;
 			}
 			return true;

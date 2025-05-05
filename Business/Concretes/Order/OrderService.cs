@@ -12,6 +12,7 @@ using System.Threading.Tasks;
 using Data.Abstracts.Product;
 using Entity.IProductRepository;
 using Entity.IOrderRepository;
+using Microsoft.Extensions.Logging;
 
 namespace Business.Concretes.Order
 {
@@ -21,12 +22,14 @@ namespace Business.Concretes.Order
 		private readonly IMapper _mapper;
 		private readonly IOrderRepository _orderRepository;
 		private readonly IProductRepository _productRepository;
+		private readonly ILogger<OrderService> _logger;
 
-		public OrderService(IMapper mapper, IOrderRepository orderRepository, IProductRepository productRepository)
+		public OrderService(IMapper mapper, IOrderRepository orderRepository, IProductRepository productRepository, ILogger<OrderService> logger)
 		{
 			_mapper = mapper;
 			_orderRepository = orderRepository;
 			_productRepository = productRepository;
+			_logger = logger;
 		}
 
 
@@ -65,6 +68,7 @@ namespace Business.Concretes.Order
 			if (HelpFullFunctions.nullCheckObjectProps(productIds))
 			{
 				//product id lerden biri null gelmiş throw fırlatalım
+				_logger.LogDebug("productIds parametresi null olamaz");
 				throw new BadRequestException("productIds parametresi null olamaz");
 			}
 			//bu product idler ile ilişkili ürün olup olmadığını kontrol edelim
@@ -85,15 +89,17 @@ namespace Business.Concretes.Order
 			List<IOrderRepositoryCreateOrdersAsyncResponse>? orderResponses = await _orderRepository.createOrdersAsync(orderRequests);
 			if (orderResponses is null)
 			{
+				_logger.LogDebug("sipariş oluşturma başarısız");
 				throw new BadRequestException("sipariş oluşturma başarısız");
 			}
-
+			_logger.LogInformation($"sipariş oluşturma başarılı(order id : {orderId})");
 			return orderId;
 		}
 
 		public async Task<List<IOrderServiceGetAllOrdersAsyncResponse>> getAllOrdersAsync()
 		{
 			List<IOrderRepositoryGetAllOrdersAsyncResponse> result = await _orderRepository.getAllAsync();
+			_logger.LogInformation($"tüm siparişler listelendi (toplam sipariş sayısı {result.Count})");
 			return _mapper.Map<List<IOrderServiceGetAllOrdersAsyncResponse>>(result);
 		}
 
@@ -101,13 +107,16 @@ namespace Business.Concretes.Order
 		{
 			if (HelpFullFunctions.nullCheckObjectProps(new { orderId = orderId }))
 			{
+				_logger.LogDebug("orderId parametresi null olamaz");
 				throw new BadRequestException("orderId parametresi null olamaz");
 			}
 			List<IOrderRepositoryGetOrdersByOrderIdAsyncResponse>? result = await _orderRepository.getOrdersByOrderIdAsync(orderId);
 			if (result is null)
 			{
+				_logger.LogDebug($"{orderId} order id li siparişler bulunamadı");
 				throw new NotFoundException($"{orderId} order id li siparişler bulunamadı");
 			}
+			_logger.LogInformation($"{orderId} order id li siparişler bulundu");
 			return _mapper.Map<List<IOrderServiceGetOrdersByOrderIdAsyncResponse>>(result);
 		}
 
@@ -115,13 +124,16 @@ namespace Business.Concretes.Order
 		{
 			if (HelpFullFunctions.nullCheckObjectProps(new { rowId = rowId }))
 			{
+				_logger.LogDebug("rowId parametresi null olamaz");
 				throw new BadRequestException("rowId parametresi null olamaz");
 			}
 			IOrderRepositoryGetOneOrderByRowIdAsyncResponse? result = await _orderRepository.getOneOrderByRowIdAsync(rowId);
 			if (result is null)
 			{
+				_logger.LogDebug($"{rowId} row id li sipariş bulunamadı");
 				throw new NotFoundException($"{rowId} row id li sipariş bulunamadı");
 			}
+			_logger.LogInformation($"{rowId} row id li sipariş bulundu(order id : {result.OrderId})");
 			return _mapper.Map<IOrderServiceGetOrderByRowIdAsyncResponse>(result);
 		}
 
@@ -129,11 +141,13 @@ namespace Business.Concretes.Order
 		{
 			if (HelpFullFunctions.nullCheckObjectProps(order))
 			{
+				_logger.LogDebug("order parametresi null olamaz");
 				throw new BadRequestException("order parametresi null olamaz");
 			}
 			IOrderRepositoryGetOneOrderByRowIdAsyncResponse? foundOrder = await _orderRepository.getOneOrderByRowIdAsync(order.RowId);
 			if (foundOrder is null)
 			{
+				_logger.LogDebug($"{order.RowId} row id li sipariş bulunamadı");
 				throw new NotFoundException($"{order.RowId} row id li sipariş bulunamadı");
 			}
 			IOrderRepositoryUpdateOneOrderAsyncRequest request = _mapper.Map<IOrderRepositoryUpdateOneOrderAsyncRequest>(order);
@@ -142,8 +156,10 @@ namespace Business.Concretes.Order
 			IOrderRepositoryUpdateOneOrderAsyncResponse? result = await _orderRepository.updateOneOrderAsync(request);
 			if (result is null)
 			{
+				_logger.LogDebug("sipariş güncelleme başarısız");
 				throw new BadRequestException("sipariş güncelleme başarısız");
 			}
+			_logger.LogInformation("sipariş güncelleme başarılı");
 			return _mapper.Map<IOrderServiceUpdateOrderAsyncResponse>(result);
 		}
 
@@ -151,13 +167,16 @@ namespace Business.Concretes.Order
 		{
 			if (HelpFullFunctions.nullCheckObjectProps(new { rowId = rowId }))
 			{
+				_logger.LogDebug("rowId parametresi null olamaz");
 				throw new BadRequestException("rowId parametresi null olamaz");
 			}
 			bool result = await _orderRepository.deleteOneOrderbyRowIdAsync(rowId);
 			if (!result)
 			{
+				_logger.LogDebug("sipariş silme başarısız");
 				throw new BadRequestException("sipariş silme başarısız");
 			}
+			_logger.LogInformation($"sipariş silme başarılı (row id : {rowId})");
 			return result;
 		}
 
@@ -165,13 +184,16 @@ namespace Business.Concretes.Order
 		{
 			if (HelpFullFunctions.nullCheckObjectProps(new { orderId = orderId }))
 			{
+				_logger.LogDebug("orderId parametresi null olamaz");
 				throw new BadRequestException("orderId parametresi null olamaz");
 			}
 			bool result = await _orderRepository.deleteOrdersByOrderIdAsync(orderId);
 			if (!result)
 			{
+				_logger.LogDebug("sipariş silme başarısız");
 				throw new BadRequestException("sipariş silme başarısız");
 			}
+			_logger.LogInformation($"sipariş silme başarılı (order id : {orderId})");
 			return result;
 
 		}

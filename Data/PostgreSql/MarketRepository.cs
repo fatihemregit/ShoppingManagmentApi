@@ -5,6 +5,7 @@ using Data.PostgreSql.Context;
 using Entity.Dto;
 using Entity.IMarketRepository;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,12 +18,14 @@ namespace Data.PostgreSql
 	{
 		private readonly ApplicationDbContextPostgre _context;
 		private readonly IMapper _mapper;
+		private readonly ILogger<MarketRepository> _logger;
 
 
-		public MarketRepository(ApplicationDbContextPostgre context, IMapper mapper)
+		public MarketRepository(ApplicationDbContextPostgre context, IMapper mapper, ILogger<MarketRepository> logger)
 		{
 			_context = context;
 			_mapper = mapper;
+			_logger = logger;
 		}
 
 		public async Task<IMarketRepositoryCreateOneMarketAsyncResponse?> createOneMarketAsync(IMarketRepositoryCreateOneMarketAsyncRequest market)
@@ -32,15 +35,17 @@ namespace Data.PostgreSql
 			int result = await _context.SaveChangesAsync();
 			if (result <= 0)
 			{
-
+				_logger.LogDebug("yeni market ekleme başarısız");
 				return null;
 			}
+			_logger.LogInformation("yeni market ekleme başarılı");
 			return _mapper.Map<IMarketRepositoryCreateOneMarketAsyncResponse>(marketDto);
 		}
 
 		public async Task<List<IMarketRepositoryGetAllAsyncResponse>> getAllAsync()
 		{
 			List<MarketDto> marketsinDb = await _context.Markets.ToListAsync();
+			_logger.LogInformation("tüm marketleri listeleme başarılı");
 			return _mapper.Map<List<IMarketRepositoryGetAllAsyncResponse>>(marketsinDb);
 		}
 
@@ -49,8 +54,10 @@ namespace Data.PostgreSql
 			MarketDto? foundMarketById = await _context.Markets.Where(m => m.Id == id).SingleOrDefaultAsync();
 			if (foundMarketById is null)
 			{
+				_logger.LogDebug($"market bulunamadı(market id : {id})");
 				return null;
 			}
+			_logger.LogInformation("market bulundu");
 			return _mapper.Map<IMarketRepositoryGetOneMarketByIdAsyncResponse>(foundMarketById);
 		}
 
@@ -59,8 +66,10 @@ namespace Data.PostgreSql
 			MarketDto? foundMarketByName = await _context.Markets.Where(m => m.MarketName == MarketName).SingleOrDefaultAsync();
 			if (foundMarketByName is null)
 			{
+				_logger.LogDebug($"market bulunamadı(market adı : {MarketName})");
 				return null;
 			}
+			_logger.LogInformation("market bulundu");
 			return _mapper.Map<IMarketRepositoryGetOneMarketByNameAsyncResponse>(foundMarketByName);
 
 		}
@@ -71,14 +80,17 @@ namespace Data.PostgreSql
 			MarketDto? foundMarketDtowithId = await _context.Markets.Where(m => m.Id == market.Id).SingleOrDefaultAsync();
 			if (foundMarketDtowithId is null)
 			{
+				_logger.LogDebug($"market bulunamadı(market id : {market.Id})");
 				return null;
 			}
 			foundMarketDtowithId.MarketName = market.MarketName;
 			int result = await _context.SaveChangesAsync();
 			if (result <= 0)
 			{
+				_logger.LogDebug("market güncellenemedi");
 				return null;
 			}
+			_logger.LogInformation("market güncellendi");
 			return _mapper.Map<IMarketRepositoryUpdateOneMarketAsyncResponse>(foundMarketDtowithId);
 		}
 
@@ -88,14 +100,17 @@ namespace Data.PostgreSql
 			MarketDto? foundMarketDtoWithId = await _context.Markets.Where(m => m.Id == id).SingleOrDefaultAsync();
 			if (foundMarketDtoWithId is null)
 			{
+				_logger.LogDebug($"market bulunamadı(market id : {id})");
 				return false;
 			}
 			_context.Markets.Remove(foundMarketDtoWithId);
 			int result = await _context.SaveChangesAsync();
 			if (result <= 0)
 			{
+				_logger.LogDebug("market silinemedi");
 				return false;
 			}
+			_logger.LogInformation("market silindi");
 			return true;
 		}
 	}
