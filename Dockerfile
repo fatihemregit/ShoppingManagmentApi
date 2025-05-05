@@ -34,8 +34,8 @@ COPY --from=publish /app/publish .
 ENV JWT__securityKey = "SF3VCQUYCQfHQkjI0ziWZ4KIU2vZIpMB7q9hScw8oTP0FZlHY5Ve5Y9ym6HgFU54Mbk0p6SeQvYFYZSmxTGt4dWMxR45CoGqTies"
 ENV JWT__issuer = "wYkh97r1BRZmVAyXTHojfUzJX5tYEa2dLTlzBgwMhryzDRHB8PkhuW38E6pmMjKD"
 ENV JWT__audience = "a1gQbceyrGfHIwzPyYR4F7XjAfsdA3rglQH0gLLM2jlzQEZkIt8eTEeoU3kIiX5V"
-ENV JWT__accessTokenExpirationInMinute = 15
-ENV JWT__refreshTokenExpirationInDay = 7 
+ENV JWT__accessTokenExpirationInMinute = "15"
+ENV JWT__refreshTokenExpirationInDay = "7" 
 
 
 
