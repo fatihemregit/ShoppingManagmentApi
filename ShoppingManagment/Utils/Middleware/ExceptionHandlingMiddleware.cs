@@ -46,6 +46,10 @@ namespace ShoppingManagment.Utils.Middleware
 				message = _env.IsDevelopment() ? exception.Message : "An unexpected error occurred.",
 				stackTrace = _env.IsDevelopment() ? exception.StackTrace : ""
 			};
+            Console.WriteLine("hata var !!!!");
+            Console.WriteLine("==================================");
+            Console.WriteLine($"hata açıklaması(message) : {exception.Message}\nHata demeti : {exception.StackTrace}");
+            Console.WriteLine("==================================");
 
 			if (_env.IsDevelopment())
 			{
