@@ -43,8 +43,7 @@ builder.Services.AddSwaggerGen();
 
 var app = builder.Build();
 app.UseRateLimiter();
-var teValue = Environment.GetEnvironmentVariable("te");
-app.MapGet("/", () => $"Yükleme baþarýlý\n{app.Environment.EnvironmentName}\nvar test{teValue}");
+app.MapGet("/", () => $"Yükleme baþarýlý\n{app.Environment.EnvironmentName}");
 app.UseCors(x => x.AllowAnyHeader().AllowAnyMethod().WithOrigins());
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
