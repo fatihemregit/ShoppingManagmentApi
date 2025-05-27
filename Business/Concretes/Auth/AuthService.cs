@@ -139,7 +139,7 @@ namespace Business.Concretes.Auth
 				{
 					//süre dolmuş.yeni token ile alakalı işlemleri yapalım
 					foundUser.RefreshToken = CreateRefreshToken();
-					foundUser.RefreshTokenEndDate = DateTime.Now.AddDays(int.Parse(_configuration.GetSection("jwt:refreshTokenExpirationInDay").Value));
+					foundUser.RefreshTokenEndDate = DateTime.Now.ToUniversalTime().AddDays(int.Parse(_configuration.GetSection("jwt:refreshTokenExpirationInDay").Value));
 					await _userManager.UpdateAsync(foundUser);
 					await _userManager.UpdateSecurityStampAsync(foundUser);
 				}

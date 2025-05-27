@@ -22,7 +22,11 @@ namespace ShoppingManagment.Utils.Middleware
 			}
 			catch (Exception ex)
 			{
-				await HandleExceptionAsync(context, ex);
+                // inner exception'ı logla
+                var error = ex.InnerException != null ? ex.InnerException.Message : ex.Message;
+                Console.WriteLine(error); // veya logger.LogError(error)
+
+                await HandleExceptionAsync(context, ex);
 			}
 		}
 
