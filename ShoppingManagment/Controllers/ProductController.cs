@@ -10,7 +10,7 @@ using Microsoft.AspNetCore.RateLimiting;
 namespace ShoppingManagment.Controllers
 {
 	[Authorize(AuthenticationSchemes = "Bearer")]
-	[EnableRateLimiting(policyName: "productController")]
+	//[EnableRateLimiting(policyName: "productController")]
 	[Route("api/[controller]")]
 	[ApiController]
 	public class ProductController : ControllerBase

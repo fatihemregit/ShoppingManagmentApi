@@ -36,16 +36,17 @@ namespace ShoppingManagment.Controllers
 		}
 
 
-		/*
+        /*
 		 fterm:Hs@3n9#@LV
 		 Saturate6417:u%cH5AGCLVbXm4KPbkvt
 		 Customary3029:anHsPVAH8#5uD@@X@!9J
+		deneme@test.com:Deneme1234567890
 		 */
 
-		//yeni kullanıcı kaydı ve token işlemleri başlangıç
-		
-		//yeni kullanıcı kaydı oluşturma
-		[HttpPost("register")]
+        //yeni kullanıcı kaydı ve token işlemleri başlangıç
+
+        //yeni kullanıcı kaydı oluşturma
+        [HttpPost("register")]
 		public async Task<IActionResult> CreateUser([FromBody] AuthControllerCreateUserRequest userRequest)
 		{
 			IAuthServiceCreateUserResponse authServiceResponse = await _authService.createUser(_mapper.Map<IAuthServiceCreateUserRequest>(userRequest));
