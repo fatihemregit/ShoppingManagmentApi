@@ -1,5 +1,5 @@
 # Shopping Management Project
-[trReadmeHere](https://github.com/fatihemregit/ShoppingManagmentApi/blob/master/README_TR.md)
+[trReadmeHere](https://github.com/fatihemregit/ShoppingManagmentApi/blob/master/Docs/README_TR.md)
 <br>
 The project I wrote to make my own work easier in the market
 ## Project Purpose
