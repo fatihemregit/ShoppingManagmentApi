@@ -1,6 +1,6 @@
 # 🛒 Shopping Management API
 
-[![DotNet](https://img.shields.io/badge/.NET-5.0+-512BD4?logo=dotnet)](https://dotnet.microsoft.com/)
+[![DotNet](https://img.shields.io/badge/.NET-8.0-512BD4?logo=dotnet)](https://dotnet.microsoft.com/)
 [![License](https://img.shields.io/badge/license-MIT-green)](LICENSE)
 
 [**English**](https://github.com/fatihemregit/ShoppingManagmentApi/blob/master/README.md) | [**Türkçe**](https://github.com/fatihemregit/ShoppingManagmentApi/blob/master/Docs/README_TR.md)
